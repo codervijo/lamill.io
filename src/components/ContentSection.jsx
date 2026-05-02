@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Fade } from 'react-awesome-reveal';
+import { FaStar, FaTwitter } from 'react-icons/fa';
 import './vendors/css/grid.css';
 import './Content.css';
 import img1 from './img/photos.jpg';
@@ -25,19 +26,19 @@ class ContentSection extends Component {
               />
               <h3>Articles</h3>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Original Content
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Translation
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Search Engine friendly
               </div>
               <div className="city-feature">
-                <i className="ion-social-twitter icon-small"></i>
+                <FaTwitter className="icon-small" />
                 <a href="#">@lamill_content</a>
               </div>
             </div>
@@ -49,19 +50,19 @@ class ContentSection extends Component {
               />
               <h3>Photography</h3>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Pictures
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Graphics
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Exclusive
               </div>
               <div className="city-feature">
-                <i className="ion-social-twitter icon-small"></i>
+                <FaTwitter className="icon-small" />
                 <a href="#">@lamill_pics</a>
               </div>
             </div>
@@ -73,19 +74,19 @@ class ContentSection extends Component {
               />
               <h3>Videos</h3>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Educational Videos
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Review Videos
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Entertainment
               </div>
               <div className="city-feature">
-                <i className="ion-social-twitter icon-small"></i>
+                <FaTwitter className="icon-small" />
                 <a href="#">@lamill_studio</a>
               </div>
             </div>
@@ -97,19 +98,19 @@ class ContentSection extends Component {
               />
               <h3>Design</h3>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Web Design
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Digital Design
               </div>
               <div className="city-feature">
-                <i className="ion-ios-star icon-small"></i>
+                <FaStar className="icon-small" />
                 Infographics
               </div>
               <div className="city-feature">
-                <i className="ion-social-twitter icon-small"></i>
+                <FaTwitter className="icon-small" />
                 <a href="#">@lamill_design</a>
               </div>
             </div>

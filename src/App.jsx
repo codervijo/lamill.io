@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
 
 import Header from './components/Header.jsx';
@@ -9,6 +9,14 @@ import About from './pages/About.jsx';
 import AITools from './pages/aitools/AITools.jsx';
 import TextGenerator from './pages/aitools/tools/TextGenerator.jsx';
 import ImageAnalyzer from './pages/aitools/tools/ImageAnalyzer.jsx';
+
+const NotFound = () => (
+  <div style={{ padding: '4rem 2rem', textAlign: 'center' }}>
+    <h1>404</h1>
+    <p>That page doesn't exist.</p>
+    <Link to="/">Back to home</Link>
+  </div>
+);
 
 const AppContent = () => {
   const location = useLocation();
@@ -23,6 +31,7 @@ const AppContent = () => {
         <Route path="/aitools" element={<AITools />} />
         <Route path="/aitools/text-generator" element={<TextGenerator />} />
         <Route path="/aitools/image-analyzer" element={<ImageAnalyzer />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {!isAIToolsRoute && <Footer />}
     </div>

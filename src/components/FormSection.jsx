@@ -31,10 +31,8 @@ class FormSection extends Component {
                 <label htmlFor="find-us">How did you find us?</label>
               </div>
               <div className="col span-2-of-3">
-                <select name="find-us" id="find-us">
-                  <option value="friends" defaultValue>
-                    Friends
-                  </option>
+                <select name="find-us" id="find-us" defaultValue="friends">
+                  <option value="friends">Friends</option>
                   <option value="search">Search engine</option>
                   <option value="ad">Advertisement</option>
                   <option value="other">Other</option>

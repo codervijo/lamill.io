@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import './Footer.css';
-
 
 class Footer extends Component {
   render() {
@@ -20,10 +18,9 @@ class Footer extends Component {
                 </div>
                 <div className="col span-1-of-2">
                     <ul className="social-links">
-                        <li><a href="#"><i className="ion-logo-facebook"></i></a></li>
-                        <li><a href="#"><i className="ion-logo-twitter"></i></a></li>
-                        <li><a href="#"><i className="ion-logo-googleplus"></i></a></li>
-                        <li><a href="#"><i className="ion-logo-instagram"></i></a></li>
+                        <li><a href="#" aria-label="Facebook"><FaFacebook /></a></li>
+                        <li><a href="#" aria-label="Twitter"><FaTwitter /></a></li>
+                        <li><a href="#" aria-label="Instagram"><FaInstagram /></a></li>
                     </ul>
                 </div>
             </div>
