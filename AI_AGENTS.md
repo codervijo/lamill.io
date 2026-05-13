@@ -9,7 +9,7 @@ description: Stack, structure, and build/run workflow for the lamill.io marketin
 Marketing / landing site for LaMill (a software services brand) plus a small "AI Tools" sub-app (Text Generator, Image Analyzer placeholders) under `/aitools`.
 
 ## Stack
-- React 18 + Vite 6 (ESM, `"type": "module"`) — Vite ≥6 is required for Cloudflare Pages auto-config
+- React 18 + Vite 6 (ESM, `"type": "module"`) — Vite ≥6 is the portfolio-wide stack baseline
 - React Router v7 (`react-router-dom`)
 - Animation / scroll: `framer-motion`, `react-awesome-reveal`, `react-waypoint`
 - Icons: `react-icons` (used in Header) and legacy `ion-*` font-icon classes (NOT currently wired up — see Known issues)
@@ -85,7 +85,14 @@ builder at `~/work/projects/builder/`. Common: `make deps`, `make dev`,
 
 ## Deployment info
 
-Cloudflare Pages. Push to `main` triggers an auto-build via the
-`wrangler.jsonc` config; build output is `dist/`. Custom domain
-configured via the CF Pages dashboard.
+Vercel. The Vercel team auto-deploys from this GitHub repo's `main`
+branch (configured via the Vercel dashboard's Git Integration, not a
+checked-in `vercel.json`). Build output is `dist/`. Custom domain
+configured via the Vercel project's Domains panel.
+
+Note: the repo previously included a `wrangler.jsonc` from an
+earlier Cloudflare Workers experiment that never went live. Removed
+2026-05-13 to keep the repo's intent aligned with what's actually
+serving (lesson surfaced by `lamill project diagnose lamill.io`'s
+intent-vs-actual mismatch heuristic).
 
