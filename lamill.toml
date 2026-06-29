@@ -22,11 +22,11 @@ framework = "tanstack-start"  # SSR (React 19 + Vite + nitro); deploys to Vercel
 # Declarative content identity for this site.
 # Authored by the human; consumed by rankmill to generate drafts and run audits.
 # Leave fields empty until you have a deliberate answer. Empty is better than wrong.
-site_type = ""            # e.g. "legal-compliance", "tool", "directory", "blog", "b2c"
-primary_keyword = ""      # the one phrase this site should rank for
-secondary_keywords = []   # 3-8 supporting phrases
-icp = ""                  # ideal customer profile — one sentence, specific role + context
+site_type = "b2b"
+primary_keyword = "engineering studio"
+secondary_keywords = ["full-stack development studio", "hardware bringup", "embedded Linux engineering", "IoT product development", "web systems engineering", "product engineering studio"]
+icp = "Founders and product teams that need full-stack, hardware, Linux, and IoT engineering shipped alongside their product — without building an in-house team."
 urgency_trigger = ""      # what makes the reader act now (deadline, penalty, pain)
 penalty = ""              # cost of inaction, in their terms (dollars, risk, time)
-tone = ""                 # e.g. "direct, technical, no fluff" or "warm, plainspoken"
+tone = "direct, confident, technical, no fluff"
 law = ""                  # statute or regulation if applicable, else empty
