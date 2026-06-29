@@ -143,6 +143,13 @@ auto-detects Vercel and emits the Build Output API (`.vercel/output`).
 no longer declares `framework: "vite"` (that forced a static-`dist/` SPA build).
 Custom domain (`lamill.io`) is configured via the Vercel project's Domains panel.
 
-> Note: the SSR-on-Vercel deploy was configured during the 2026-06-28 migration
-> but has **not yet been verified** against a live Vercel build. Validate the
-> first deploy before treating it as canonical.
+> **Preset gotcha (not a bug):** a **local** `pnpm build` (no deploy env) falls
+> back to the Lovable wrapper's default `cloudflare-module` preset — you'll see
+> `.output/server/wrangler.json` + a generated worker name. That's expected, not a
+> misconfiguration. On Vercel, `vercel.json`'s `build.env.NITRO_PRESET=vercel`
+> (plus Nitro's automatic `VERCEL` env detection) selects the **`vercel`** preset
+> instead. Verified 2026-06-29 by reproducing locally: `NITRO_PRESET=vercel pnpm
+> build` emits the proper Vercel Build Output API (`.vercel/output/{functions,
+> static,config.json}`, `framework: nitro`, route `/(.*) → /__server`) with no CF
+> artifact. The **live** Vercel build still wants a real-deploy smoke-test before
+> treating SSR-on-Vercel as fully canonical.
