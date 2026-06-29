@@ -1,0 +1,12 @@
+allowBuilds:
+  esbuild: true
+  "@tailwindcss/oxide": true
+  sharp: true
+# Makes lamill.io its own pnpm workspace root so `pnpm install` resolves this
+# project's deps locally. Without this, pnpm walks up to sites/pnpm-workspace.yaml
+# (which has no `packages:` entry for lamill.io) and installs nothing here.
+# Native deps with install scripts must be allow-listed for pnpm to build them.
+onlyBuiltDependencies:
+  - esbuild
+  - "@tailwindcss/oxide"
+  - sharp

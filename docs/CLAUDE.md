@@ -6,33 +6,41 @@ non-features that aren't obvious from the code or git history.
 
 ## Project
 
-<1-2 sentence description — fill in: what does this site do, who is
-the user, what is the stack (lamill.io runs on the sites/* workspace
-shared infra: Vite or Astro + pnpm + Cloudflare Pages, with Makefile
-forwarding to the central builder).>
+Marketing / landing site for **LaMill**, an engineering studio (full stack,
+Linux, hardware, IoT, web systems), plus a small "AI Tools" sub-app at
+`/aitools`. **Stack: TanStack Start (SSR) + React 19 + TypeScript + Tailwind v4
++ shadcn/ui, on Vite with nitro; pnpm; deployed to Vercel.** Runs on the
+sites/* shared infra with the Makefile forwarding to the central builder. Live
+at https://lamill.io.
+
+The current design was generated in Lovable and absorbed into this repo on
+2026-06-28, replacing the prior React 18 + Vite + React Router SPA. The Lovable
+git sync is severed; this repo is canonical. Full agent context in `AI_AGENTS.md`.
 
 ## Commands
 
 ```bash
 # Build / dev (forwards to the parent Makefile)
-make deps           # install deps via the central builder
-make dev            # local dev server
-make build          # production build → dist/
-
-# Test (per-stack — adjust as needed)
-make test           # if a test suite is wired in
+make deps                    # install deps via the central builder
+make run proj=lamill.io      # pnpm install + pnpm dev (vite dev → TanStack Start)
+make test proj=lamill.io     # pnpm install + pnpm build
 
 # Deploy
-git push            # Cloudflare Pages auto-builds on push to main
+git push            # Vercel auto-builds on push to main → lamill.io
 ```
 
 ## Conventions
 
   - Build path: this project's `Makefile` → `../Makefile` (parent
     workspace) → `~/work/projects/builder/` (central builder).
-  - Stack: pnpm-only. No `package-lock.json` / `bun.lockb` / `yarn.lock`.
-  - Deploy: Cloudflare Pages via `wrangler.jsonc`. No `_redirects`
-    SPA fallback (uses CF's `not_found_handling` instead).
+  - Stack: pnpm-only. No `package-lock.json` / `bun.lock` / `yarn.lock`.
+  - `pnpm-workspace.yaml` in this dir makes lamill.io its own pnpm workspace
+    root (else `pnpm install` defers to `sites/` and no-ops here). Native
+    install scripts (esbuild, `@tailwindcss/oxide`) are allow-listed there.
+  - Deploy: Vercel (SSR via nitro Build Output API, `NITRO_PRESET=vercel`).
+    No `wrangler.jsonc` / Cloudflare — that earlier experiment is gone.
+  - Routing: file-based under `src/routes/`; `routeTree.gen.ts` is generated,
+    don't hand-edit. `__root.tsx` is the only root layout.
 
 ## Heading hygiene
 

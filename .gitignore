@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# TanStack Start / nitro / Vercel build outputs
+.output
+.nitro
+.tanstack/**
+.vinxi
+.vercel
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
