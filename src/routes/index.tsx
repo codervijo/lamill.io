@@ -2,6 +2,30 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import heroSphere from "@/assets/hero-sphere.jpg";
 import { SiteShell } from "@/components/site-shell";
 
+// JSON-LD entity markup for the homepage hub (Organization-as-ProfessionalService).
+// Scoped to "/" only via this route's head() — child pages get their own
+// appropriate @type later; do not move this into __root.tsx.
+// Canonical host is the apex (lamill.io, never www) — fleet-wide locked convention.
+// TODO(sameAs): add real GitHub / LinkedIn / etc. profile URLs here once supplied,
+// e.g. sameAs: ["https://github.com/…", "https://www.linkedin.com/company/…"].
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "LaMill",
+  url: "https://lamill.io/",
+  email: "hello@lamill.io",
+  description:
+    "Engineering studio for full stack, Linux, hardware bringup, IoT, and web systems.",
+  logo: "https://lamill.io/og-image.png",
+  knowsAbout: [
+    "Full stack engineering",
+    "Linux systems",
+    "Hardware bringup",
+    "IoT",
+    "Web systems",
+  ],
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -16,6 +40,11 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Engineering studio for full stack, Linux, hardware, IoT, and web systems.",
       },
+      { property: "og:image", content: "https://lamill.io/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { "script:ld+json": homeJsonLd },
     ],
   }),
   component: Index,
@@ -149,6 +178,37 @@ function Index() {
                 <p className="mt-3 text-muted-foreground">{p.desc}</p>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How we work */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-3xl px-6 py-24 md:py-32">
+          <div className="font-mono text-xs uppercase tracking-widest text-primary">
+            // How we work
+          </div>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+            From the silicon to the screen.
+          </h2>
+          <div className="mt-8 space-y-6 text-lg text-muted-foreground">
+            <p>
+              We work the full stack — and we mean all of it. Hardware bringup where the
+              system starts. Linux where it runs. IoT where the device meets the network. Web
+              systems where the product meets the user. Content where the product meets its
+              market.
+            </p>
+            <p>
+              Most studios hand you one layer and a handoff. We hold the layers together. The
+              same team that brings up the hardware can reason about the software that drives
+              it and the site that ships it — fewer seams, fewer translations lost between
+              vendors.
+            </p>
+            <p>
+              Every engagement runs the same loop: understand the system, ship the smallest
+              thing that proves it works, then advance. Build. Deploy. Advance. Senior
+              engineers only — the people who scope your project are the people who build it.
+            </p>
           </div>
         </div>
       </section>

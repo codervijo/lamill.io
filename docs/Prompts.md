@@ -29,3 +29,24 @@
 >
 > Then update sitemap.xml (and robots.txt) for all the new /work URLs, apex
 > domain, drafts excluded.
+
+## 2026-06-29 — v3 homepage SEO/entity + OG image (consolidated)
+> Record this version in docs/prd.md (v3) before coding, and persist the
+> session's learnings into the agent/rules docs + memory once done.
+>
+> SEO / entity-recognition pass on the homepage hub (src/routes/index.tsx,
+> scoped to "/" only): add Organization JSON-LD (ProfessionalService) via the
+> route head with sameAs left as a TODO (don't invent URLs); add og:image
+> (1200×630) and upgrade twitter:card to summary_large_image; insert an
+> indexable ~150-word "How we work" prose section between the practices block
+> and the contact CTA, using only capabilities already stated on the page (no
+> invented clients/tech/certs). Leave the hero stats unchanged but list them
+> back for confirmation. Use the apex domain (lamill.io, never www) per the
+> portfolio's locked canonical convention — not the www values I first wrote.
+> Verify: JSON-LD parses, no ld+json leaks to non-home routes.
+>
+> Add a deterministic OG image generator: scripts/og.mjs (satori +
+> @resvg/resvg-js, no AI/network) → public/og-image.png at 1200×630, wired as
+> `npm run og`. Pull colors from the styles.css oklch tokens and bundle real
+> fonts (JetBrains Mono wordmark + Inter tagline) from @fontsource. Show the
+> script and the rendered image before finalizing.

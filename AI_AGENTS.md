@@ -66,6 +66,19 @@ parent Makefile; don't run pnpm directly on the host.
 `dev` is `vite dev` (TanStack Start needs the `dev` subcommand — the old SPA used
 bare `vite`). There is no `pnpm test` script.
 
+**One-off scripts (e.g. `pnpm run og`)** run inside the shared dev container, not on
+the host: `node_modules` is root-owned and node/pnpm live under **Volta**
+(`/root/.volta/bin`, not on the default PATH). Recipe:
+
+```sh
+docker exec funny_shannon bash -lc \
+  'export PATH=/root/.volta/bin:$PATH; cd /usr/src/app/lamill.io && pnpm install && pnpm run og'
+# then restore host ownership on any tracked files root touched:
+docker exec funny_shannon chown 1000:1000 /usr/src/app/lamill.io/public/og-image.png
+```
+
+(`funny_shannon` = the running `sites1` container; `docker` works without sudo.)
+
 ## Key conventions
 - New code: functional React + TypeScript, Tailwind utility classes, shadcn/ui
   components. Match the existing dark / monosp'd aesthetic (`font-mono` kickers
@@ -74,6 +87,20 @@ bare `vite`). There is no `pnpm test` script.
   page heroes. Internal nav uses TanStack `<Link to="…">` (typed — routes must
   exist in `routeTree.gen.ts`).
 - Path alias `@/` → `src/` (configured in `tsconfig.json` + the Vite config).
+- **Canonical domain = apex.** Use `https://lamill.io` (never `www.`) for canonical
+  tags, JSON-LD `url`/`logo`, `og:*`, sitemap `<loc>`, robots. This is a fleet-wide
+  locked invariant (portfolio v26, operator-locked 2026-06-13; `www`-canonical is
+  non-conformant). If a source hands you a `www` URL, switch it to apex.
+- **JSON-LD / structured data:** inject via a `{ "script:ld+json": {…object…} }`
+  entry in a route's `head().meta` — TanStack-native, renders `<script
+  type="application/ld+json">` and is auto-scoped to that route only. The homepage
+  Organization (`ProfessionalService`) markup lives in `src/routes/index.tsx`; child
+  pages get their own appropriate `@type` (don't put org markup in `__root.tsx`).
+- **OG image:** `pnpm run og` (script `og` → `node scripts/og.mjs`) regenerates
+  `public/og-image.png` (1200×630) deterministically via satori + `@resvg/resvg-js`
+  — no AI/network. Colors are the `src/styles.css` oklch tokens (converted to hex in
+  the script); fonts are JetBrains Mono (wordmark) + Inter (tagline) loaded from
+  local `@fontsource/*` `.woff` files (satori reads ttf/otf/woff, not woff2).
 
 ## Known issues to be aware of
 - **Lovable coupling remains at build time.** `vite.config.ts` depends on
