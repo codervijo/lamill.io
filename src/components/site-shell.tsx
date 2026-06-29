@@ -4,6 +4,7 @@ import { type ReactNode } from "react";
 const navLinks = [
   { to: "/services", label: "Services" },
   { to: "/web-systems", label: "Web Systems" },
+  { to: "/work", label: "Work" },
   { to: "/content", label: "Content" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -71,6 +72,7 @@ function SiteFooter() {
           items={[
             { to: "/services", label: "Services" },
             { to: "/web-systems", label: "Web Systems" },
+            { to: "/work", label: "Work" },
             { to: "/content", label: "Content" },
           ]}
         />
@@ -108,7 +110,10 @@ function FooterCol({
   items,
 }: {
   title: string;
-  items: ReadonlyArray<{ to: "/" | "/services" | "/web-systems" | "/content" | "/contact"; label: string }>;
+  items: ReadonlyArray<{
+    to: "/" | "/services" | "/web-systems" | "/work" | "/content" | "/contact";
+    label: string;
+  }>;
 }) {
   return (
     <div>

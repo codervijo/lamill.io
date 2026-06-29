@@ -14,7 +14,9 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ContentRouteImport } from './routes/content'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as AitoolsIndexRouteImport } from './routes/aitools/index'
+import { Route as WorkSlugRouteImport } from './routes/work/$slug'
 import { Route as AitoolsTextGeneratorRouteImport } from './routes/aitools/text-generator'
 import { Route as AitoolsImageAnalyzerRouteImport } from './routes/aitools/image-analyzer'
 
@@ -43,9 +45,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AitoolsIndexRoute = AitoolsIndexRouteImport.update({
   id: '/aitools/',
   path: '/aitools/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/work/$slug',
+  path: '/work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AitoolsTextGeneratorRoute = AitoolsTextGeneratorRouteImport.update({
@@ -67,7 +79,9 @@ export interface FileRoutesByFullPath {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/work/$slug': typeof WorkSlugRoute
   '/aitools/': typeof AitoolsIndexRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +91,9 @@ export interface FileRoutesByTo {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/work/$slug': typeof WorkSlugRoute
   '/aitools': typeof AitoolsIndexRoute
+  '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +104,9 @@ export interface FileRoutesById {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/work/$slug': typeof WorkSlugRoute
   '/aitools/': typeof AitoolsIndexRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +118,9 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/work/$slug'
     | '/aitools/'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +130,9 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/work/$slug'
     | '/aitools'
+    | '/work'
   id:
     | '__root__'
     | '/'
@@ -120,7 +142,9 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/work/$slug'
     | '/aitools/'
+    | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,7 +155,9 @@ export interface RootRouteChildren {
   WebSystemsRoute: typeof WebSystemsRoute
   AitoolsImageAnalyzerRoute: typeof AitoolsImageAnalyzerRoute
   AitoolsTextGeneratorRoute: typeof AitoolsTextGeneratorRoute
+  WorkSlugRoute: typeof WorkSlugRoute
   AitoolsIndexRoute: typeof AitoolsIndexRoute
+  WorkIndexRoute: typeof WorkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -171,11 +197,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/': {
+      id: '/work/'
+      path: '/work'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aitools/': {
       id: '/aitools/'
       path: '/aitools'
       fullPath: '/aitools/'
       preLoaderRoute: typeof AitoolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/work/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aitools/text-generator': {
@@ -203,7 +243,9 @@ const rootRouteChildren: RootRouteChildren = {
   WebSystemsRoute: WebSystemsRoute,
   AitoolsImageAnalyzerRoute: AitoolsImageAnalyzerRoute,
   AitoolsTextGeneratorRoute: AitoolsTextGeneratorRoute,
+  WorkSlugRoute: WorkSlugRoute,
   AitoolsIndexRoute: AitoolsIndexRoute,
+  WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
