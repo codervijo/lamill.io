@@ -32,11 +32,12 @@ surface (each page targets a keyword and feeds `lamill.toml [content]`).
 **v2.B — Web portfolio (first consumer of v2.A)**
 - [x] Project fields covered by the `WorkEntry` schema
 - [x] Portfolio listing (`/work`) + per-project case-study pages on the v2.A system
-- [x] Seeded real projects: hybridautopart.com, lamillrentals.com (sourced from
-      the fleet; personal + dark sites excluded)
+- [x] Seeded 28 real projects from the fleet (sourced from `portfolio.json` +
+      each site's own meta/hero copy; personal + dark/parked sites excluded)
 - [x] Cross-linked from nav + footer
 - [ ] Add OG screenshots per project (`public/og/*`, then set `ogImage`)
-- [ ] Add more projects as they go live; optionally surface a teaser on `/web-systems`
+- [ ] Backfill the 4 deferred sites once read (agesdk, disclosur, linkedcsi,
+      streamsgalaxy); optionally surface a teaser on `/web-systems`
 
 ## Backlog / follow-ups (open)
 - [ ] Verify the SSR-on-Vercel deploy against a live build (not yet validated)
