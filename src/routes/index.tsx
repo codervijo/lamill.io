@@ -6,17 +6,21 @@ import { SiteShell } from "@/components/site-shell";
 // Scoped to "/" only via this route's head() — child pages get their own
 // appropriate @type later; do not move this into __root.tsx.
 // Canonical host is the apex (lamill.io, never www) — fleet-wide locked convention.
-// TODO(sameAs): add real GitHub / LinkedIn / etc. profile URLs here once supplied,
-// e.g. sameAs: ["https://github.com/…", "https://www.linkedin.com/company/…"].
 const homeJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "LaMill",
   url: "https://lamill.io/",
   email: "hello@lamill.io",
+  slogan: "Build. Deploy. Advance.",
   description:
     "Engineering studio for full stack, Linux, hardware bringup, IoT, and web systems.",
-  logo: "https://lamill.io/og-image.png",
+  // Dedicated brand logo (SVG) — distinct from the og:image social-share PNG.
+  logo: "https://lamill.io/lamill.svg",
+  // sameAs: only confirmed-real profiles corroborate the entity. Add
+  // LinkedIn / Twitter / etc. here once each is verified — do NOT add
+  // unverified handles.
+  sameAs: ["https://github.com/codervijo"],
   knowsAbout: [
     "Full stack engineering",
     "Linux systems",
