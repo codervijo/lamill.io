@@ -64,3 +64,19 @@ https://search.google.com/search-console directly.
   the sitemap.
 - **Result:** TBD — review 2026-06-06
 - **Learning:** TBD
+
+## 2026-07-15 — flagship "Yocto vs Buildroot" article live at /notes/
+- **Status:** active
+- **KPI:** GSC impressions / clicks / avg position for "yocto vs buildroot" and
+  "buildroot vs yocto"; indexation of `/notes/yocto-vs-buildroot` and `/notes`
+- **Baseline:** 0 impressions / 0 clicks (published today, not yet indexed)
+- **Action:** Launched a new `/notes` namespace (LaMill's own technical writing,
+  distinct from the `/content` service) and published a ~2,000-word TechArticle at
+  `/notes/yocto-vs-buildroot` targeting "yocto vs buildroot" (Ahrefs KD 0, SV 200)
+  and "buildroot vs yocto" (KD 0, SV 150) — one page, both terms. Expert-depth
+  comparison with a situation-keyed decision table and side-by-side BR2_EXTERNAL vs
+  `.bbappend` config; TechArticle JSON-LD (Org author/publisher), self-canonical
+  (apex), answer-first question H2s + an extractable answer paragraph for featured
+  snippets. In sitemap.xml; linked from the footer (within 2 clicks of home).
+- **Result:** TBD — review 2026-08-12
+- **Learning:** TBD
