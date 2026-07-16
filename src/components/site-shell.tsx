@@ -74,6 +74,7 @@ function SiteFooter() {
             { to: "/web-systems", label: "Web Systems" },
             { to: "/work", label: "Work" },
             { to: "/content", label: "Content" },
+            { to: "/notes", label: "Notes" },
           ]}
         />
         <FooterCol
@@ -111,7 +112,7 @@ function FooterCol({
 }: {
   title: string;
   items: ReadonlyArray<{
-    to: "/" | "/services" | "/web-systems" | "/work" | "/content" | "/contact";
+    to: "/" | "/services" | "/web-systems" | "/work" | "/content" | "/notes" | "/contact";
     label: string;
   }>;
 }) {

@@ -15,8 +15,10 @@ import { Route as ContentRouteImport } from './routes/content'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
+import { Route as NotesIndexRouteImport } from './routes/notes/index'
 import { Route as AitoolsIndexRouteImport } from './routes/aitools/index'
 import { Route as WorkSlugRouteImport } from './routes/work/$slug'
+import { Route as NotesYoctoVsBuildrootRouteImport } from './routes/notes/yocto-vs-buildroot'
 import { Route as AitoolsTextGeneratorRouteImport } from './routes/aitools/text-generator'
 import { Route as AitoolsImageAnalyzerRouteImport } from './routes/aitools/image-analyzer'
 
@@ -50,6 +52,11 @@ const WorkIndexRoute = WorkIndexRouteImport.update({
   path: '/work/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotesIndexRoute = NotesIndexRouteImport.update({
+  id: '/notes/',
+  path: '/notes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AitoolsIndexRoute = AitoolsIndexRouteImport.update({
   id: '/aitools/',
   path: '/aitools/',
@@ -58,6 +65,11 @@ const AitoolsIndexRoute = AitoolsIndexRouteImport.update({
 const WorkSlugRoute = WorkSlugRouteImport.update({
   id: '/work/$slug',
   path: '/work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesYoctoVsBuildrootRoute = NotesYoctoVsBuildrootRouteImport.update({
+  id: '/notes/yocto-vs-buildroot',
+  path: '/notes/yocto-vs-buildroot',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AitoolsTextGeneratorRoute = AitoolsTextGeneratorRouteImport.update({
@@ -79,8 +91,10 @@ export interface FileRoutesByFullPath {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/notes/yocto-vs-buildroot': typeof NotesYoctoVsBuildrootRoute
   '/work/$slug': typeof WorkSlugRoute
   '/aitools/': typeof AitoolsIndexRoute
+  '/notes/': typeof NotesIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
@@ -91,8 +105,10 @@ export interface FileRoutesByTo {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/notes/yocto-vs-buildroot': typeof NotesYoctoVsBuildrootRoute
   '/work/$slug': typeof WorkSlugRoute
   '/aitools': typeof AitoolsIndexRoute
+  '/notes': typeof NotesIndexRoute
   '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
@@ -104,8 +120,10 @@ export interface FileRoutesById {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/notes/yocto-vs-buildroot': typeof NotesYoctoVsBuildrootRoute
   '/work/$slug': typeof WorkSlugRoute
   '/aitools/': typeof AitoolsIndexRoute
+  '/notes/': typeof NotesIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
@@ -118,8 +136,10 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/notes/yocto-vs-buildroot'
     | '/work/$slug'
     | '/aitools/'
+    | '/notes/'
     | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -130,8 +150,10 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/notes/yocto-vs-buildroot'
     | '/work/$slug'
     | '/aitools'
+    | '/notes'
     | '/work'
   id:
     | '__root__'
@@ -142,8 +164,10 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/notes/yocto-vs-buildroot'
     | '/work/$slug'
     | '/aitools/'
+    | '/notes/'
     | '/work/'
   fileRoutesById: FileRoutesById
 }
@@ -155,8 +179,10 @@ export interface RootRouteChildren {
   WebSystemsRoute: typeof WebSystemsRoute
   AitoolsImageAnalyzerRoute: typeof AitoolsImageAnalyzerRoute
   AitoolsTextGeneratorRoute: typeof AitoolsTextGeneratorRoute
+  NotesYoctoVsBuildrootRoute: typeof NotesYoctoVsBuildrootRoute
   WorkSlugRoute: typeof WorkSlugRoute
   AitoolsIndexRoute: typeof AitoolsIndexRoute
+  NotesIndexRoute: typeof NotesIndexRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
 
@@ -204,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notes/': {
+      id: '/notes/'
+      path: '/notes'
+      fullPath: '/notes/'
+      preLoaderRoute: typeof NotesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/aitools/': {
       id: '/aitools/'
       path: '/aitools'
@@ -216,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/work/$slug'
       fullPath: '/work/$slug'
       preLoaderRoute: typeof WorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes/yocto-vs-buildroot': {
+      id: '/notes/yocto-vs-buildroot'
+      path: '/notes/yocto-vs-buildroot'
+      fullPath: '/notes/yocto-vs-buildroot'
+      preLoaderRoute: typeof NotesYoctoVsBuildrootRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aitools/text-generator': {
@@ -243,8 +283,10 @@ const rootRouteChildren: RootRouteChildren = {
   WebSystemsRoute: WebSystemsRoute,
   AitoolsImageAnalyzerRoute: AitoolsImageAnalyzerRoute,
   AitoolsTextGeneratorRoute: AitoolsTextGeneratorRoute,
+  NotesYoctoVsBuildrootRoute: NotesYoctoVsBuildrootRoute,
   WorkSlugRoute: WorkSlugRoute,
   AitoolsIndexRoute: AitoolsIndexRoute,
+  NotesIndexRoute: NotesIndexRoute,
   WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport

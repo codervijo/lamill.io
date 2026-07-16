@@ -30,16 +30,25 @@ Two kinds of page:
 | Web Systems | `/web-systems` | **Content hub** | Web-systems practice | `/work`, `/contact` |
 | Content | `/content` | **Content hub** | Content-production practice | `/work`, `/contact` |
 | Work | `/work` | **Content hub (index)** | Portfolio listing of published entries | 31 work leaves |
+| Notes | `/notes` | **Content hub (index)** | LaMill's own technical writing (NOT `/content`, which is a service) | note leaves |
 | AI Tools | `/aitools` | **Content hub (index)** | Sub-app landing | 2 tool leaves |
 | Contact | `/contact` | Leaf (conversion) | Local-state inquiry form (no backend yet) | — |
 | Work case study | `/work/$slug` | Leaf ×31 | One typed case-study per file in `src/content/work/*.ts` | `/work` |
+| Yocto vs Buildroot | `/notes/yocto-vs-buildroot` | Leaf (article) | Flagship `TechArticle` — company-voice, no byline | `/notes`, `/services` |
 | Text Generator | `/aitools/text-generator` | Leaf (mock) | Placeholder tool — not wired to an LLM | `/aitools` |
 | Image Analyzer | `/aitools/image-analyzer` | Leaf (mock) | Placeholder tool — not wired to vision | `/aitools` |
 
-**Counts:** 1 root hub · 5 content hubs (`/services`, `/web-systems`, `/content`,
-`/work`, `/aitools`) · 34 leaves (31 work case studies + contact + 2 AI tools).
-Work-leaf count = `src/content/work/*.ts` — the current authority; keep this line
-in sync when entries land.
+**Counts:** 1 root hub · 6 content hubs (`/services`, `/web-systems`, `/content`,
+`/work`, `/notes`, `/aitools`) · 35 leaves (31 work case studies + 1 note article +
+contact + 2 AI tools). Work-leaf count = `src/content/work/*.ts`; note metadata =
+`src/content/notes.ts` (note bodies are bespoke routes under `src/routes/notes/`).
+Keep this line in sync when entries land.
+
+> **`/notes` vs `/content`.** Deliberately separate namespaces. `/content` is a
+> **service we sell** (articles/photo/video production for clients). `/notes` is
+> **our own** engineering writing — company voice, no personal byline;
+> author/publisher schema is always the LaMill Organization, never a Person. Do
+> not file in-house articles under `/content`.
 
 ### Content hubs — what each should hold and link
 
