@@ -160,10 +160,13 @@ function Index() {
 
           <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
             {pillars.map((p, i) => (
-              <Link
+              // The link wraps the title only — anchor text is the practice
+              // name, not the whole card blob. Full-card clickability comes
+              // from the title link's ::after overlay (inset-0 against the
+              // relative card), so no nested/duplicated anchors.
+              <div
                 key={p.to}
-                to={p.to}
-                className="group flex flex-col bg-background p-8 transition hover:bg-card md:p-10"
+                className="group relative flex flex-col bg-background p-8 transition hover:bg-card md:p-10"
               >
                 <div className="flex items-start justify-between">
                   <span className="font-mono text-xs text-muted-foreground">
@@ -177,10 +180,12 @@ function Index() {
                   {p.kicker}
                 </div>
                 <h3 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">
-                  {p.title}
+                  <Link to={p.to} className="after:absolute after:inset-0 after:content-['']">
+                    {p.title}
+                  </Link>
                 </h3>
                 <p className="mt-3 text-muted-foreground">{p.desc}</p>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
