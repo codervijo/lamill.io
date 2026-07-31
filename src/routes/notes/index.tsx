@@ -59,12 +59,13 @@ function NotesIndex() {
           ) : (
             <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
               {notes.map((n) => (
-                // Note bodies are bespoke per-article routes (not a $slug param
-                // route), so link by URL. Server-rendered <a>, fully crawlable.
-                <a
+                // The link wraps the title only — anchor text is the article
+                // headline, not the whole card blob. Full-card clickability
+                // comes from the title link's ::after overlay (inset-0 against
+                // the relative card), so no nested/duplicated anchors.
+                <article
                   key={n.slug}
-                  href={`/notes/${n.slug}`}
-                  className="group flex flex-col bg-background p-8 transition hover:bg-card md:p-10"
+                  className="group relative flex flex-col bg-background p-8 transition hover:bg-card md:p-10"
                 >
                   <div className="flex items-start justify-between">
                     <span className="font-mono text-xs text-muted-foreground">
@@ -75,7 +76,15 @@ function NotesIndex() {
                     </span>
                   </div>
                   <h2 className="mt-6 text-2xl font-semibold tracking-tight md:text-3xl">
-                    {n.title}
+                    {/* Note bodies are bespoke per-article routes (not a $slug
+                        param route), so link by URL. Server-rendered <a>,
+                        fully crawlable. */}
+                    <a
+                      href={`/notes/${n.slug}`}
+                      className="after:absolute after:inset-0 after:content-['']"
+                    >
+                      {n.title}
+                    </a>
                   </h2>
                   <p className="mt-3 max-w-md flex-1 text-muted-foreground">{n.summary}</p>
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -88,7 +97,7 @@ function NotesIndex() {
                       </span>
                     ))}
                   </div>
-                </a>
+                </article>
               ))}
             </div>
           )}
