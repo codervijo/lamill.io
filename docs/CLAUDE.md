@@ -79,3 +79,19 @@ mistakes at the point of writing, not at quarterly cleanup time.
 
 <Things deliberately *not* shipped. Append entries with rationale so
 future Claude sessions don't re-propose them.>
+
+- **Text-antialiasing shift on homepage pillar card 0 — accepted, do not
+  "fix" (2026-07-31).** The card-link anchor-text fix (`ecd81f5`, `df0d69e`,
+  `9f3fde0`) moved each card's `<a>` inside its heading and restored full-card
+  clickability with a `relative` wrapper + `after:absolute after:inset-0`
+  overlay. Adding `position: relative` flips *pillar card 0 only* from grayscale
+  to subpixel AA in Chromium (7,236 px / 0.17% of the page; glyph shapes,
+  positions, spacing, color and hover all unchanged; invisible at 1×). Verified
+  by bisection: moving the anchor into the heading is pixel-identical, `relative`
+  alone reproduces the whole delta — and `relative` is required by the overlay
+  pattern. Cards 1–2 and every `/work` and `/notes` card are pixel-perfect
+  despite identical treatment. Mitigations were tested and rejected:
+  `transform-gpu` is worse (all three cards diverge, 24,551 px), `isolation:
+  isolate` is a no-op. `-webkit-font-smoothing: antialiased` is already set on
+  `body` and Chromium overrides it for that layer. Operator accepted the
+  deviation; do not re-open.
