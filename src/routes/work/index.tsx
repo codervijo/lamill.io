@@ -51,11 +51,13 @@ function WorkIndex() {
           ) : (
             <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
               {work.map((w) => (
-                <Link
+                // The link wraps the title only — anchor text is the project
+                // name, not the whole card blob. Full-card clickability comes
+                // from the title link's ::after overlay (inset-0 against the
+                // relative card), so no nested/duplicated anchors.
+                <article
                   key={w.slug}
-                  to="/work/$slug"
-                  params={{ slug: w.slug }}
-                  className="group flex flex-col bg-background p-8 transition hover:bg-card md:p-10"
+                  className="group relative flex flex-col bg-background p-8 transition hover:bg-card md:p-10"
                 >
                   <div className="flex items-start justify-between">
                     <span className="font-mono text-xs text-muted-foreground">{w.date}</span>
@@ -64,7 +66,13 @@ function WorkIndex() {
                     </span>
                   </div>
                   <h3 className="mt-6 text-2xl font-semibold tracking-tight md:text-3xl">
-                    {w.title}
+                    <Link
+                      to="/work/$slug"
+                      params={{ slug: w.slug }}
+                      className="after:absolute after:inset-0 after:content-['']"
+                    >
+                      {w.title}
+                    </Link>
                   </h3>
                   <p className="mt-3 max-w-md flex-1 text-muted-foreground">{w.summary}</p>
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -77,7 +85,7 @@ function WorkIndex() {
                       </span>
                     ))}
                   </div>
-                </Link>
+                </article>
               ))}
             </div>
           )}
