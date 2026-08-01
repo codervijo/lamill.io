@@ -29,19 +29,24 @@ Two kinds of page:
 | Services | `/services` | **Content hub** | The build/deploy/advance offering | `/contact`, `/work` |
 | Web Systems | `/web-systems` | **Content hub** | Web-systems practice | `/work`, `/contact` |
 | Content | `/content` | **Content hub** | Content-production practice | `/work`, `/contact` |
-| Work | `/work` | **Content hub (index)** | Portfolio listing of published entries | 31 work leaves |
+| Work | `/work` | **Content hub (index)** | Portfolio listing of published entries | 28 published work leaves |
 | Notes | `/notes` | **Content hub (index)** | LaMill's own technical writing (NOT `/content`, which is a service) | note leaves |
 | AI Tools | `/aitools` | **Content hub (index)** | Sub-app landing | 2 tool leaves |
 | Contact | `/contact` | Leaf (conversion) | Local-state inquiry form (no backend yet) | — |
-| Work case study | `/work/$slug` | Leaf ×31 | One typed case-study per file in `src/content/work/*.ts` | `/work` |
+| Work case study | `/work/$slug` | Leaf ×28 | One typed case-study per file in `src/content/work/*.ts` (31 files: 28 `published`, 3 `draft`) | `/work` |
 | Yocto vs Buildroot | `/notes/yocto-vs-buildroot` | Leaf (article) | Flagship `TechArticle` — company-voice, no byline | `/notes`, `/services` |
 | Text Generator | `/aitools/text-generator` | Leaf (mock) | Placeholder tool — not wired to an LLM | `/aitools` |
 | Image Analyzer | `/aitools/image-analyzer` | Leaf (mock) | Placeholder tool — not wired to vision | `/aitools` |
 
 **Counts:** 1 root hub · 6 content hubs (`/services`, `/web-systems`, `/content`,
-`/work`, `/notes`, `/aitools`) · 35 leaves (31 work case studies + 1 note article +
-contact + 2 AI tools). Work-leaf count = `src/content/work/*.ts`; note metadata =
-`src/content/notes.ts` (note bodies are bespoke routes under `src/routes/notes/`).
+`/work`, `/notes`, `/aitools`) · 32 public leaves (28 published work case studies +
+1 note article + contact + 2 AI tools) — **39 public pages** total, matching the 39
+`<loc>` entries in `public/sitemap.xml`.
+
+Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (31
+files today, 3 of them drafts — a draft is excluded from `/work` and the sitemap but
+still renders by direct URL, so count *published*, not files). Note metadata =
+`src/content/notes.ts`; note bodies are bespoke routes under `src/routes/notes/`.
 Keep this line in sync when entries land.
 
 > **`/notes` vs `/content`.** Deliberately separate namespaces. `/content` is a
