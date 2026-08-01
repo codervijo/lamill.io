@@ -3,7 +3,6 @@ import type { WorkEntry } from "@/lib/content";
 const entry: WorkEntry = {
   slug: "meetwhen",
   title: "MeetWhen",
-  url: "https://meetwhen.xyz",
   summary: "A timezone meeting finder.",
   description: "MeetWhen — find a meeting time that works across timezones, fast.",
   date: "2026-06-03",
