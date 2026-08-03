@@ -129,12 +129,13 @@ docker exec funny_shannon chown 1000:1000 /usr/src/app/lamill.io/public/og-image
   config and neutralize/remove the Lovable error reporter to fully de-Lovable-ify.
 - AI Tools pages are pure mocks (`setTimeout`) — no real LLM/vision integration.
   Wire to Claude when implementing for real.
-- **Draft work entries are reachable by direct URL.** `getAllWork()` filters
-  `status: "draft"` out of the `/work` listing and the sitemap, but
-  `getWorkBySlug()` (used by the `/work/$slug` loader) looks at every entry — so
-  `/work/airsucks`, `/work/caringbeds`, `/work/mcpscan` render a full page today.
-  Intentional (the schema comment calls it "still previewable by URL"), but treat
-  a draft as unlisted, not private.
+- **Draft work entries 404 — there is no by-URL preview.** `getWorkBySlug()`
+  delegates to `getAllWork(opts)`, which filters `status: "draft"` unless
+  `{ includeDrafts: true }` is passed; the `/work/$slug` loader does not pass it,
+  so the lookup misses and the route throws `notFound()`. Verified 2026-07-31:
+  `/work/airsucks`, `/work/caringbeds`, and `/work/mcpscan` all return HTTP 404.
+  To preview a draft, set `status: "published"` or thread `includeDrafts` through
+  the loader.
 - The contact form only sets local state on submit — no backend/email delivery.
 
 ## Out of scope / don't touch

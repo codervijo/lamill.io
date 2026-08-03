@@ -26,7 +26,12 @@ export const workEntrySchema = z.object({
   stack: z.array(z.string()).default([]),
   /** One-line result / outcome (optional). */
   outcome: z.string().optional(),
-  /** draft = hidden from the public listing + sitemap; still previewable by URL. */
+  /**
+   * draft = excluded from the public listing, the sitemap, AND `/work/<slug>`,
+   * which 404s. `getAllWork()`/`getWorkBySlug()` filter drafts unless
+   * `{ includeDrafts: true }` is passed, and the `/work/$slug` loader does not
+   * pass it. There is no by-URL preview today.
+   */
   status: z.enum(["draft", "published"]).default("draft"),
   /** Case-study body as paragraphs. */
   body: z.array(z.string()).default([]),

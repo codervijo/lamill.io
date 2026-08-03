@@ -1,10 +1,29 @@
 # SEO audit — lamill.io
 
-**Date:** 2026-07-31 · **Commit:** `5462d44` · **Scope:** every route in `src/routes/`
+**Date:** 2026-07-31 · **Commit audited:** `5462d44` · **Scope:** every route in `src/routes/`
 **Method:** rendered SSR HTML, not source components. `vite dev` served the app inside the
 `sites1` container; all 42 routes were fetched over HTTP and parsed from the returned HTML.
 Live production (`https://lamill.io`) was spot-checked to confirm dev output matches prod.
 No code was changed by this audit.
+
+> ## Status — updated 2026-08-02
+>
+> Findings below are preserved **as measured on 2026-07-31 at `5462d44`**. They are not rewritten
+> when fixed; each item carries its own status instead, so this file stays a record of what was
+> true when audited rather than a moving description of the site.
+>
+> **Resolved since the audit**
+>
+> - **T-1, T-2, T-3, T-4** — fixed in `08d9cf4`. All 39 served routes now emit a complete Open
+>   Graph set (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`),
+>   `twitter:card: summary_large_image`, and a self-referencing canonical. Verified against built
+>   output: 39/39 complete, `canonical === og:url` on every route, canonical set matches the 39
+>   sitemap `<loc>` entries exactly, no duplicate tags. `src/lib/seo.ts` now owns the URL form.
+> - **T-11** — `AI_AGENTS.md` and the stale `src/lib/content.ts` schema comment corrected.
+> - **T-12** — `docs/growth.md` corrected by appended note (that file is append-only).
+>
+> **Still open:** T-5 through T-10 and T-13 through T-16, plus everything in §1, §2, and §3.
+> The `/work` page set, internal linking, and route structure are deliberately untouched.
 
 ---
 
@@ -27,7 +46,7 @@ No code was changed by this audit.
 
 ---
 
-## Correction to a claim made earlier today
+## Correction to a claim made earlier today — RESOLVED 2026-08-02
 
 `AI_AGENTS.md` (committed in `53b037b`, an hour before this audit) states that draft work entries
 "render a full page today" by direct URL. **That is wrong, and this audit disproves it.**
@@ -40,12 +59,17 @@ and the route throws `notFound()`. The "still previewable by URL" comment at
 That bullet in `AI_AGENTS.md` needs a one-line correction. This audit does not change code, so
 it has been left in place — see Technical debt, item T-11.
 
+**Resolved 2026-08-02.** The `AI_AGENTS.md` bullet now states that draft slugs 404 and explains
+why, and the `src/lib/content.ts` schema comment no longer claims by-URL preview. Both name the
+`includeDrafts` mechanism so the next reader can check the behavior against the code.
+
 ---
 
 ## Headline findings
 
 1. **37 of 39 served routes have no `<link rel="canonical">`.** Only `/notes` and
    `/notes/yocto-vs-buildroot` set one. Every other page — including the homepage — ships none.
+   *(Resolved 2026-08-02 in `08d9cf4` — all 39 now self-canonical.)*
 2. **All 28 published case studies are thin.** Unique content ranges 16–117 words; the average is
    **33.5**. Every one is below the 200-word floor. 26 of 28 have a `<main>` body that is
    *verbatim identical* to their own meta description.
@@ -54,6 +78,7 @@ it has been left in place — see Technical debt, item T-11.
 4. **`og:image` exists on exactly one route** (`/`) — 38 served routes have none, so every share
    outside the homepage renders a bare card. Separately, 37 have no `og:url`
    (the two `/notes*` routes set it, `/` does not).
+   *(Resolved 2026-08-02 in `08d9cf4` — complete OG set on all 39.)*
 5. **The `/aitools` cluster is orphaned** — nothing in nav, footer, or any page body links into it.
    Its only inbound links come from its own two children.
 6. **One page carries the entire organic upside**: `/notes/yocto-vs-buildroot`, 2,336 unique words,
@@ -321,24 +346,26 @@ already correct and it is the one page with organic traction to protect.
 
 ## 4. Technical debt
 
-| # | Issue | Scope | Detail |
-| --- | --- | --- | --- |
-| T-1 | **No canonical tag** | 37 of 39 served routes | Only `/notes` and `/notes/yocto-vs-buildroot` emit `<link rel="canonical">`. The homepage has none. Confirmed on live prod, not just dev |
-| T-2 | **No `og:image`** | 38 of 39 served routes | Only `/` sets it. `public/og-image.png` exists and serves 200 (33,805 bytes, `image/png`) but is referenced by exactly one route |
-| T-3 | **No `og:url`** | 37 of 39 served routes | Only the two `/notes*` routes set it |
-| T-4 | **`twitter:card` is `summary`** | 37 of 39 served routes | Only `/` was upgraded to `summary_large_image`. Every other page renders the small card even where an image is later added |
-| T-5 | **Titles under 30 chars** | 30 of 39 served routes | Includes `/work` (13), `/notes` (14), `/contact` (16), `/content` (16), `/services` (17), `/aitools` (17), and all 28 `/work/$slug` (21–33). Wasted SERP real estate |
-| T-6 | **Title over 60 chars** | 1 route | `/notes/yocto-vs-buildroot` at 68 chars — will truncate. Note this is the one page worth optimizing |
-| T-7 | **Meta description under 70 chars** | 3 routes | `/aitools/image-analyzer` (36), `/aitools/text-generator` (40), `/work/meetwhen` (65) |
-| T-8 | **Meta description over 160 chars** | 2 routes | `/work/lamillrentals` (193), `/notes/yocto-vs-buildroot` (178) — both will truncate |
-| T-9 | **Body duplicates meta description** | 26 of 28 case studies | The rendered `<main>` body paragraph is verbatim the `description` meta. The page has no content the SERP snippet doesn't already show |
-| T-10 | **`www` → apex redirect is 307, not 308** | site-wide | `https://www.lamill.io/` returns **307 Temporary**. A permanent redirect (301/308) is the correct signal for a locked canonical host. Single hop, no chain |
-| T-11 | **`AI_AGENTS.md` documents draft behavior incorrectly** | docs | Claims draft work slugs render by direct URL; they 404. Introduced in `53b037b`. Related: the stale comment at `src/lib/content.ts:29` |
-| T-12 | **`docs/growth.md` link claim is wrong** | docs | Says the yocto article is "linked from the footer"; the footer links `/notes`, not the article |
-| T-13 | **Hand-maintained sitemap** | infra | `public/sitemap.xml` is manual. It happens to be correct today, but nothing enforces it. `docs/architecture.md` already tracks this |
-| T-14 | **Contact form has no backend** | `/contact` | Submissions set local component state only. See the copy claim in §Unverifiable claims |
-| T-15 | **Missing `h1`** | 0 routes | Clean — every served route has exactly one `<h1>` |
-| T-16 | **Structured-data errors** | 0 errors | Both JSON-LD blocks parse as valid JSON and use recognized schema.org types. See below |
+Status as of 2026-08-02. Scope and detail columns describe the state measured on 2026-07-31.
+
+| # | Status | Issue | Scope | Detail |
+| --- | --- | --- | --- | --- |
+| T-1 | ✓ **RESOLVED** `08d9cf4` | **No canonical tag** | 37 of 39 served routes | Only `/notes` and `/notes/yocto-vs-buildroot` emit `<link rel="canonical">`. The homepage has none. Confirmed on live prod, not just dev. **Now:** all 39 self-canonical via `pageSeo()` |
+| T-2 | ✓ **RESOLVED** `08d9cf4` | **No `og:image`** | 38 of 39 served routes | Only `/` sets it. `public/og-image.png` exists and serves 200 (33,805 bytes, `image/png`) but is referenced by exactly one route. **Now:** sitewide fallback on all 39; per-entry override still honored |
+| T-3 | ✓ **RESOLVED** `08d9cf4` | **No `og:url`** | 37 of 39 served routes | Only the two `/notes*` routes set it. **Now:** on all 39, always equal to that route's canonical |
+| T-4 | ✓ **RESOLVED** `08d9cf4` | **`twitter:card` is `summary`** | 37 of 39 served routes | Only `/` was upgraded to `summary_large_image`. **Now:** `summary_large_image` on all 39 |
+| T-5 | open | **Titles under 30 chars** | 30 of 39 served routes | Includes `/work` (13), `/notes` (14), `/contact` (16), `/content` (16), `/services` (17), `/aitools` (17), and all 28 `/work/$slug` (21–33). Wasted SERP real estate |
+| T-6 | open | **Title over 60 chars** | 1 route | `/notes/yocto-vs-buildroot` at 68 chars — will truncate. Note this is the one page worth optimizing |
+| T-7 | open | **Meta description under 70 chars** | 3 routes | `/aitools/image-analyzer` (36), `/aitools/text-generator` (40), `/work/meetwhen` (65) |
+| T-8 | open | **Meta description over 160 chars** | 2 routes | `/work/lamillrentals` (193), `/notes/yocto-vs-buildroot` (178) — both will truncate |
+| T-9 | open | **Body duplicates meta description** | 26 of 28 case studies | The rendered `<main>` body paragraph is verbatim the `description` meta. The page has no content the SERP snippet doesn't already show |
+| T-10 | open — **outside the repo** | **`www` → apex redirect is 307, not 308** | site-wide | `https://www.lamill.io/` returns **307 Temporary**. A permanent redirect (301/308) is the correct signal for a locked canonical host. Single hop, no chain. Fixing it is a Vercel dashboard domain setting, not a repo change |
+| T-11 | ✓ **RESOLVED** 2026-08-02 | **`AI_AGENTS.md` documents draft behavior incorrectly** | docs | Claims draft work slugs render by direct URL; they 404. Introduced in `53b037b`. Related: the stale comment at `src/lib/content.ts:29`. **Now:** both corrected, and both name the `includeDrafts` mechanism |
+| T-12 | ✓ **RESOLVED** 2026-08-02 | **`docs/growth.md` link claim is wrong** | docs | Says the yocto article is "linked from the footer"; the footer links `/notes`, not the article. **Now:** corrected by an appended dated note inside the 2026-07-15 entry — that file's own rule is append-only, so the original text stands |
+| T-13 | open | **Hand-maintained sitemap** | infra | `public/sitemap.xml` is manual. It happens to be correct today, but nothing enforces it. `docs/architecture.md` already tracks this |
+| T-14 | open | **Contact form has no backend** | `/contact` | Submissions set local component state only. See the copy claim in §Unverifiable claims |
+| T-15 | n/a — clean | **Missing `h1`** | 0 routes | Clean — every served route has exactly one `<h1>` |
+| T-16 | n/a — clean | **Structured-data errors** | 0 errors | Both JSON-LD blocks parse as valid JSON and use recognized schema.org types. See below. Re-verified on built output 2026-08-01 after the T-1..T-4 work: still 2 blocks, still valid, still unleaked |
 
 ### Checks that came back clean
 
@@ -370,8 +397,8 @@ disagreement.
 | --- | --- | --- |
 | Internal links (`<Link to=…>`) | Root-relative, no trailing slash: `/services`, `/work/boxchive`. Root is `/` | Consistent across all **652** internal link instances (39 distinct targets). Zero absolute-URL forms, zero non-root trailing slashes |
 | `sitemap.xml` `<loc>` | Absolute apex, no trailing slash: `https://lamill.io/services`. Root is `https://lamill.io/` | Consistent |
-| `<link rel="canonical">` | Absolute apex, no trailing slash: `https://lamill.io/notes` | Consistent — **but present on only 2 of 39 routes** |
-| `og:url` | Absolute apex, no trailing slash | Consistent — **but present on only 2 of 39 routes** |
+| `<link rel="canonical">` | Absolute apex, no trailing slash: `https://lamill.io/notes` | Consistent — **but present on only 2 of 39 routes** *(resolved `08d9cf4`: all 39, same form)* |
+| `og:url` | Absolute apex, no trailing slash | Consistent — **but present on only 2 of 39 routes** *(resolved `08d9cf4`: all 39, always == canonical)* |
 | JSON-LD `url` / `author.url` / `publisher.url` | `https://lamill.io/` **with** trailing slash | Root form, matches the sitemap's root entry |
 | JSON-LD `mainEntityOfPage.@id` | `https://lamill.io/notes/yocto-vs-buildroot`, no trailing slash | Consistent |
 | Server behavior | `/services/` 307-redirects to `/services` | Enforces the no-slash form |
@@ -389,6 +416,14 @@ signals that would guide that choice — `og:url`, canonical — are also missin
 so the only guidance available is the sitemap and the redirect behavior. Those are both correct
 today, which is why nothing is currently broken; but the site has no explicit defense if a
 parameterized or slashed variant ever gets crawled or linked externally.
+
+> **Closed 2026-08-02 (`08d9cf4`).** Every served route now emits its own canonical and a matching
+> `og:url`. The form is unchanged from what this section measured — apex host, no trailing slash,
+> root as `https://lamill.io/` — because that was already the form the sitemap, all 652 internal
+> hrefs, and the server's 307 agreed on. `src/lib/seo.ts` is now the single place that decides it,
+> and `SITE_ORIGIN` has one definition instead of two. Verified on built output: 39 canonicals, 39
+> sitemap `<loc>` entries, exact string match both directions. The parameterized/slashed-variant
+> exposure described above is closed.
 
 ---
 
@@ -413,7 +448,8 @@ false; they are simply unverifiable here, and several are load-bearing for credi
 
 ## Suggested order of work
 
-Ordered by impact per unit of effort. Nothing here has been implemented — this audit changed no code.
+Ordered by impact per unit of effort, as proposed on 2026-07-31. Items 4 and 9 have since shipped;
+the rest are open.
 
 1. **Noindex the thin set** — 34 routes: all 28 `/work/$slug` leaves plus `/content`, `/notes`,
    `/contact`, `/aitools`, and the two mock tool leaves. (4 of the 28 come back out of noindex once
@@ -422,13 +458,15 @@ Ordered by impact per unit of effort. Nothing here has been implemented — this
    the most direct credibility risk on the site.
 3. **Fix the `/contact` response promise or wire the form.** Currently the site promises a reply to
    messages it discards.
-4. **Add canonical + `og:url` + `og:image` to `__root.tsx`** as route-derived defaults. One change,
-   37 routes fixed, and it closes the T-1 exposure.
+4. ✓ **DONE (`08d9cf4`)** — **Add canonical + `og:url` + `og:image`** as route-derived defaults.
+   Shipped as `src/lib/seo.ts` + a `pageSeo()` call in each route's `head()` rather than in
+   `__root.tsx`, because `head()` in the root layout cannot see the current path. 39 routes fixed;
+   T-1 exposure closed.
 5. **Rewrite `/services`** to own embedded Linux and stop colliding with `/` on "engineering studio".
 6. **Write case study #1** — `hybridautopart`, to 800–1,200 words with a real measured outcome.
 7. **Publish note #2** — `/notes` is the only proven surface on this site, and it has one article.
-8. Change the `www` redirect from 307 to 308.
-9. Correct T-11 and T-12 (the two inaccurate doc claims).
+8. Change the `www` redirect from 307 to 308. **Blocked in-repo** — Vercel dashboard domain setting.
+9. ✓ **DONE (2026-08-02)** — Correct T-11 and T-12 (the two inaccurate doc claims).
 
 ---
 
@@ -436,3 +474,7 @@ Ordered by impact per unit of effort. Nothing here has been implemented — this
 `UNKNOWN` appears where a value could not be determined; `[VERIFY]` marks claims requiring
 operator confirmation. No numbers in this report were estimated — every count is measured from
 the served HTML, `public/sitemap.xml`, or `src/content/`.*
+
+*Status annotations added 2026-08-02. Measurements are never restated to match the current site —
+a resolved finding keeps its original numbers and gains a status marker, so this file stays
+readable as a record of 2026-07-31. Re-run the audit to get current numbers.*

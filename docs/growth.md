@@ -78,5 +78,10 @@ https://search.google.com/search-console directly.
   `.bbappend` config; TechArticle JSON-LD (Org author/publisher), self-canonical
   (apex), answer-first question H2s + an extractable answer paragraph for featured
   snippets. In sitemap.xml; linked from the footer (within 2 clicks of home).
+- **Correction (2026-08-02):** the Action above overstates the internal linking.
+  The footer links `/notes`, **not** `/notes/yocto-vs-buildroot`. The article has
+  exactly one internal inbound link — from the `/notes` index — so "within 2 clicks
+  of home" holds, but "linked from the footer" does not. Appended rather than
+  edited, per this file's append-only rule. Source: `seo-audit.md` §2.
 - **Result:** TBD — review 2026-08-12
 - **Learning:** TBD
