@@ -306,6 +306,12 @@ does not currently exist as a content surface. `[VERIFY]` — nothing in the rep
 LaMill has a Monterey Bay service address or presence; that has to come from you before any
 local-SEO page can be written honestly.
 
+> **Unblocked 2026-08-03.** The operator supplied a real location — **Monterey County, CA, USA** —
+> now stated on `/contact`. The gating question above is answered: a local-SEO surface can be
+> written honestly. Still not built, and still needs a decision on scope before it is: a county is
+> not a service-area definition, and `LocalBusiness`/`ProfessionalService` markup wants a street
+> address or an explicit `areaServed`. Neither exists yet, so no schema change was made here.
+
 ### Proposed hub-and-leaf tree
 
 ```
@@ -441,12 +447,19 @@ false; they are simply unverifiable here, and several are load-bearing for credi
 | `/contact` | "We respond within one business day" / "// Response ≤ 1 business day" | **Contradicted by the code.** The form has no backend — submissions set local state and are never delivered. Nobody can respond to a message that was never sent |
 | `/` | "12+ Years shipping", "40+ Projects delivered", "6 Domains covered", "100% Senior engineers" | Operator-confirmed in `docs/prd.md` (v3.C, 2026-06-29), so these have repo provenance. Note "40+ projects" against 31 case-study entries — reconcilable if unlisted work exists, but the site shows 28. ✓ **RESOLVED 2026-08-03:** operator revised to **"20+ Projects delivered"**; the other three stand as confirmed |
 | `/` | "Available for engagements — Q3 2026" | Accurate as of this audit (Q3 2026 = Jul–Sep). **Expires 2026-09-30** and will read as stale after. ✓ **RESOLVED 2026-08-03:** changed to "Available for engagements — now", which has no expiry |
-| `/contact` | "Distributed — US + EU coverage" | `[VERIFY]` — no team or location data in the repo |
-| `/content` | Handles `@lamill_content`, `@lamill_pics`, `@lamill_studio`, `@lamill_design` | `[VERIFY]` — presented as live accounts; existence not establishable from the repo. Not in JSON-LD `sameAs` |
+| `/contact` | "Distributed — US + EU coverage" | `[VERIFY]` — no team or location data in the repo. ✓ **RESOLVED 2026-08-03:** operator supplied a real location; the EU claim is dropped and the field is now `// Location — Monterey County, CA, USA` |
+| `/content` | Handles `@lamill_content`, `@lamill_pics`, `@lamill_studio`, `@lamill_design` | `[VERIFY]` — presented as live accounts; existence not establishable from the repo. Not in JSON-LD `sameAs`. ⏸ **DEFERRED 2026-08-03 → revisit on/after 2026-08-17.** Tracked in `docs/prd.md` backlog and in agent memory |
 | `/content` | "We're currently working on several open source and proprietary content systems. Stay tuned." | Placeholder copy shipped to production on an indexable page |
-| `/services` | Rails / Go / Python / React / D3 / BSP / U-Boot / BLE firmware capability list | `[VERIFY]` — capability claims with no supporting evidence in the repo; the portfolio is Astro, React+Vite, TanStack, and WordPress |
-| `/web-systems` | "Next.js / Astro / TanStack Start", "Postgres, Redis, queues", "Auth, billing, observability", "React Native / Expo", "Offline-first sync", "App Store + Play release" | `[VERIFY]` — no mobile app, no Next.js project, and no billing/observability work appears anywhere in `src/content/work/*` |
+| `/services` | Rails / Go / Python / React / D3 / BSP / U-Boot / BLE firmware capability list | `[VERIFY]` — capability claims with no supporting evidence in the repo; the portfolio is Astro, React+Vite, TanStack, and WordPress. ✓ **ATTESTED 2026-08-03:** operator states these are backed by work outside the `/work` portfolio. Copy stands as written |
+| `/web-systems` | "Next.js / Astro / TanStack Start", "Postgres, Redis, queues", "Auth, billing, observability", "React Native / Expo", "Offline-first sync", "App Store + Play release" | `[VERIFY]` — no mobile app, no Next.js project, and no billing/observability work appears anywhere in `src/content/work/*`. ✓ **ATTESTED 2026-08-03:** operator states these are backed by work outside the `/work` portfolio. Copy stands as written |
 | `/aitools` | "Text Generator — Generate creative text content using AI", "Try now →", "Image Analyzer — Analyze and describe images with AI" | **Describes functionality that does not exist.** Both tools are `setTimeout` mocks. "Coming soon" is at least labeled; these two are not |
+
+On the two attested rows: the flag was always about *evidence in this repo*, not truthfulness, and
+the operator's answer resolves it — the work exists, it just lives outside the `/work` portfolio.
+Worth noting the residual, which is a content problem rather than an accuracy one: a prospect
+reading `/services` or `/web-systems` has the same evidence problem the audit did, since the only
+proof the site offers is a portfolio of Astro and React marketing sites. If any of that outside
+work can be shown — even anonymized — it is the highest-value proof the site could carry.
 
 ---
 

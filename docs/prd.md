@@ -88,6 +88,14 @@ leaked onto non-home routes.
       tone) — feeds rankmill; log baseline GSC numbers in `docs/growth.md` first
 - [ ] (Optional) De-Lovable-ify: replace `@lovable.dev/vite-tanstack-config`
       with a plain TanStack Start Vite config; drop the Lovable error reporter
+- [ ] **DEFERRED to 2026-08-17 — verify the four `@lamill_*` social handles.**
+      `/content` presents `@lamill_content`, `@lamill_pics`, `@lamill_studio`,
+      and `@lamill_design` as live accounts; nothing in the repo establishes that
+      any exist, and none is in the homepage JSON-LD `sameAs` (which holds only
+      the GitHub profile). Operator deferred on 2026-08-03 — do not re-raise
+      before 2026-08-17. On pickup: confirmed accounts go into `sameAs` in
+      `src/routes/index.tsx` (that file's comment already forbids unverified
+      handles); unconfirmed ones come off `/content`. `seo-audit.md` claim 4.
 
 ## Problem
 

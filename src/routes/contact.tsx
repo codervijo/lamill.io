@@ -56,8 +56,8 @@ function ContactPage() {
                 <div className="mt-1 text-foreground">Project · Retainer · Embedded</div>
               </div>
               <div>
-                <div className="text-primary">// Timezone</div>
-                <div className="mt-1 text-foreground">Distributed — US + EU coverage</div>
+                <div className="text-primary">// Location</div>
+                <div className="mt-1 text-foreground">Monterey County, CA, USA</div>
               </div>
             </div>
           </div>
