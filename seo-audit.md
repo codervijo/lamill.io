@@ -452,7 +452,14 @@ false; they are simply unverifiable here, and several are load-bearing for credi
 | `/content` | "We're currently working on several open source and proprietary content systems. Stay tuned." | Placeholder copy shipped to production on an indexable page |
 | `/services` | Rails / Go / Python / React / D3 / BSP / U-Boot / BLE firmware capability list | `[VERIFY]` — capability claims with no supporting evidence in the repo; the portfolio is Astro, React+Vite, TanStack, and WordPress. ✓ **ATTESTED 2026-08-03:** operator states these are backed by work outside the `/work` portfolio. Copy stands as written |
 | `/web-systems` | "Next.js / Astro / TanStack Start", "Postgres, Redis, queues", "Auth, billing, observability", "React Native / Expo", "Offline-first sync", "App Store + Play release" | `[VERIFY]` — no mobile app, no Next.js project, and no billing/observability work appears anywhere in `src/content/work/*`. ✓ **ATTESTED 2026-08-03:** operator states these are backed by work outside the `/work` portfolio. Copy stands as written |
-| `/aitools` | "Text Generator — Generate creative text content using AI", "Try now →", "Image Analyzer — Analyze and describe images with AI" | **Describes functionality that does not exist.** Both tools are `setTimeout` mocks. "Coming soon" is at least labeled; these two are not |
+| `/aitools` | "Text Generator — Generate creative text content using AI", "Try now →", "Image Analyzer — Analyze and describe images with AI" | **Describes functionality that does not exist.** Both tools are `setTimeout` mocks. "Coming soon" is at least labeled; these two are not. ✓ **RESOLVED 2026-08-03:** both relabeled "Coming soon" on `/aitools`, matching tools 03/04; the "Try now" CTAs and the links into the two leaf routes are gone. **Note:** the two leaf pages themselves still render their mock UI and still describe working behavior — see below |
+
+**Left half-done on purpose (2026-08-03):** `/aitools` no longer advertises the two mock tools as
+working, but `/aitools/text-generator` and `/aitools/image-analyzer` were not touched. They are
+still served, still in `sitemap.xml`, and still present a prompt box and a "Generate text →" button
+that produce canned `setTimeout` output — now contradicting their own index page. Options are to add
+a "Coming soon" notice on each leaf, or to noindex/remove them (§1 already recommends noindex).
+Operator's call; flagged rather than assumed, since removing routes is deferred work.
 
 On the two attested rows: the flag was always about *evidence in this repo*, not truthfulness, and
 the operator's answer resolves it — the work exists, it just lives outside the `/work` portfolio.

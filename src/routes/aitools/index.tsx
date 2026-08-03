@@ -15,19 +15,22 @@ export const Route = createFileRoute("/aitools/")({
 });
 
 const tools = [
+  // Both tools are setTimeout mocks with no LLM/vision behind them, so they
+  // carry the same "Coming soon" treatment as 03/04 rather than a "Try now"
+  // CTA. Re-link them here once they are wired to a real model.
   {
     id: "01",
     title: "Text Generator",
     desc: "Generate creative text content using AI.",
-    to: "/aitools/text-generator" as const,
-    cta: "Try now",
+    to: null,
+    cta: "Coming soon",
   },
   {
     id: "02",
     title: "Image Analyzer",
     desc: "Analyze and describe images with AI.",
-    to: "/aitools/image-analyzer" as const,
-    cta: "Try now",
+    to: null,
+    cta: "Coming soon",
   },
   {
     id: "03",

@@ -81,9 +81,17 @@ Verification for v3.A/B: JSON-LD must lint as valid JSON; confirm no JSON-LD
 leaked onto non-home routes.
 
 ## Backlog / follow-ups (open)
+- [ ] 🔴 **URGENT — wire the contact form to a real backend / email delivery.**
+      `/contact` is the site's only conversion path and it currently drops every
+      submission: `handleSubmit` sets local component state and nothing is sent or
+      stored, so an inbound lead is lost with no trace and no way to recover it.
+      The same page promises "We respond within one business day", which makes this
+      a broken promise rather than just a missing feature. Until it ships, treat
+      `hello@lamill.io` as the only working contact channel. `seo-audit.md` T-14 /
+      unverifiable-claims row 1.
 - [ ] Verify the SSR-on-Vercel deploy against a live build (not yet validated)
-- [ ] Wire `/aitools` Text Generator + Image Analyzer to real Claude calls
-- [ ] Wire the contact form to a real backend / email delivery
+- [ ] Wire `/aitools` Text Generator + Image Analyzer to real Claude calls —
+      until then both are marked "Coming soon" on `/aitools` (2026-08-03)
 - [ ] Fill `lamill.toml [content]` (site_type, primary/secondary keywords, icp,
       tone) — feeds rankmill; log baseline GSC numbers in `docs/growth.md` first
 - [ ] (Optional) De-Lovable-ify: replace `@lovable.dev/vite-tanstack-config`
