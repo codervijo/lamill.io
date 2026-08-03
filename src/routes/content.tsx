@@ -1,22 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, PageHeader } from "@/components/site-shell";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/content")({
-  head: () => ({
-    meta: [
-      { title: "Content — LaMill" },
-      {
-        name: "description",
-        content:
-          "Original articles, photography, video, and design — content production that ships alongside the product.",
-      },
-      { property: "og:title", content: "Content — LaMill" },
-      {
-        property: "og:description",
-        content: "Articles, photography, video, and design production.",
-      },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/content",
+      title: "Content — LaMill",
+      description:
+        "Original articles, photography, video, and design — content production that ships alongside the product.",
+      ogDescription: "Articles, photography, video, and design production.",
+    }),
   component: ContentPage,
 });
 

@@ -1,6 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteShell } from "@/components/site-shell";
 import { getWorkBySlug } from "@/lib/content";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
@@ -8,19 +9,16 @@ export const Route = createFileRoute("/work/$slug")({
     if (!entry) throw notFound();
     return entry;
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.title} — LaMill Work` },
-          { name: "description", content: loaderData.description },
-          { property: "og:title", content: `${loaderData.title} — LaMill Work` },
-          { property: "og:description", content: loaderData.description },
-          ...(loaderData.ogImage
-            ? [{ property: "og:image", content: loaderData.ogImage }]
-            : []),
-        ]
-      : [],
-  }),
+  head: ({ loaderData }) =>
+    loaderData
+      ? pageSeo({
+          path: `/work/${loaderData.slug}`,
+          title: `${loaderData.title} — LaMill Work`,
+          description: loaderData.description,
+          // Per-entry card when one exists; otherwise the sitewide fallback.
+          image: loaderData.ogImage,
+        })
+      : { meta: [], links: [] },
   component: WorkDetail,
 });
 

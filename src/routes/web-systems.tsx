@@ -1,22 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, PageHeader } from "@/components/site-shell";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/web-systems")({
-  head: () => ({
-    meta: [
-      { title: "LaMill Web Systems — Websites, Web Apps, Mobile" },
-      {
-        name: "description",
-        content:
-          "LaMill Web Systems builds marketing sites, SaaS web apps, and native-feel mobile apps from a single senior team.",
-      },
-      { property: "og:title", content: "LaMill Web Systems" },
-      {
-        property: "og:description",
-        content: "Websites, web apps, and mobile apps — one team, shipped end-to-end.",
-      },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/web-systems",
+      title: "LaMill Web Systems — Websites, Web Apps, Mobile",
+      description:
+        "LaMill Web Systems builds marketing sites, SaaS web apps, and native-feel mobile apps from a single senior team.",
+      ogTitle: "LaMill Web Systems",
+      ogDescription: "Websites, web apps, and mobile apps — one team, shipped end-to-end.",
+    }),
   component: WebSystemsPage,
 });
 

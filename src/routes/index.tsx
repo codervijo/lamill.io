@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroSphere from "@/assets/hero-sphere.jpg";
 import { SiteShell } from "@/components/site-shell";
+import { pageSeo } from "@/lib/seo";
 
 // JSON-LD entity markup for the homepage hub (Organization-as-ProfessionalService).
 // Scoped to "/" only via this route's head() — child pages get their own
@@ -31,26 +32,16 @@ const homeJsonLd = {
 };
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "LaMill — Build. Deploy. Advance." },
-      {
-        name: "description",
-        content:
-          "Engineering studio for full stack, Linux, hardware, IoT, and web systems. We start from excellence.",
-      },
-      { property: "og:title", content: "LaMill — Build. Deploy. Advance." },
-      {
-        property: "og:description",
-        content: "Engineering studio for full stack, Linux, hardware, IoT, and web systems.",
-      },
-      { property: "og:image", content: "https://lamill.io/og-image.png" },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { "script:ld+json": homeJsonLd },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/",
+      title: "LaMill — Build. Deploy. Advance.",
+      description:
+        "Engineering studio for full stack, Linux, hardware, IoT, and web systems. We start from excellence.",
+      ogDescription:
+        "Engineering studio for full stack, Linux, hardware, IoT, and web systems.",
+      jsonLd: homeJsonLd,
+    }),
   component: Index,
 });
 

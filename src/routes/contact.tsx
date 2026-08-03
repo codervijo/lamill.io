@@ -1,23 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteShell, PageHeader } from "@/components/site-shell";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — LaMill" },
-      {
-        name: "description",
-        content:
-          "Tell us about your project. We'll respond within one business day with a concrete plan.",
-      },
-      { property: "og:title", content: "Contact — LaMill" },
-      {
-        property: "og:description",
-        content: "Start a project with LaMill. One business day response.",
-      },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/contact",
+      title: "Contact — LaMill",
+      description:
+        "Tell us about your project. We'll respond within one business day with a concrete plan.",
+      ogDescription: "Start a project with LaMill. One business day response.",
+    }),
   component: ContactPage,
 });
 

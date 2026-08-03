@@ -1,23 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, PageHeader } from "@/components/site-shell";
 import { getAllWork } from "@/lib/content";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/work/")({
-  head: () => ({
-    meta: [
-      { title: "Work — LaMill" },
-      {
-        name: "description",
-        content:
-          "Selected web work by LaMill — marketing sites, content platforms, and catalogs built and shipped end to end.",
-      },
-      { property: "og:title", content: "Work — LaMill" },
-      {
-        property: "og:description",
-        content: "Selected web work by LaMill — sites built and shipped end to end.",
-      },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/work",
+      title: "Work — LaMill",
+      description:
+        "Selected web work by LaMill — marketing sites, content platforms, and catalogs built and shipped end to end.",
+      ogDescription: "Selected web work by LaMill — sites built and shipped end to end.",
+    }),
   loader: () => ({ work: getAllWork() }),
   component: WorkIndex,
 });

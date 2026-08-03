@@ -2,6 +2,7 @@ import { type ReactNode } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { SiteShell } from "@/components/site-shell";
 import { getNoteBySlug, noteUrl } from "@/content/notes";
+import { pageSeo } from "@/lib/seo";
 
 const SLUG = "yocto-vs-buildroot";
 const note = getNoteBySlug(SLUG);
@@ -45,21 +46,17 @@ export const Route = createFileRoute("/notes/yocto-vs-buildroot")({
     if (!note) throw notFound();
     return note;
   },
-  head: () => ({
-    meta: note
-      ? [
-          { title: `${note.title} — LaMill` },
-          { name: "description", content: note.description },
-          { property: "og:title", content: note.title },
-          { property: "og:description", content: note.description },
-          { property: "og:type", content: "article" },
-          { property: "og:url", content: canonical },
-          { name: "twitter:card", content: "summary" },
-          ...(articleJsonLd ? [{ "script:ld+json": articleJsonLd }] : []),
-        ]
-      : [],
-    links: [{ rel: "canonical", href: canonical }],
-  }),
+  head: () =>
+    note
+      ? pageSeo({
+          path: `/notes/${SLUG}`,
+          title: `${note.title} — LaMill`,
+          description: note.description,
+          ogTitle: note.title,
+          type: "article",
+          jsonLd: articleJsonLd ?? undefined,
+        })
+      : { meta: [], links: [] },
   component: Article,
 });
 

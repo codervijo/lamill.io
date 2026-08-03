@@ -1,17 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type ChangeEvent } from "react";
 import { SiteShell } from "@/components/site-shell";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/aitools/image-analyzer")({
-  head: () => ({
-    meta: [
-      { title: "Image Analyzer — LaMill AI Tools" },
-      {
-        name: "description",
-        content: "Analyze and describe images with AI.",
-      },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/aitools/image-analyzer",
+      title: "Image Analyzer — LaMill AI Tools",
+      description: "Analyze and describe images with AI.",
+    }),
   component: ImageAnalyzerPage,
 });
 

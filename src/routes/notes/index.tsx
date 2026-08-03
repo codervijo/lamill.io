@@ -1,31 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell, PageHeader } from "@/components/site-shell";
-import { getAllNotes, SITE_ORIGIN } from "@/content/notes";
-
-// Slash-less canonical — matches the fleet convention (/services, /work, …);
-// the trailing-slash variant 307-redirects here, so this is the 200 URL.
-const canonical = `${SITE_ORIGIN}/notes`;
+import { getAllNotes } from "@/content/notes";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/notes/")({
-  head: () => ({
-    meta: [
-      { title: "Notes — LaMill" },
-      {
-        name: "description",
-        content:
-          "Technical writing from LaMill — engineering notes on embedded Linux, web systems, and the tools we build with.",
-      },
-      { property: "og:title", content: "Notes — LaMill" },
-      {
-        property: "og:description",
-        content: "Engineering notes from LaMill on the systems and tools we build with.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: canonical },
-      { name: "twitter:card", content: "summary" },
-    ],
-    links: [{ rel: "canonical", href: canonical }],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/notes",
+      title: "Notes — LaMill",
+      description:
+        "Technical writing from LaMill — engineering notes on embedded Linux, web systems, and the tools we build with.",
+      ogDescription: "Engineering notes from LaMill on the systems and tools we build with.",
+    }),
   loader: () => ({ notes: getAllNotes() }),
   component: NotesIndex,
 });

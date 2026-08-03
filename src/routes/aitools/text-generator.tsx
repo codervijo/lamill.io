@@ -1,17 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteShell } from "@/components/site-shell";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/aitools/text-generator")({
-  head: () => ({
-    meta: [
-      { title: "Text Generator — LaMill AI Tools" },
-      {
-        name: "description",
-        content: "Generate creative text content using AI.",
-      },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/aitools/text-generator",
+      title: "Text Generator — LaMill AI Tools",
+      description: "Generate creative text content using AI.",
+    }),
   component: TextGeneratorPage,
 });
 

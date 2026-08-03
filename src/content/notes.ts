@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { canonicalUrl } from "@/lib/seo";
 
 /**
  * Typed registry for /notes — LaMill's own technical writing.
@@ -34,12 +35,15 @@ export const noteMetaSchema = z.object({
 
 export type NoteMeta = z.infer<typeof noteMetaSchema>;
 
-/** Apex canonical host — fleet-wide locked invariant (never www). */
-export const SITE_ORIGIN = "https://lamill.io";
+/**
+ * Apex canonical host — fleet-wide locked invariant (never www).
+ * Single source of truth is `@/lib/seo`; re-exported here for existing importers.
+ */
+export { SITE_ORIGIN } from "@/lib/seo";
 
-/** Canonical URL for a note. */
+/** Canonical URL for a note. Same URL form as every canonical/og:url on the site. */
 export function noteUrl(slug: string): string {
-  return `${SITE_ORIGIN}/notes/${slug}`;
+  return canonicalUrl(`/notes/${slug}`);
 }
 
 const RAW: NoteMeta[] = [

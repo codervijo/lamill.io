@@ -1,22 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, PageHeader } from "@/components/site-shell";
+import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/aitools/")({
-  head: () => ({
-    meta: [
-      { title: "AI Tools — LaMill" },
-      {
-        name: "description",
-        content:
-          "A collection of AI-powered tools and utilities — text generation, image analysis, and more.",
-      },
-      { property: "og:title", content: "AI Tools — LaMill" },
-      {
-        property: "og:description",
-        content: "AI-powered tools and utilities by LaMill.",
-      },
-    ],
-  }),
+  head: () =>
+    pageSeo({
+      path: "/aitools",
+      title: "AI Tools — LaMill",
+      description:
+        "A collection of AI-powered tools and utilities — text generation, image analysis, and more.",
+      ogDescription: "AI-powered tools and utilities by LaMill.",
+    }),
   component: AIToolsPage,
 });
 
