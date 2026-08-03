@@ -68,8 +68,12 @@ flagged, not invented.
       specifics. Generic-but-true over specific-but-fabricated.
 
 **v3.C — Operator review gates (no code change)**
-- [x] Hero stats confirmed accurate by operator (2026-06-29), unchanged in code:
+- [x] Hero stats confirmed accurate by operator (2026-06-29):
       "12+ years", "40+ projects", "6 domains", "100% senior engineers".
+      **Revised 2026-08-03:** operator changed "40+ projects" → "20+ projects"
+      after `seo-audit.md` flagged the gap against the 28 case studies shown on
+      `/work`. The other three stand as confirmed. The availability kicker moved
+      from "Q3 2026" to "now" in the same pass, removing its 2026-09-30 expiry.
 - [ ] Supply real `sameAs` profile URLs for the JSON-LD.
 - [x] `public/og-image.png` (1200×630) — generated via `pnpm run og` (see v3.A).
 

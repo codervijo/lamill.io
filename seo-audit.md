@@ -21,6 +21,10 @@ No code was changed by this audit.
 >   sitemap `<loc>` entries exactly, no duplicate tags. `src/lib/seo.ts` now owns the URL form.
 > - **T-11** — `AI_AGENTS.md` and the stale `src/lib/content.ts` schema comment corrected.
 > - **T-12** — `docs/growth.md` corrected by appended note (that file is append-only).
+> - **Two `[VERIFY]` copy claims on `/`** (2026-08-03) — "40+ Projects delivered" → **"20+"**, and
+>   "Available for engagements — Q3 2026" → **"— now"**, which removes the 2026-09-30 expiry.
+>   Operator decisions; `docs/prd.md` v3.C updated to match. The `/content` "Stay tuned" placeholder
+>   was reviewed and deliberately kept.
 >
 > **Still open:** T-5 through T-10 and T-13 through T-16, plus everything in §1, §2, and §3.
 > The `/work` page set, internal linking, and route structure are deliberately untouched.
@@ -435,8 +439,8 @@ false; they are simply unverifiable here, and several are load-bearing for credi
 | Route | Claim | Status |
 | --- | --- | --- |
 | `/contact` | "We respond within one business day" / "// Response ≤ 1 business day" | **Contradicted by the code.** The form has no backend — submissions set local state and are never delivered. Nobody can respond to a message that was never sent |
-| `/` | "12+ Years shipping", "40+ Projects delivered", "6 Domains covered", "100% Senior engineers" | Operator-confirmed in `docs/prd.md` (v3.C, 2026-06-29), so these have repo provenance. Note "40+ projects" against 31 case-study entries — reconcilable if unlisted work exists, but the site shows 28 |
-| `/` | "Available for engagements — Q3 2026" | Accurate as of this audit (Q3 2026 = Jul–Sep). **Expires 2026-09-30** and will read as stale after |
+| `/` | "12+ Years shipping", "40+ Projects delivered", "6 Domains covered", "100% Senior engineers" | Operator-confirmed in `docs/prd.md` (v3.C, 2026-06-29), so these have repo provenance. Note "40+ projects" against 31 case-study entries — reconcilable if unlisted work exists, but the site shows 28. ✓ **RESOLVED 2026-08-03:** operator revised to **"20+ Projects delivered"**; the other three stand as confirmed |
+| `/` | "Available for engagements — Q3 2026" | Accurate as of this audit (Q3 2026 = Jul–Sep). **Expires 2026-09-30** and will read as stale after. ✓ **RESOLVED 2026-08-03:** changed to "Available for engagements — now", which has no expiry |
 | `/contact` | "Distributed — US + EU coverage" | `[VERIFY]` — no team or location data in the repo |
 | `/content` | Handles `@lamill_content`, `@lamill_pics`, `@lamill_studio`, `@lamill_design` | `[VERIFY]` — presented as live accounts; existence not establishable from the repo. Not in JSON-LD `sameAs` |
 | `/content` | "We're currently working on several open source and proprietary content systems. Stay tuned." | Placeholder copy shipped to production on an indexable page |

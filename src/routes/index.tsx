@@ -81,7 +81,7 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-6 pb-32 pt-24 md:pt-36">
           <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-border bg-card/50 px-4 py-1.5 font-mono text-xs text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
-            Available for engagements — Q3 2026
+            Available for engagements — now
           </div>
 
           <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
@@ -116,7 +116,7 @@ function Index() {
           <div className="mt-20 grid max-w-3xl grid-cols-2 gap-8 border-t border-border pt-8 md:grid-cols-4">
             {[
               ["12+", "Years shipping"],
-              ["40+", "Projects delivered"],
+              ["20+", "Projects delivered"],
               ["6", "Domains covered"],
               ["100%", "Senior engineers"],
             ].map(([n, l]) => (
