@@ -33,7 +33,7 @@ Two kinds of page:
 | Notes | `/notes` | **Content hub (index)** | LaMill's own technical writing (NOT `/content`, which is a service) | note leaves |
 | AI Tools | `/aitools` | **Content hub (index)** | Sub-app landing | 2 tool leaves |
 | Contact | `/contact` | Leaf (conversion) | Local-state inquiry form (no backend yet) | — |
-| Work case study | `/work/$slug` | Leaf ×28 | One typed case-study per file in `src/content/work/*.ts` (31 files: 28 `published`, 3 `draft`) | `/work` |
+| Work case study | `/work/$slug` | Leaf ×28 | One typed case-study per file in `src/content/work/*.ts` (32 files: 28 `published`, 4 `draft`) | `/work` |
 | Yocto vs Buildroot | `/notes/yocto-vs-buildroot` | Leaf (article) | Flagship `TechArticle` — company-voice, no byline | `/notes`, `/services` |
 | Text Generator | `/aitools/text-generator` | Leaf (mock) | Placeholder tool — not wired to an LLM | `/aitools` |
 | Image Analyzer | `/aitools/image-analyzer` | Leaf (mock) | Placeholder tool — not wired to vision | `/aitools` |
@@ -43,9 +43,9 @@ Two kinds of page:
 1 note article + contact + 2 AI tools) — **39 public pages** total, matching the 39
 `<loc>` entries in `public/sitemap.xml`.
 
-Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (31
-files today, 3 of them drafts — a draft is excluded from `/work` and the sitemap but
-still renders by direct URL, so count *published*, not files). Note metadata =
+Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (32
+files today, 4 of them drafts — a draft is excluded from `/work` and the sitemap and
+404s by direct URL, so count *published*, not files). Note metadata =
 `src/content/notes.ts`; note bodies are bespoke routes under `src/routes/notes/`.
 Keep this line in sync when entries land.
 
@@ -82,8 +82,11 @@ when scheduled, don't treat as done:
   standalone prose described above; today they lean list-first.
 - **Cross-hub linking.** Practice hubs → `/work` proof links and practice ↔
   practice cross-links are not systematically in place.
-- **Per-hub structured data.** Only `/` has JSON-LD. Content hubs should get their
-  own appropriate `@type` (e.g. `Service`/`CollectionPage`) — tracked, not built.
+- **Per-hub structured data.** Only `/` (`ProfessionalService`) and the
+  `/notes/yocto-vs-buildroot` leaf (`TechArticle`) carry JSON-LD. Content hubs should
+  get their own appropriate `@type` (e.g. `Service`/`CollectionPage`) via
+  `pageSeo({ jsonLd })` — tracked, not built. (Every route *does* now get the full
+  OG set + self-canonical from `src/lib/seo.ts`, since 2026-08-02.)
 - **Contact as a true endpoint.** `/contact` posts to local state only; it's a
   leaf conversion page with no backend/email delivery yet.
 - **Generated sitemap.** `public/sitemap.xml` is hand-maintained; a generated map

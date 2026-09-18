@@ -3,7 +3,8 @@
 **🌐 Live site → [lamill.io](https://lamill.io)**
 
 Marketing / landing site for **LaMill** — an engineering studio (full stack,
-Linux, hardware bringup, IoT, web systems) — plus a small "AI Tools" sub-app
+Linux, hardware bringup, IoT, web systems) — plus a [`/work`](https://lamill.io/work) portfolio of case studies,
+[`/notes`](https://lamill.io/notes) technical writing, and a small "AI Tools" sub-app
 under [`/aitools`](https://lamill.io/aitools).
 
 ## Stack
@@ -48,6 +49,10 @@ File-based — every `.tsx` in `src/routes/` is a route; `__root.tsx` is the she
 | `/web-systems` | `src/routes/web-systems.tsx` |
 | `/content` | `src/routes/content.tsx` |
 | `/contact` | `src/routes/contact.tsx` |
+| `/work` | `src/routes/work/index.tsx` |
+| `/work/:slug` | `src/routes/work/$slug.tsx` (entries in `src/content/work/*.ts`) |
+| `/notes` | `src/routes/notes/index.tsx` |
+| `/notes/yocto-vs-buildroot` | `src/routes/notes/yocto-vs-buildroot.tsx` |
 | `/aitools` | `src/routes/aitools/index.tsx` |
 | `/aitools/text-generator` | `src/routes/aitools/text-generator.tsx` |
 | `/aitools/image-analyzer` | `src/routes/aitools/image-analyzer.tsx` |

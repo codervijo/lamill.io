@@ -40,7 +40,9 @@ Adding a page = adding one typed file. No MDX, no toolchain.
    and skipped (they don't crash the build).
 
 - **Drafts:** `status: "draft"` keeps a page out of the public listing and the
-  sitemap, but it's still reachable by URL for preview/sharing.
+  sitemap, **and it 404s by direct URL** — the `/work/$slug` loader doesn't pass
+  `includeDrafts`. There is no preview; to view a draft, flip it to `published`
+  locally (see `AI_AGENTS.md` → Known issues).
 - **Fields:** see `workEntrySchema` in `src/lib/content.ts` for the source of
   truth (required vs optional, formats).
 
@@ -61,4 +63,5 @@ out. Keep `public/robots.txt`'s `Sitemap:` line pointing at the apex domain.
 | Entries | `src/content/work/*.ts` |
 | Listing route | `src/routes/work/index.tsx` (`/work`) |
 | Detail route | `src/routes/work/$slug.tsx` (`/work/<slug>`) |
+| Head / SEO helper | `src/lib/seo.ts` (`pageSeo()`, `canonicalUrl()`) |
 | Sitemap / robots | `public/sitemap.xml`, `public/robots.txt` |

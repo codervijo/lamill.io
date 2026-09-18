@@ -50,3 +50,8 @@
 > `npm run og`. Pull colors from the styles.css oklch tokens and bundle real
 > fonts (JetBrains Mono wordmark + Inter tagline) from @fontsource. Show the
 > script and the rendered image before finalizing.
+
+## 2026-09-17
+> check prd - whats next
+>
+> ok update all docs

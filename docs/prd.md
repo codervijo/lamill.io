@@ -11,7 +11,7 @@ Tailwind v4 + shadcn/ui · Deploy: Vercel. See `AI_AGENTS.md` for full context.
       Image Analyzer — still `setTimeout` mocks)
 - [x] Vercel SSR deploy configured (`NITRO_PRESET=vercel`)
 
-## v2 — Web portfolio & content pages (next)
+## v2 — Web portfolio & content pages (v2.A done; v2.B open items)
 
 Goal: showcase LaMill's website projects as a real web portfolio, and build a
 repeatable way to author content / case-study pages. The content system is the
@@ -38,8 +38,11 @@ surface (each page targets a keyword and feeds `lamill.toml [content]`).
 - [ ] Add OG screenshots per project (`public/og/*`, then set `ogImage`)
 - [ ] Backfill the 4 deferred sites once read (agesdk, disclosur, linkedcsi,
       streamsgalaxy); optionally surface a teaser on `/web-systems`
+- [ ] Fill the auto-generated `montereybayevents` draft (`src/content/work/
+      montereybayevents.ts`, untracked as of 2026-09-17): summary, description,
+      tags, body are all TODO; flip to `published` + add to `sitemap.xml` once filled
 
-## v3 — Homepage SEO & entity recognition (next)
+## v3 — Homepage SEO & entity recognition (built 2026-06-29; v3.C operator gate open)
 
 Goal: make the homepage (the site's hub/entity page) more machine-readable for
 search engines and LLM entity recognition — structured data, social cards, and
@@ -49,19 +52,21 @@ operator-supplied facts (profile URLs, an OG asset, stat accuracy) — those are
 flagged, not invented.
 
 **v3.A — Structured data + social meta**
-- [ ] Organization JSON-LD (`ProfessionalService`) injected into the **home
+- [x] Organization JSON-LD (`ProfessionalService`) injected into the **home
       route `<head>` only** (not duplicated on child pages — those get their own
       appropriate type later). `name`, `url`, `email`, `description`, `logo`,
-      `knowsAbout` populated from the page; `sameAs` left as a TODO placeholder
-      (real GitHub/LinkedIn/etc. URLs supplied by operator — do not invent).
-- [ ] `og:image` meta (`https://lamill.io/og-image.png`, apex, 1200×630) + upgrade
-      `twitter:card` from `summary` to `summary_large_image`.
+      `knowsAbout` populated from the page. `sameAs` holds only the confirmed
+      GitHub profile (added 2026-07-01); further URLs are operator-supplied — see v3.C.
+- [x] `og:image` meta (`https://lamill.io/og-image.png`, apex, 1200×630) + upgrade
+      `twitter:card` from `summary` to `summary_large_image`. Generalized
+      2026-08-02: `src/lib/seo.ts` `pageSeo()` now emits the full OG set,
+      `summary_large_image`, and a self-canonical on every route.
 - [x] `public/og-image.png` (1200×630) generated deterministically via
       `pnpm run og` (`scripts/og.mjs`, satori + `@resvg/resvg-js`; no AI/network).
       Colors from `styles.css` oklch tokens; JetBrains Mono wordmark + Inter tagline.
 
 **v3.B — Indexable "How we work" prose**
-- [ ] New ~120–180-word prose section between the "Three practices" block and the
+- [x] New ~120–180-word prose section between the "Three practices" block and the
       Contact CTA. Terse, declarative voice ("Build. Deploy. Advance."). Only
       capabilities already stated on the page (full stack, Linux, hardware
       bringup, IoT, web systems, content) — no invented clients, tech, certs, or
@@ -74,7 +79,8 @@ flagged, not invented.
       after `seo-audit.md` flagged the gap against the 28 case studies shown on
       `/work`. The other three stand as confirmed. The availability kicker moved
       from "Q3 2026" to "now" in the same pass, removing its 2026-09-30 expiry.
-- [ ] Supply real `sameAs` profile URLs for the JSON-LD.
+- [ ] Supply further real `sameAs` profile URLs for the JSON-LD (GitHub is in;
+      LinkedIn etc. pending operator).
 - [x] `public/og-image.png` (1200×630) — generated via `pnpm run og` (see v3.A).
 
 Verification for v3.A/B: JSON-LD must lint as valid JSON; confirm no JSON-LD
@@ -96,7 +102,7 @@ leaked onto non-home routes.
       tone) — feeds rankmill; log baseline GSC numbers in `docs/growth.md` first
 - [ ] (Optional) De-Lovable-ify: replace `@lovable.dev/vite-tanstack-config`
       with a plain TanStack Start Vite config; drop the Lovable error reporter
-- [ ] **DEFERRED to 2026-08-17 — verify the four `@lamill_*` social handles.**
+- [ ] **DUE (deferred to 2026-08-17, now past) — verify the four `@lamill_*` social handles.**
       `/content` presents `@lamill_content`, `@lamill_pics`, `@lamill_studio`,
       and `@lamill_design` as live accounts; nothing in the repo establishes that
       any exist, and none is in the homepage JSON-LD `sameAs` (which holds only

@@ -44,8 +44,9 @@ git push            # Vercel auto-builds on push to main → lamill.io
   - Canonical host: **apex** `https://lamill.io` everywhere (canonical, JSON-LD,
     `og:*`, sitemap, robots) — never `www`. Fleet-wide locked invariant (portfolio
     v26, operator-locked 2026-06-13); `www`-canonical is non-conformant.
-  - SEO assets: JSON-LD goes in a route's `head().meta` as `{ "script:ld+json": … }`
-    (auto-scoped to that route); `public/og-image.png` is regenerated with
+  - SEO assets: every route's `head()` goes through `pageSeo()` in
+    `src/lib/seo.ts` (OG set, canonical, optional `jsonLd` → `{ "script:ld+json": … }`,
+    auto-scoped to that route); `public/og-image.png` is regenerated with
     `pnpm run og` (`scripts/og.mjs`, deterministic — satori + resvg).
 
 ## Heading hygiene
