@@ -38,9 +38,9 @@ surface (each page targets a keyword and feeds `lamill.toml [content]`).
 - [ ] Add OG screenshots per project (`public/og/*`, then set `ogImage`)
 - [ ] Backfill the 4 deferred sites once read (agesdk, disclosur, linkedcsi,
       streamsgalaxy); optionally surface a teaser on `/web-systems`
-- [ ] Fill the auto-generated `montereybayevents` draft (`src/content/work/
-      montereybayevents.ts`, untracked as of 2026-09-17): summary, description,
-      tags, body are all TODO; flip to `published` + add to `sitemap.xml` once filled
+- [x] Published `montereybayevents` (2026-10-03): copy sourced from the site's live
+      meta + its own `AI_AGENTS.md`/`prd.md`; added to `sitemap.xml`. `anglicanpath`
+      excluded — non-profit effort, not studio portfolio work
 
 ## v3 — Homepage SEO & entity recognition (built 2026-06-29; v3.C operator gate open)
 
