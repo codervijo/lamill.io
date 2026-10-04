@@ -97,7 +97,7 @@ is generated from `data_collected` + `analytics`, defaulting to "all
 processing is local, nothing is collected"; faceless brand — "Built by
 LaMill" only, no personal names.
 
-**v4.A — Kickoff / decisions lock (no code) — contract locked 2026-10-03; 2 items open**
+**v4.A — Kickoff / decisions lock (no code) — contract locked 2026-10-03; 1 item open**
 - [x] `extensions.json` contract: `slug`, `name`, `pitch`, `store_url`,
       `tool_page_url`, `permissions[{name, reason}]`, `data_collected`,
       `analytics` (bool), `changelog[{version, date, notes}]`, `status`
@@ -110,8 +110,9 @@ LaMill" only, no personal names.
       analytics filled from tabmill's `recipes/save-page-pdf-md/extension.yaml`; still
       ‹FILL›: `tool_page_url` (no markpdf.dev page yet). `store_url` omitted — made
       optional 2026-10-03; pages show "In development" until it's set; `changelog` empty (no release yet)
-- [ ] Deploy path: confirm what `lamill` deploy (incl. IndexNow) adds over
-      the Vercel push-to-`main` auto-deploy
+- [x] Deploy path: Vercel push-to-`main` auto-deploy. `lamill new deploy` on a
+      Vercel site only shells `vercel deploy --prod` — it never reaches the IndexNow
+      step — so IndexNow is pinged separately (portfolio `_deploy_step10_indexnow`)
 
 **v4.B — Data contract — DONE 2026-10-03**
 - [x] zod schema + typed loader for `extensions.json`, following the
@@ -130,7 +131,10 @@ LaMill" only, no personal names.
 
 **v4.D — Contract docs + deploy**
 - [x] Document the JSON contract in `README.md` so Tabmill can target it
-- [ ] Deploy via the `lamill` CLI (IndexNow) — only once no placeholders remain
+- [x] Deployed 2026-10-04 (`4eb0eff`, after the TanStack Start XSS patch unblocked
+      Vercel); IndexNow pinged for all 42 sitemap URLs
+- [ ] Publish `save-page-pdf-md` once `tool_page_url` exists: flip to `published`,
+      add its 2 URLs to `sitemap.xml`, re-ping IndexNow
 
 ## Backlog / follow-ups (open)
 - [ ] 🔴 **URGENT — wire the contact form to a real backend / email delivery.**

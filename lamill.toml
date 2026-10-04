@@ -16,7 +16,7 @@ indexnow_key = "f19d828bf2a8b489116525b507fd17f0"
 indexnow_enabled = true
 
 [stack]
-framework = "tanstack-start"  # SSR (React 19 + Vite + nitro); deploys to Vercel via Build Output API
+framework = "tanstack"  # TanStack Start, SSR (React 19 + Vite + nitro); deploys to Vercel via Build Output API
 
 [content]
 # Declarative content identity for this site.
