@@ -55,3 +55,14 @@
 > check prd - whats next
 >
 > ok update all docs
+
+## 2026-10-03 — v4 Chrome extensions hub (planned)
+> Add a Chrome extensions hub to lamill.io: /extensions directory,
+> /extensions/<slug>, /extensions/<slug>/privacy, /extensions/support, all
+> rendered from a Tabmill-generated extensions.json (typed contract + one-entry
+> sample, save-page-pdf-md). Hub pages short and non-competing with the
+> portfolio-site tool pages; privacy generated from data_collected + analytics;
+> faceless "Built by LaMill" brand; deploy via the lamill CLI (IndexNow);
+> document the JSON contract in README.
+>
+> approved — placed as v4 (v4.A decisions lock → v4.D deploy).

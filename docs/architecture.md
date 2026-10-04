@@ -37,10 +37,15 @@ Two kinds of page:
 | Yocto vs Buildroot | `/notes/yocto-vs-buildroot` | Leaf (article) | Flagship `TechArticle` — company-voice, no byline | `/notes`, `/services` |
 | Text Generator | `/aitools/text-generator` | Leaf (mock) | Placeholder tool — not wired to an LLM | `/aitools` |
 | Image Analyzer | `/aitools/image-analyzer` | Leaf (mock) | Placeholder tool — not wired to vision | `/aitools` |
+| Extensions | `/extensions` | **Content hub (index)** | Chrome extensions directory; short, links out to each portfolio-site tool page (must not compete with it) | extension leaves, tool pages |
+| Extension | `/extensions/$slug` | Leaf ×0 (1 draft) | Install, permissions + why, changelog; rendered from `src/content/extensions.json` (Tabmill-generated) | `/extensions`, tool page |
+| Extension privacy | `/extensions/$slug/privacy` | Leaf ×0 (1 draft) | Generated from `data_collected` + `analytics`; the store listing links here | extension page |
+| Extension support | `/extensions/support` | Leaf | Single support page, email only | extension leaves |
 
-**Counts:** 1 root hub · 6 content hubs (`/services`, `/web-systems`, `/content`,
-`/work`, `/notes`, `/aitools`) · 33 public leaves (29 published work case studies +
-1 note article + contact + 2 AI tools) — **40 public pages** total, matching the 40
+**Counts:** 1 root hub · 7 content hubs (`/services`, `/web-systems`, `/content`,
+`/work`, `/notes`, `/aitools`, `/extensions`) · 34 public leaves (29 published work
+case studies + 1 note article + contact + 2 AI tools + extension support) — **42 public
+pages** total, matching the 42
 `<loc>` entries in `public/sitemap.xml`.
 
 Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (32

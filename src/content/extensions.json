@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "save-page-pdf-md",
+    "name": "Save Page as Markdown or PDF",
+    "pitch": "Save the current page as clean Markdown or a print-ready PDF. Runs locally — nothing is uploaded.",
+    "tool_page_url": "https://example.com/FILL-tool-page-url",
+    "permissions": [
+      {
+        "name": "activeTab",
+        "reason": "Read the current page only after the user clicks Save — no access to any other page or at any other time."
+      },
+      {
+        "name": "scripting",
+        "reason": "Run the article extractor in the current tab when the user clicks Save (allowed by activeTab; no host permissions)."
+      },
+      {
+        "name": "storage",
+        "reason": "Pass the extracted article from the popup to the extension's own print page via session storage; deleted as soon as the print page reads it."
+      }
+    ],
+    "data_collected": [],
+    "analytics": false,
+    "changelog": [],
+    "status": "draft"
+  }
+]

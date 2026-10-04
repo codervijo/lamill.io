@@ -75,6 +75,7 @@ function SiteFooter() {
             { to: "/work", label: "Work" },
             { to: "/content", label: "Content" },
             { to: "/notes", label: "Notes" },
+            { to: "/extensions", label: "Extensions" },
           ]}
         />
         <FooterCol
@@ -112,7 +113,15 @@ function FooterCol({
 }: {
   title: string;
   items: ReadonlyArray<{
-    to: "/" | "/services" | "/web-systems" | "/work" | "/content" | "/notes" | "/contact";
+    to:
+      | "/"
+      | "/services"
+      | "/web-systems"
+      | "/work"
+      | "/content"
+      | "/notes"
+      | "/extensions"
+      | "/contact";
     label: string;
   }>;
 }) {
@@ -151,9 +160,7 @@ export function PageHeader({
         <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
           {title}
         </h1>
-        {intro ? (
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{intro}</p>
-        ) : null}
+        {intro ? <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{intro}</p> : null}
       </div>
     </section>
   );

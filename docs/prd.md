@@ -86,6 +86,52 @@ flagged, not invented.
 Verification for v3.A/B: JSON-LD must lint as valid JSON; confirm no JSON-LD
 leaked onto non-home routes.
 
+## v4 — Chrome extensions hub (planned 2026-10-03)
+
+Goal: a small hub for LaMill's Chrome extensions — directory, per-extension
+page, per-extension privacy policy (the store listing links here), and one
+support page. Pages render from an `extensions.json` that Tabmill generates.
+Rules: hub pages must not compete with the portfolio-site tool pages (short,
+no keyword-targeted copy, prominent link out to the tool page); privacy text
+is generated from `data_collected` + `analytics`, defaulting to "all
+processing is local, nothing is collected"; faceless brand — "Built by
+LaMill" only, no personal names.
+
+**v4.A — Kickoff / decisions lock (no code) — contract locked 2026-10-03; 2 items open**
+- [x] `extensions.json` contract: `slug`, `name`, `pitch`, `store_url`,
+      `tool_page_url`, `permissions[{name, reason}]`, `data_collected`,
+      `analytics` (bool), `changelog[{version, date, notes}]`, `status`
+      — locked: `status` = published|draft (default draft); `data_collected` =
+      string[] (empty = nothing collected); changelog `YYYY-MM-DD`, newest first
+- [x] Where Tabmill writes the file in this repo — `src/content/extensions.json`
+- [x] Which site hosts the full tool pages — per-extension, from the tabmill recipe's
+      `portfolio_site` (save-page-pdf-md → markpdf.dev; its `landing_page_url` is still empty)
+- [ ] Real sample values for `save-page-pdf-md` — name, pitch, permissions + reasons,
+      analytics filled from tabmill's `recipes/save-page-pdf-md/extension.yaml`; still
+      ‹FILL›: `tool_page_url` (no markpdf.dev page yet). `store_url` omitted — made
+      optional 2026-10-03; pages show "In development" until it's set; `changelog` empty (no release yet)
+- [ ] Deploy path: confirm what `lamill` deploy (incl. IndexNow) adds over
+      the Vercel push-to-`main` auto-deploy
+
+**v4.B — Data contract — DONE 2026-10-03**
+- [x] zod schema + typed loader for `extensions.json`, following the
+      `src/lib/content.ts` pattern
+- [x] Sample `extensions.json` with one extension (`save-page-pdf-md`) — one ‹FILL›
+      URL remains (see v4.A), so the entry is `status: "draft"` (404s, out of the
+      sitemap) until it's filled; the loader warns at build time while any remain
+
+**v4.C — Pages — DONE 2026-10-03 (renders from placeholder sample)**
+- [x] `/extensions` — directory: name, pitch, store link, tool-page link
+- [x] `/extensions/$slug` — what it does, install button, permissions + why,
+      changelog, tool-page link
+- [x] `/extensions/$slug/privacy` — generated from `data_collected` + `analytics`
+- [x] `/extensions/support` — single contact/support page
+- [x] Sitemap entries + footer link; `pageSeo()` head on every route
+
+**v4.D — Contract docs + deploy**
+- [x] Document the JSON contract in `README.md` so Tabmill can target it
+- [ ] Deploy via the `lamill` CLI (IndexNow) — only once no placeholders remain
+
 ## Backlog / follow-ups (open)
 - [ ] 🔴 **URGENT — wire the contact form to a real backend / email delivery.**
       `/contact` is the site's only conversion path and it currently drops every
