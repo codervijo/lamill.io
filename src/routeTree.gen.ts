@@ -9,36 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WebSystemsRouteImport } from './routes/web-systems'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as ContentRouteImport } from './routes/content'
-import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WorkIndexRouteImport } from './routes/work/index'
-import { Route as NotesIndexRouteImport } from './routes/notes/index'
-import { Route as ExtensionsIndexRouteImport } from './routes/extensions/index'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ContentRouteImport } from './routes/content'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as WebSystemsRouteImport } from './routes/web-systems'
 import { Route as AitoolsIndexRouteImport } from './routes/aitools/index'
-import { Route as WorkSlugRouteImport } from './routes/work/$slug'
-import { Route as NotesYoctoVsBuildrootRouteImport } from './routes/notes/yocto-vs-buildroot'
-import { Route as ExtensionsSupportRouteImport } from './routes/extensions/support'
-import { Route as AitoolsTextGeneratorRouteImport } from './routes/aitools/text-generator'
 import { Route as AitoolsImageAnalyzerRouteImport } from './routes/aitools/image-analyzer'
+import { Route as AitoolsTextGeneratorRouteImport } from './routes/aitools/text-generator'
+import { Route as ExtensionsIndexRouteImport } from './routes/extensions/index'
+import { Route as ExtensionsSupportRouteImport } from './routes/extensions/support'
+import { Route as NotesIndexRouteImport } from './routes/notes/index'
+import { Route as NotesYoctoVsBuildrootRouteImport } from './routes/notes/yocto-vs-buildroot'
+import { Route as WorkIndexRouteImport } from './routes/work/index'
+import { Route as WorkSlugRouteImport } from './routes/work/$slug'
 import { Route as ExtensionsSlugIndexRouteImport } from './routes/extensions/$slug/index'
 import { Route as ExtensionsSlugPrivacyRouteImport } from './routes/extensions/$slug/privacy'
 
-const WebSystemsRoute = WebSystemsRouteImport.update({
-  id: '/web-systems',
-  path: '/web-systems',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContentRoute = ContentRouteImport.update({
-  id: '/content',
-  path: '/content',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -46,24 +36,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContentRoute = ContentRouteImport.update({
+  id: '/content',
+  path: '/content',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkIndexRoute = WorkIndexRouteImport.update({
-  id: '/work/',
-  path: '/work/',
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NotesIndexRoute = NotesIndexRouteImport.update({
-  id: '/notes/',
-  path: '/notes/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExtensionsIndexRoute = ExtensionsIndexRouteImport.update({
-  id: '/extensions/',
-  path: '/extensions/',
+const WebSystemsRoute = WebSystemsRouteImport.update({
+  id: '/web-systems',
+  path: '/web-systems',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AitoolsIndexRoute = AitoolsIndexRouteImport.update({
@@ -71,19 +56,9 @@ const AitoolsIndexRoute = AitoolsIndexRouteImport.update({
   path: '/aitools/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkSlugRoute = WorkSlugRouteImport.update({
-  id: '/work/$slug',
-  path: '/work/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotesYoctoVsBuildrootRoute = NotesYoctoVsBuildrootRouteImport.update({
-  id: '/notes/yocto-vs-buildroot',
-  path: '/notes/yocto-vs-buildroot',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExtensionsSupportRoute = ExtensionsSupportRouteImport.update({
-  id: '/extensions/support',
-  path: '/extensions/support',
+const AitoolsImageAnalyzerRoute = AitoolsImageAnalyzerRouteImport.update({
+  id: '/aitools/image-analyzer',
+  path: '/aitools/image-analyzer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AitoolsTextGeneratorRoute = AitoolsTextGeneratorRouteImport.update({
@@ -91,9 +66,34 @@ const AitoolsTextGeneratorRoute = AitoolsTextGeneratorRouteImport.update({
   path: '/aitools/text-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AitoolsImageAnalyzerRoute = AitoolsImageAnalyzerRouteImport.update({
-  id: '/aitools/image-analyzer',
-  path: '/aitools/image-analyzer',
+const ExtensionsIndexRoute = ExtensionsIndexRouteImport.update({
+  id: '/extensions/',
+  path: '/extensions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExtensionsSupportRoute = ExtensionsSupportRouteImport.update({
+  id: '/extensions/support',
+  path: '/extensions/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesIndexRoute = NotesIndexRouteImport.update({
+  id: '/notes/',
+  path: '/notes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesYoctoVsBuildrootRoute = NotesYoctoVsBuildrootRouteImport.update({
+  id: '/notes/yocto-vs-buildroot',
+  path: '/notes/yocto-vs-buildroot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/work/$slug',
+  path: '/work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExtensionsSlugIndexRoute = ExtensionsSlugIndexRouteImport.update({
@@ -240,25 +240,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/web-systems': {
-      id: '/web-systems'
-      path: '/web-systems'
-      fullPath: '/web-systems'
-      preLoaderRoute: typeof WebSystemsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/content': {
-      id: '/content'
-      path: '/content'
-      fullPath: '/content'
-      preLoaderRoute: typeof ContentRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -268,32 +254,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/content': {
+      id: '/content'
+      path: '/content'
+      fullPath: '/content'
+      preLoaderRoute: typeof ContentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/': {
-      id: '/work/'
-      path: '/work'
-      fullPath: '/work/'
-      preLoaderRoute: typeof WorkIndexRouteImport
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/notes/': {
-      id: '/notes/'
-      path: '/notes'
-      fullPath: '/notes/'
-      preLoaderRoute: typeof NotesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/extensions/': {
-      id: '/extensions/'
-      path: '/extensions'
-      fullPath: '/extensions/'
-      preLoaderRoute: typeof ExtensionsIndexRouteImport
+    '/web-systems': {
+      id: '/web-systems'
+      path: '/web-systems'
+      fullPath: '/web-systems'
+      preLoaderRoute: typeof WebSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aitools/': {
@@ -303,25 +282,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AitoolsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/$slug': {
-      id: '/work/$slug'
-      path: '/work/$slug'
-      fullPath: '/work/$slug'
-      preLoaderRoute: typeof WorkSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/notes/yocto-vs-buildroot': {
-      id: '/notes/yocto-vs-buildroot'
-      path: '/notes/yocto-vs-buildroot'
-      fullPath: '/notes/yocto-vs-buildroot'
-      preLoaderRoute: typeof NotesYoctoVsBuildrootRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/extensions/support': {
-      id: '/extensions/support'
-      path: '/extensions/support'
-      fullPath: '/extensions/support'
-      preLoaderRoute: typeof ExtensionsSupportRouteImport
+    '/aitools/image-analyzer': {
+      id: '/aitools/image-analyzer'
+      path: '/aitools/image-analyzer'
+      fullPath: '/aitools/image-analyzer'
+      preLoaderRoute: typeof AitoolsImageAnalyzerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aitools/text-generator': {
@@ -331,11 +296,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AitoolsTextGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/aitools/image-analyzer': {
-      id: '/aitools/image-analyzer'
-      path: '/aitools/image-analyzer'
-      fullPath: '/aitools/image-analyzer'
-      preLoaderRoute: typeof AitoolsImageAnalyzerRouteImport
+    '/extensions/': {
+      id: '/extensions/'
+      path: '/extensions'
+      fullPath: '/extensions/'
+      preLoaderRoute: typeof ExtensionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/extensions/support': {
+      id: '/extensions/support'
+      path: '/extensions/support'
+      fullPath: '/extensions/support'
+      preLoaderRoute: typeof ExtensionsSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes/': {
+      id: '/notes/'
+      path: '/notes'
+      fullPath: '/notes/'
+      preLoaderRoute: typeof NotesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes/yocto-vs-buildroot': {
+      id: '/notes/yocto-vs-buildroot'
+      path: '/notes/yocto-vs-buildroot'
+      fullPath: '/notes/yocto-vs-buildroot'
+      preLoaderRoute: typeof NotesYoctoVsBuildrootRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/': {
+      id: '/work/'
+      path: '/work'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/work/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/extensions/$slug/': {
