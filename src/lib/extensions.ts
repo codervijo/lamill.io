@@ -9,7 +9,7 @@ import { z } from "zod";
  */
 
 // Static routes under /extensions that a slug must not shadow.
-const RESERVED_SLUGS = ["support"];
+const RESERVED_SLUGS = ["support", "privacy"];
 
 export const extensionSchema = z.object({
   /** URL segment: /extensions/<slug>. Kebab-case. */
@@ -46,8 +46,12 @@ export const extensionSchema = z.object({
       }),
     )
     .default([]),
-  /** draft = hidden from /extensions and 404 at its URLs. */
-  status: z.enum(["draft", "published"]).default("draft"),
+  /**
+   * draft = hidden from /extensions and 404 at its URLs.
+   * unlisted = its pages are live (noindex) but it's hidden from /extensions and
+   * the sitemap — the Chrome Web Store needs the privacy URL live before review.
+   */
+  status: z.enum(["draft", "unlisted", "published"]).default("draft"),
 });
 export type Extension = z.infer<typeof extensionSchema>;
 
@@ -84,11 +88,7 @@ export function getAllExtensions(): Extension[] {
   return ALL.filter((e) => e.status === "published");
 }
 
+/** Published or unlisted — anything with live pages. */
 export function getExtensionBySlug(slug: string): Extension | undefined {
-  return getAllExtensions().find((e) => e.slug === slug);
-}
-
-/** Last-updated date for the privacy page: newest release, if any. */
-export function privacyUpdated(ext: Extension): string | undefined {
-  return ext.changelog[0]?.date;
+  return ALL.find((e) => e.slug === slug && e.status !== "draft");
 }

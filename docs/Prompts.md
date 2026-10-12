@@ -66,3 +66,16 @@
 > document the JSON contract in README.
 >
 > approved — placed as v4 (v4.A decisions lock → v4.D deploy).
+
+## 2026-10-11 — extensions: `unlisted` status (from a tabmill session)
+> "write the markpdf.dev and lamill.io landing page for save-page-pdf-md" → the Chrome Web Store
+> needs `/extensions/<slug>/privacy` live before review, but `draft` 404s. Added `status: "unlisted"`
+> (pages live with noindex, hidden from `/extensions` + sitemap); `pageSeo({ noindex })`; README
+> contract updated. Tabmill D-035 exports not-yet-published extensions as `unlisted`.
+
+## 2026-10-12 — extensions: one shared privacy page (from a tabmill session)
+> "can i use one shared privacy page in lamill.io?" → "A but add a check in release … if the new
+> extensions privacy meets our privacy page". New `/extensions/privacy` rendered from
+> `src/content/privacy.json` (Tabmill-generated; zod in `src/lib/privacy.ts`); shows
+> "Policy version N", which Tabmill's release lint checks on the live page. `/extensions/<slug>/privacy`
+> → 301 there; `privacy` reserved slug; sitemap + README contract updated. Tabmill D-036.

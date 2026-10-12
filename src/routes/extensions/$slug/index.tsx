@@ -17,6 +17,7 @@ export const Route = createFileRoute("/extensions/$slug/")({
           path: `/extensions/${loaderData.slug}`,
           title: `${loaderData.name} — LaMill Extensions`,
           description: loaderData.pitch,
+          noindex: loaderData.status === "unlisted",
         })
       : { meta: [], links: [] },
   component: ExtensionDetail,
@@ -102,11 +103,7 @@ function ExtensionDetail() {
           ) : null}
 
           <div className="flex flex-wrap gap-6 border-t border-border pt-10 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            <Link
-              to="/extensions/$slug/privacy"
-              params={{ slug: ext.slug }}
-              className="transition hover:text-primary"
-            >
+            <Link to="/extensions/privacy" className="transition hover:text-primary">
               Privacy policy
             </Link>
             <Link to="/extensions/support" className="transition hover:text-primary">

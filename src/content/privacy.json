@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "updated": "2026-10-12",
+  "permissions": {
+    "activeTab": "Read the page you're on, only after you click the extension — never other tabs, never in the background.",
+    "scripting": "Run the extension's own code in that page, under the same activeTab limit.",
+    "storage": "Keep settings, or pass data between the extension's own pages, on your device only.",
+    "sidePanel": "Show the extension in Chrome's side panel."
+  }
+}

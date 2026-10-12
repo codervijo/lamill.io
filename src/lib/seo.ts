@@ -50,6 +50,8 @@ export interface PageSeoInput {
   image?: string;
   /** JSON-LD object to render as <script type="application/ld+json">. */
   jsonLd?: unknown;
+  /** Serve the page but keep it out of search results (e.g. unlisted extensions). */
+  noindex?: boolean;
 }
 
 /**
@@ -86,6 +88,7 @@ export function pageSeo(input: PageSeoInput): {
   }
 
   if (input.jsonLd) meta.push({ "script:ld+json": input.jsonLd });
+  if (input.noindex) meta.push({ name: "robots", content: "noindex" });
 
   return { meta, links: [{ rel: "canonical", href: url }] };
 }

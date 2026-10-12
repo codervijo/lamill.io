@@ -18,6 +18,7 @@ import { Route as AitoolsIndexRouteImport } from './routes/aitools/index'
 import { Route as AitoolsImageAnalyzerRouteImport } from './routes/aitools/image-analyzer'
 import { Route as AitoolsTextGeneratorRouteImport } from './routes/aitools/text-generator'
 import { Route as ExtensionsIndexRouteImport } from './routes/extensions/index'
+import { Route as ExtensionsPrivacyRouteImport } from './routes/extensions/privacy'
 import { Route as ExtensionsSupportRouteImport } from './routes/extensions/support'
 import { Route as NotesIndexRouteImport } from './routes/notes/index'
 import { Route as NotesYoctoVsBuildrootRouteImport } from './routes/notes/yocto-vs-buildroot'
@@ -71,6 +72,11 @@ const ExtensionsIndexRoute = ExtensionsIndexRouteImport.update({
   path: '/extensions/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExtensionsPrivacyRoute = ExtensionsPrivacyRouteImport.update({
+  id: '/extensions/privacy',
+  path: '/extensions/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExtensionsSupportRoute = ExtensionsSupportRouteImport.update({
   id: '/extensions/support',
   path: '/extensions/support',
@@ -115,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/extensions/privacy': typeof ExtensionsPrivacyRoute
   '/extensions/support': typeof ExtensionsSupportRoute
   '/notes/yocto-vs-buildroot': typeof NotesYoctoVsBuildrootRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -133,6 +140,7 @@ export interface FileRoutesByTo {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/extensions/privacy': typeof ExtensionsPrivacyRoute
   '/extensions/support': typeof ExtensionsSupportRoute
   '/notes/yocto-vs-buildroot': typeof NotesYoctoVsBuildrootRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
   '/aitools/text-generator': typeof AitoolsTextGeneratorRoute
+  '/extensions/privacy': typeof ExtensionsPrivacyRoute
   '/extensions/support': typeof ExtensionsSupportRoute
   '/notes/yocto-vs-buildroot': typeof NotesYoctoVsBuildrootRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -172,6 +181,7 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/extensions/privacy'
     | '/extensions/support'
     | '/notes/yocto-vs-buildroot'
     | '/work/$slug'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/extensions/privacy'
     | '/extensions/support'
     | '/notes/yocto-vs-buildroot'
     | '/work/$slug'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/web-systems'
     | '/aitools/image-analyzer'
     | '/aitools/text-generator'
+    | '/extensions/privacy'
     | '/extensions/support'
     | '/notes/yocto-vs-buildroot'
     | '/work/$slug'
@@ -227,6 +239,7 @@ export interface RootRouteChildren {
   WebSystemsRoute: typeof WebSystemsRoute
   AitoolsImageAnalyzerRoute: typeof AitoolsImageAnalyzerRoute
   AitoolsTextGeneratorRoute: typeof AitoolsTextGeneratorRoute
+  ExtensionsPrivacyRoute: typeof ExtensionsPrivacyRoute
   ExtensionsSupportRoute: typeof ExtensionsSupportRoute
   NotesYoctoVsBuildrootRoute: typeof NotesYoctoVsBuildrootRoute
   WorkSlugRoute: typeof WorkSlugRoute
@@ -303,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExtensionsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/extensions/privacy': {
+      id: '/extensions/privacy'
+      path: '/extensions/privacy'
+      fullPath: '/extensions/privacy'
+      preLoaderRoute: typeof ExtensionsPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/extensions/support': {
       id: '/extensions/support'
       path: '/extensions/support'
@@ -363,6 +383,7 @@ const rootRouteChildren: RootRouteChildren = {
   WebSystemsRoute: WebSystemsRoute,
   AitoolsImageAnalyzerRoute: AitoolsImageAnalyzerRoute,
   AitoolsTextGeneratorRoute: AitoolsTextGeneratorRoute,
+  ExtensionsPrivacyRoute: ExtensionsPrivacyRoute,
   ExtensionsSupportRoute: ExtensionsSupportRoute,
   NotesYoctoVsBuildrootRoute: NotesYoctoVsBuildrootRoute,
   WorkSlugRoute: WorkSlugRoute,
