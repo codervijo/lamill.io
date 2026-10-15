@@ -141,8 +141,7 @@ LaMill" only, no personal names.
 - [x] Publish `save-page-pdf-md` (2026-10-14): flipped to `published`, added
       `/extensions/save-page-pdf-md` to `sitemap.xml` (only 1 URL — its privacy URL
       301s to the shared page, already listed)
-- [ ] Deploy + re-ping IndexNow for the new URL (needs the push to land first —
-      the ping reads the *live* sitemap)
+- [x] Deployed 2026-10-14 (`4dad234`); IndexNow pinged for `/extensions/save-page-pdf-md`
 
 ## Backlog / follow-ups (open)
 - [ ] 🔴 **URGENT — wire the contact form to a real backend / email delivery.**
@@ -153,6 +152,12 @@ LaMill" only, no personal names.
       a broken promise rather than just a missing feature. Until it ships, treat
       `hello@lamill.io` as the only working contact channel. `seo-audit.md` T-14 /
       unverifiable-claims row 1.
+      **Status 2026-10-14:** operator is building a generic (fleet-wide) contact-form
+      solution; pick up next session by wiring `/contact` to it — don't build a
+      lamill-only backend in the meantime.
+- [ ] Confirm the markpdf.dev tool page (`/save-webpage-as-pdf/`) no longer shows its
+      "coming soon" notice — `/extensions/save-page-pdf-md` links out to it as live.
+      Fix lives in the markpdf.dev repo (operator, 2026-10-14).
 - [ ] Verify the SSR-on-Vercel deploy against a live build (not yet validated)
 - [ ] Wire `/aitools` Text Generator + Image Analyzer to real Claude calls —
       until then both are marked "Coming soon" on `/aitools` (2026-08-03)
