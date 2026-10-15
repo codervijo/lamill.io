@@ -162,8 +162,14 @@ This project follows the two-level versioning convention canonical to the
 portfolio (see `sites/portfolio/AI_AGENTS.md` for the full statement):
 
 - **`vN`** — major capability tier (SemVer-MAJOR semantics).
-- **`vN.X`** — phase letter within a tier (A, B, C, …) for internal slicing.
-- **`vN.X.Y`** — numeric sub-phase for follow-up work that lands after `vN.X` shipped.
+- **`vN.X`** — phase letter within a tier (A, B, C, …). Each phase is a shippable slice.
+- **`vN.A` is always the planning / decisions-lock phase.** Build work starts at
+  `.B`; if a tier's first instinct is code, its planning still gets its own `.A` row.
+
+**Two levels only. Never `vN.X.Y`.** When follow-up work emerges inside a tier,
+push subsequent phase letters down to make room. No parallel schemes (`0.1.0`,
+`Sprint 3`, `Phase 1.A`) and no invented qualifiers (`v1.B(draft)`). Applies to
+`docs/prd.md`, `docs/Prompts.md`, and commit subjects.
 
 Track current phase + completed work in `docs/prd.md`.
 
