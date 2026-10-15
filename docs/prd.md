@@ -86,7 +86,7 @@ flagged, not invented.
 Verification for v3.A/B: JSON-LD must lint as valid JSON; confirm no JSON-LD
 leaked onto non-home routes.
 
-## v4 — Chrome extensions hub (planned 2026-10-03)
+## v4 — Chrome extensions hub (built 2026-10-03; save-page-pdf-md published 2026-10-14)
 
 Goal: a small hub for LaMill's Chrome extensions — directory, per-extension
 page, per-extension privacy policy (the store listing links here), and one
@@ -97,19 +97,21 @@ is generated from `data_collected` + `analytics`, defaulting to "all
 processing is local, nothing is collected"; faceless brand — "Built by
 LaMill" only, no personal names.
 
-**v4.A — Kickoff / decisions lock (no code) — contract locked 2026-10-03; 1 item open**
+**v4.A — Kickoff / decisions lock (no code) — DONE 2026-10-14**
 - [x] `extensions.json` contract: `slug`, `name`, `pitch`, `store_url`,
       `tool_page_url`, `permissions[{name, reason}]`, `data_collected`,
       `analytics` (bool), `changelog[{version, date, notes}]`, `status`
-      — locked: `status` = published|draft (default draft); `data_collected` =
+      — locked: `status` = published|unlisted|draft (default draft; `unlisted` added
+      2026-10-11 — page live with noindex, off `/extensions` + sitemap, so the store's
+      privacy-URL review can pass pre-publish; Tabmill D-035); `data_collected` =
       string[] (empty = nothing collected); changelog `YYYY-MM-DD`, newest first
 - [x] Where Tabmill writes the file in this repo — `src/content/extensions.json`
 - [x] Which site hosts the full tool pages — per-extension, from the tabmill recipe's
       `portfolio_site` (save-page-pdf-md → markpdf.dev; its `landing_page_url` is still empty)
-- [ ] Real sample values for `save-page-pdf-md` — name, pitch, permissions + reasons,
-      analytics filled from tabmill's `recipes/save-page-pdf-md/extension.yaml`; still
-      ‹FILL›: `tool_page_url` (no markpdf.dev page yet). `store_url` omitted — made
-      optional 2026-10-03; pages show "In development" until it's set; `changelog` empty (no release yet)
+- [x] Real values for `save-page-pdf-md` — name, pitch, permissions + reasons,
+      analytics from tabmill's `recipes/save-page-pdf-md/extension.yaml`; `tool_page_url`
+      = `https://markpdf.dev/save-webpage-as-pdf/`, `store_url` = its Chrome Web Store
+      listing (both filled 2026-10-14); `changelog` still empty
 - [x] Deploy path: Vercel push-to-`main` auto-deploy. `lamill new deploy` on a
       Vercel site only shells `vercel deploy --prod` — it never reaches the IndexNow
       step — so IndexNow is pinged separately (portfolio `_deploy_step10_indexnow`)
@@ -125,7 +127,10 @@ LaMill" only, no personal names.
 - [x] `/extensions` — directory: name, pitch, store link, tool-page link
 - [x] `/extensions/$slug` — what it does, install button, permissions + why,
       changelog, tool-page link
-- [x] `/extensions/$slug/privacy` — generated from `data_collected` + `analytics`
+- [x] `/extensions/$slug/privacy` — generated from `data_collected` + `analytics`.
+      **Superseded 2026-10-12:** one shared `/extensions/privacy` rendered from
+      `src/content/privacy.json` ("Policy version N", checked by Tabmill's release lint;
+      Tabmill D-036); per-slug URLs 301 there; `privacy` is a reserved slug
 - [x] `/extensions/support` — single contact/support page
 - [x] Sitemap entries + footer link; `pageSeo()` head on every route
 
@@ -133,8 +138,11 @@ LaMill" only, no personal names.
 - [x] Document the JSON contract in `README.md` so Tabmill can target it
 - [x] Deployed 2026-10-04 (`4eb0eff`, after the TanStack Start XSS patch unblocked
       Vercel); IndexNow pinged for all 42 sitemap URLs
-- [ ] Publish `save-page-pdf-md` once `tool_page_url` exists: flip to `published`,
-      add its 2 URLs to `sitemap.xml`, re-ping IndexNow
+- [x] Publish `save-page-pdf-md` (2026-10-14): flipped to `published`, added
+      `/extensions/save-page-pdf-md` to `sitemap.xml` (only 1 URL — its privacy URL
+      301s to the shared page, already listed)
+- [ ] Deploy + re-ping IndexNow for the new URL (needs the push to land first —
+      the ping reads the *live* sitemap)
 
 ## Backlog / follow-ups (open)
 - [ ] 🔴 **URGENT — wire the contact form to a real backend / email delivery.**

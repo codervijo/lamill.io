@@ -38,18 +38,18 @@ Two kinds of page:
 | Text Generator | `/aitools/text-generator` | Leaf (mock) | Placeholder tool — not wired to an LLM | `/aitools` |
 | Image Analyzer | `/aitools/image-analyzer` | Leaf (mock) | Placeholder tool — not wired to vision | `/aitools` |
 | Extensions | `/extensions` | **Content hub (index)** | Chrome extensions directory; short, links out to each portfolio-site tool page (must not compete with it) | extension leaves, tool pages |
-| Extension | `/extensions/$slug` | Leaf ×0 (1 draft) | Install, permissions + why, changelog; rendered from `src/content/extensions.json` (Tabmill-generated) | `/extensions`, tool page |
-| Extension privacy | `/extensions/$slug/privacy` | Leaf ×0 (1 draft) | Generated from `data_collected` + `analytics`; the store listing links here | extension page |
+| Extension | `/extensions/$slug` | Leaf ×1 (`save-page-pdf-md`) | Install, permissions + why, changelog; rendered from `src/content/extensions.json` (Tabmill-generated) | `/extensions`, tool page |
+| Extension privacy | `/extensions/privacy` | Leaf | One shared policy rendered from `src/content/privacy.json` (Tabmill-generated; shows "Policy version N"); every store listing links here. `/extensions/$slug/privacy` → 301 here | extension pages |
 | Extension support | `/extensions/support` | Leaf | Single support page, email only | extension leaves |
 
 **Counts:** 1 root hub · 7 content hubs (`/services`, `/web-systems`, `/content`,
-`/work`, `/notes`, `/aitools`, `/extensions`) · 34 public leaves (29 published work
-case studies + 1 note article + contact + 2 AI tools + extension support) — **42 public
-pages** total, matching the 42
+`/work`, `/notes`, `/aitools`, `/extensions`) · 36 public leaves (29 published work
+case studies + 1 note article + contact + 2 AI tools + 1 extension + extension privacy +
+extension support) — **44 public pages** total, matching the 44
 `<loc>` entries in `public/sitemap.xml`.
 
-Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (32
-files today, 3 of them drafts — a draft is excluded from `/work` and the sitemap and
+Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (33
+files today, 4 of them drafts — a draft is excluded from `/work` and the sitemap and
 404s by direct URL, so count *published*, not files). Note metadata =
 `src/content/notes.ts`; note bodies are bespoke routes under `src/routes/notes/`.
 Keep this line in sync when entries land.

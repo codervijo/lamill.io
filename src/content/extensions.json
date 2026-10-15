@@ -3,7 +3,8 @@
     "slug": "save-page-pdf-md",
     "name": "Save Page as Markdown or PDF",
     "pitch": "Save the current page as clean Markdown or a print-ready PDF. Runs locally — nothing is uploaded.",
-    "tool_page_url": "https://example.com/FILL-tool-page-url",
+    "store_url": "https://chromewebstore.google.com/detail/aknmbookdcobogmhhnppjofghdjepice",
+    "tool_page_url": "https://markpdf.dev/save-webpage-as-pdf/",
     "permissions": [
       {
         "name": "activeTab",
@@ -21,6 +22,6 @@
     "data_collected": [],
     "analytics": false,
     "changelog": [],
-    "status": "draft"
+    "status": "published"
   }
 ]
