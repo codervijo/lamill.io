@@ -183,6 +183,16 @@ auto-detects Vercel and emits the Build Output API (`.vercel/output`).
 no longer declares `framework: "vite"` (that forced a static-`dist/` SPA build).
 Custom domain (`lamill.io`) is configured via the Vercel project's Domains panel.
 
+**IndexNow after a deploy.** The lamill CLI has no standalone IndexNow command, and
+`lamill new deploy` on Vercel never reaches its IndexNow step. Once the push is live
+(the ping reads the *live* sitemap; it's ledger-gated, so only new URLs are sent):
+
+```sh
+cd ~/work/projects/sites/portfolio && uv run python -c "from pathlib import Path; \
+  from portfolio.cli import _deploy_step10_indexnow as f; \
+  f(domain='lamill.io', project_dir=Path('../lamill.io'), dry_run=False)"
+```
+
 > **Preset gotcha (not a bug):** a **local** `pnpm build` (no deploy env) falls
 > back to the Lovable wrapper's default `cloudflare-module` preset — you'll see
 > `.output/server/wrangler.json` + a generated worker name. That's expected, not a

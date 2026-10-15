@@ -79,3 +79,18 @@
 > `src/content/privacy.json` (Tabmill-generated; zod in `src/lib/privacy.ts`); shows
 > "Policy version N", which Tabmill's release lint checks on the live page. `/extensions/<slug>/privacy`
 > → 301 there; `privacy` reserved slug; sitemap + README contract updated. Tabmill D-036.
+
+## 2026-10-14 — v4.D: publish save-page-pdf-md
+> whats next? → update sitemap with extensions page - check latest screenshot for details
+> → update the docs and reping using lamill CLI tool → i will fix markpdf.dev but you go
+> ahead with lamill, dont wait anylonger → commit and push → commit and push the prd update
+> - i am working on a generic solution for contact form, will pick it up next session, so
+> save any undone things to PRD → update the docs and prompts.md with this session
+
+Filled `store_url` + `tool_page_url` and flipped `save-page-pdf-md` to `published`; added
+`/extensions/save-page-pdf-md` to `sitemap.xml` (its privacy URL 301s to the shared page).
+Docs synced to 44 public pages, shared `/extensions/privacy`, `unlisted` status, `lamill`
+work draft. Deployed `4dad234`; IndexNow pinged via portfolio `_deploy_step10_indexnow`
+(no lamill CLI command for it — recipe now in `AI_AGENTS.md`). v4 closed. PRD backlog:
+contact form waits on the operator's fleet-wide solution; markpdf.dev "coming soon" notice
+to clear (markpdf.dev repo).
