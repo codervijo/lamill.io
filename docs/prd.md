@@ -95,7 +95,8 @@ Rules: hub pages must not compete with the portfolio-site tool pages (short,
 no keyword-targeted copy, prominent link out to the tool page); privacy text
 is generated from `data_collected` + `analytics`, defaulting to "all
 processing is local, nothing is collected"; faceless brand — "Built by
-LaMill" only, no personal names.
+LaMill" only, no personal names. (The "must not compete" rule is partially
+superseded by v5 — extension pages get scoped keyword copy.)
 
 **v4.A — Kickoff / decisions lock (no code) — DONE 2026-10-14**
 - [x] `extensions.json` contract: `slug`, `name`, `pitch`, `store_url`,
@@ -142,6 +143,63 @@ LaMill" only, no personal names.
       `/extensions/save-page-pdf-md` to `sitemap.xml` (only 1 URL — its privacy URL
       301s to the shared page, already listed)
 - [x] Deployed 2026-10-14 (`4dad234`); IndexNow pinged for `/extensions/save-page-pdf-md`
+
+## v5 — Extension landing pages (planned 2026-10-17; starts after the contact form ships)
+
+Goal: turn `/extensions/$slug` from a thin stub into a landing page that ranks,
+earns directory/blog links, and converts to installs — built as a reusable
+template driven by per-extension data, so the next extension is one data entry.
+First consumer: `save-page-pdf-md`. Sequenced **after** the 🔴 contact-form item
+in the backlog.
+
+Partially supersedes the v4 rule "hub pages must not compete with the
+portfolio-site tool pages": extension pages now carry keyword-targeted copy,
+scoped so they don't cannibalize the portfolio site (see v5.A).
+
+**v5.A — Kickoff / decisions lock (no code) — DONE 2026-10-17**
+- [x] SEO split with the portfolio site — lamill.io targets the **Markdown**
+      searches ("save webpage as markdown", clipping, Markdown for LLMs); PDF depth
+      stays on `markpdf.dev/save-webpage-as-pdf/`, which the page links to
+      descriptively. Title still names both formats (operator spec).
+- [x] Copy ownership — Tabmill keeps owning `extensions.json` (facts, store URL,
+      permissions, status). Page copy lives in a **lamill-owned per-extension file**
+      joined by slug, so Tabmill exports never overwrite it.
+- [x] Brand spelling — **"LaMill"** sitewide (no change to the existing spelling).
+- [x] Facts source — only the operator-supplied facts list (2026-10-17 prompt in
+      `docs/Prompts.md`); nothing beyond it.
+
+**v5.B — Template + data contract**
+- [ ] Lamill-owned page-copy schema (zod) + loader, joined to `extensions.json` by
+      slug: value prop, demo media `{src, alt, kind}`, `og_image`, body sections,
+      "great for" list, how-to steps, `faq[]`, version, size, price
+- [ ] Generic `/extensions/$slug` template rendering it (falls back to today's thin
+      page when an extension has no copy file); visible breadcrumbs
+- [ ] JSON-LD builder: `SoftwareApplication` (price 0 USD, OS Chrome, install/download
+      → store link, publisher LaMill), `FAQPage` generated from the same `faq[]` as the
+      visible FAQ, `BreadcrumbList` (Home → Extensions → page). No ratings/reviews
+      (none exist — no star rich result expected)
+- [ ] One UTM helper for every store link (`utm_source=lamill.io&utm_medium=landing&utm_campaign=<slug>`),
+      used on the detail page and the `/extensions` hub
+- [ ] README: "add the next extension" — one data entry + one copy file
+
+**v5.C — save-page-pdf-md content**
+- [ ] Title "Save Webpage as Markdown or PDF – Free Chrome Extension | LaMill"; H1
+      close to it; meta description ≤ ~155 chars, "runs locally" angle
+- [ ] Hero value prop, Add to Chrome button, demo media slot (placeholder path)
+- [ ] Body 300–500 words: what you get, great for, how to use (3 steps), privacy &
+      permissions (existing block kept)
+- [ ] FAQ (6 Qs per the 2026-10-17 spec)
+- [ ] Replace "Full tool page ↗" with "Guide: how to save a webpage as a clean PDF"
+      → markpdf.dev guide and "Need branded PDFs from Markdown? Try MarkPDF" →
+      markpdf.dev (`utm_source=lamill.io`)
+- [ ] `/extensions` card description refreshed (already listed + in sitemap)
+
+**v5.D — Assets, verification, deploy**
+- [ ] Operator supplies demo media (GIF/video or before/after screenshot) and a
+      1200×630 OG image — the page is **not ready to push** until both are filled
+- [ ] Build clean; rendered JSON-LD shown and validated; every link checked (store
+      links carry UTM); mobile screenshot via the playwright image
+- [ ] Deploy; IndexNow ping (portfolio `_deploy_step10_indexnow`)
 
 ## Backlog / follow-ups (open)
 - [ ] 🔴 **URGENT — wire the contact form to a real backend / email delivery.**

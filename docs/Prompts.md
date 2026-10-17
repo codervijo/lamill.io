@@ -94,3 +94,17 @@ work draft. Deployed `4dad234`; IndexNow pinged via portfolio `_deploy_step10_in
 (no lamill CLI command for it — recipe now in `AI_AGENTS.md`). v4 closed. PRD backlog:
 contact form waits on the operator's fleet-wide solution; markpdf.dev "coming soon" notice
 to clear (markpdf.dev repo).
+
+## 2026-10-17 — v5 Extension landing pages (planned)
+> "Improve the extension landing page at /extensions/save-page-pdf-md … build this as a
+> reusable extension-page template driven by per-extension data" (full spec: title/H1/meta,
+> hero + demo slot, 300–500 word body, 6-Q FAQ, SoftwareApplication + FAQPage +
+> BreadcrumbList JSON-LD, UTM on store links, descriptive markpdf.dev links, OG image slot;
+> facts list supplied by operator — do not invent beyond it)
+>
+> v5 after contact form, 1a, 2b, LaMill sitewide
+
+Placed as v5 (v5.A decisions lock done; v5.B template → v5.D assets + deploy), sequenced
+after the contact-form backlog item. Decisions: lamill.io targets Markdown searches, PDF depth
+stays on markpdf.dev; page copy in a lamill-owned per-extension file (Tabmill keeps
+`extensions.json`); "LaMill" spelling unchanged sitewide.
