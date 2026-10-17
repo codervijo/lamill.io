@@ -96,15 +96,20 @@ contact form waits on the operator's fleet-wide solution; markpdf.dev "coming so
 to clear (markpdf.dev repo).
 
 ## 2026-10-17 — v5 Extension landing pages (planned)
+> where were we? → do you have https://lamill.io/extensions/support → if not add that as an
+> urgent item
+>
 > "Improve the extension landing page at /extensions/save-page-pdf-md … build this as a
 > reusable extension-page template driven by per-extension data" (full spec: title/H1/meta,
 > hero + demo slot, 300–500 word body, 6-Q FAQ, SoftwareApplication + FAQPage +
 > BreadcrumbList JSON-LD, UTM on store links, descriptive markpdf.dev links, OG image slot;
 > facts list supplied by operator — do not invent beyond it)
 >
-> v5 after contact form, 1a, 2b, LaMill sitewide
+> v5 after contact form, 1a, 2b, LaMill sitewide → commit the prd update → push it →
+> update the docs and prompts.md with this session
 
-Placed as v5 (v5.A decisions lock done; v5.B template → v5.D assets + deploy), sequenced
+`/extensions/support` confirmed live (200, in the sitemap, mails `hello@lamill.io` — not the
+broken `/contact` form), so no urgent item was added. Placed as v5 (v5.A decisions lock done; v5.B template → v5.D assets + deploy), sequenced
 after the contact-form backlog item. Decisions: lamill.io targets Markdown searches, PDF depth
 stays on markpdf.dev; page copy in a lamill-owned per-extension file (Tabmill keeps
 `extensions.json`); "LaMill" spelling unchanged sitewide.
