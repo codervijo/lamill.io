@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "ThreadRadar — a written brief in your inbox every Friday: what was said, where, and what to do about it. No dashboards.",
   date: "2026-05-31",
   tags: ["Content","SaaS"],
+  category: "Business & compliance",
   stack: ["Astro"],
   status: "published",
   body: [

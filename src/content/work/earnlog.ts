@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "EarnLog (DriverStack) — a real hourly-pay calculator that shows gig drivers what they actually earn after costs.",
   date: "2026-05-17",
   tags: ["Calculator","Tool"],
+  category: "Calculators",
   stack: ["Astro"],
   status: "published",
   body: [

@@ -8,6 +8,8 @@ const entry: WorkEntry = {
   description: "MDBurst — turn one markdown draft into publish-ready posts for Ghost, newsletters, LinkedIn, and social threads.",
   date: "2026-06-05",
   tags: ["Content","Tool"],
+  category: "Writing & documents",
+  featured: true,
   stack: ["Astro"],
   status: "published",
   body: [

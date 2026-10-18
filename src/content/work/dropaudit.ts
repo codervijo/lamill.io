@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "DropAudit (DROPShield) — DROP and Delete Act compliance tooling for California-registered data brokers.",
   date: "2026-05-17",
   tags: ["Compliance","SaaS"],
+  category: "Business & compliance",
   stack: ["Astro"],
   status: "published",
   body: [

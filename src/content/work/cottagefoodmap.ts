@@ -8,6 +8,8 @@ const entry: WorkEntry = {
   description: "Cottage Food Map — a sourced, state-by-state reference to home-food (cottage food) selling rules across the United States.",
   date: "2026-06-10",
   tags: ["Directory","SEO"],
+  category: "Civic & reference",
+  featured: true,
   stack: ["Astro"],
   status: "published",
   body: [

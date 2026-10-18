@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteShell, PageHeader } from "@/components/site-shell";
+import { Brand, SiteShell, PageHeader } from "@/components/site-shell";
 import { pageSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/web-systems")({
@@ -77,7 +77,11 @@ function WebSystemsPage() {
   return (
     <SiteShell>
       <PageHeader
-        kicker="LaMill Web Systems"
+        kicker={
+          <>
+            <Brand /> Web Systems
+          </>
+        }
         title={
           <>
             Websites, web apps, and mobile — <span className="text-primary glow-text">one team.</span>

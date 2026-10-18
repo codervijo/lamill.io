@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "Is It Holiday Today — a programmatic-SEO site answering 'Is today a holiday in [location]?' across thousands of place pages.",
   date: "2026-04-24",
   tags: ["Programmatic SEO","Tool"],
+  category: "Civic & reference",
   stack: ["React","Vite"],
   status: "published",
   body: [

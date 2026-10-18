@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "og": "node scripts/og.mjs"
+    "og": "node scripts/og.mjs",
+    "brand": "node scripts/brand.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

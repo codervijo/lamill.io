@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "Boxchive — a straightforward digital archive for documents and media, without the enterprise vendor quote.",
   date: "2026-05-26",
   tags: ["SaaS"],
+  category: "Business & compliance",
   stack: ["Astro"],
   status: "published",
   body: [

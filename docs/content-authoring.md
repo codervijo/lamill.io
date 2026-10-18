@@ -23,6 +23,8 @@ Adding a page = adding one typed file. No MDX, no toolchain.
      ogImage: "/og/acme-shop.png", // optional, served from public/
      date: "2026-06-28",          // YYYY-MM-DD, drives sort order (newest first)
      tags: ["Marketing site", "SEO"],
+     category: "Calculators",    // LaMill's own products only → listed on /products (omit for client work)
+     featured: true,              // optional — homepage "LaMill Products" section (live, working tools only)
      stack: ["Astro", "Vercel"],
      outcome: "One-line result (optional).",
      status: "published",         // "draft" hides it from /work + sitemap

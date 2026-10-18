@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "A tools-first IPL companion — live points table, playoff qualification calculator, and net-run-rate calculator. Fast and mobile-friendly.",
   date: "2026-05-01",
   tags: ["Tools","SEO"],
+  category: "Calculators",
   stack: ["React","Vite"],
   status: "published",
   body: [

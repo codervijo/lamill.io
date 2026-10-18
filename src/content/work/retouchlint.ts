@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "RetouchLint — photo-retouch disclosure tooling to keep edited imagery compliant with disclosure rules.",
   date: "2026-06-06",
   tags: ["Compliance","Tool"],
+  category: "Business & compliance",
   stack: ["Astro"],
   status: "published",
   body: [

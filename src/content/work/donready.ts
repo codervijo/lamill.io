@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "DonReady — find the right scrub pick for your body type, role, and shift, without the guesswork.",
   date: "2026-05-08",
   tags: ["E-commerce","Tool"],
+  category: "Everyday & family",
   stack: ["Astro"],
   status: "published",
   body: [

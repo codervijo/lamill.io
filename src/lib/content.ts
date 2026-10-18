@@ -7,6 +7,18 @@ import { z } from "zod";
  * satisfies `WorkEntry`. It is validated at load and surfaces at `/work/<slug>`.
  * See `docs/content-authoring.md`.
  */
+/** `/products` sections, in display order — working tools first. */
+export const PRODUCT_CATEGORIES = [
+  "Calculators",
+  "Writing & documents",
+  "Developer & AI",
+  "Business & compliance",
+  "Civic & reference",
+  "Everyday & family",
+  "Websites",
+] as const;
+export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
+
 export const workEntrySchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/, "slug must be kebab-case"),
   title: z.string(),
@@ -22,6 +34,13 @@ export const workEntrySchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   /** Free-form labels (e.g. "Content site", "E-commerce"). */
   tags: z.array(z.string()).default([]),
+  /**
+   * LaMill Products category. Set it only on entries that are LaMill's own
+   * products — they then list on `/products`. Client/studio work leaves it unset.
+   */
+  category: z.enum(PRODUCT_CATEGORIES).optional(),
+  /** Feature on the homepage "LaMill Products" section (live, working tools only). */
+  featured: z.boolean().optional(),
   /** Tech stack chips. */
   stack: z.array(z.string()).default([]),
   /** One-line result / outcome (optional). */
@@ -69,4 +88,19 @@ export function getWorkBySlug(
   opts?: { includeDrafts?: boolean },
 ): WorkEntry | undefined {
   return getAllWork(opts).find((e) => e.slug === slug);
+}
+
+/** Published entries with a category, grouped in PRODUCT_CATEGORIES order; featured first, then A–Z. */
+export function getProductsByCategory(): { category: ProductCategory; items: WorkEntry[] }[] {
+  const products = getAllWork().filter((e) => e.category);
+  return PRODUCT_CATEGORIES.map((category) => ({
+    category,
+    items: products
+      .filter((e) => e.category === category)
+      .sort((a, b) => Number(!!b.featured) - Number(!!a.featured) || a.title.localeCompare(b.title)),
+  })).filter((g) => g.items.length > 0);
+}
+
+export function getFeaturedProducts(): WorkEntry[] {
+  return getAllWork().filter((e) => e.category && e.featured);
 }

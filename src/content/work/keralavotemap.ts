@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "Kerala Vote Map — an overview of candidates contesting the 2026 Kerala Legislative Assembly elections across all 140 constituencies.",
   date: "2026-06-01",
   tags: ["Data","Civic"],
+  category: "Civic & reference",
   stack: ["React","Vite"],
   status: "published",
   body: [

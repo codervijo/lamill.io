@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "MSPProof — automated compliance evidence collection for MSPs, so gathering proof stops eating your engineers' time.",
   date: "2026-06-08",
   tags: ["Compliance","SaaS"],
+  category: "Business & compliance",
   stack: ["Astro"],
   status: "published",
   body: [

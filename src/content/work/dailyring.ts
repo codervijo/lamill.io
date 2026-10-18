@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "DailyRing — a warm daily phone call for aging parents, so you hear about what matters without the worry.",
   date: "2026-05-29",
   tags: ["Product"],
+  category: "Everyday & family",
   stack: ["Astro"],
   status: "published",
   body: [

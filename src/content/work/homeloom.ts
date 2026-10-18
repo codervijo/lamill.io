@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "Homeloom helps homeschool families file compliance, plan daily school, and generate transcripts — all in one calm app.",
   date: "2026-06-01",
   tags: ["App","SaaS"],
+  category: "Business & compliance",
   stack: ["React","Vite"],
   status: "published",
   body: [

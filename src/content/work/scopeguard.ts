@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "ScopeGuard — enterprise plugin governance that tells you which AI tools can read company data before employees install them.",
   date: "2026-05-31",
   tags: ["Security","SaaS"],
+  category: "Developer & AI",
   stack: ["Astro"],
   status: "published",
   body: [

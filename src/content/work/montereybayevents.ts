@@ -10,6 +10,7 @@ const entry: WorkEntry = {
     "Monterey Bay Events — a Monterey and Santa Cruz county event calendar built on Astro, with per-event pages, valid Event schema, and Car Week schedule and traffic guides.",
   date: "2026-08-03",
   tags: ["Content site", "Local SEO"],
+  category: "Websites",
   stack: ["Astro", "Cloudflare Workers"],
   status: "published",
   body: [

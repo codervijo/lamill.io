@@ -25,10 +25,11 @@ Two kinds of page:
 
 | Page | Route | Kind | Content role | Links to |
 | --- | --- | --- | --- | --- |
-| Home | `/` | **Root hub** | Brand + "three practices" + hero stats; Organization JSON-LD (`ProfessionalService`) | all section hubs, `/work`, `/contact` |
+| Home | `/` | **Root hub** | LaMill Studio ("Build. Deploy. Advance." + three practices + hero stats) and LaMill Products (featured products); `Organization` JSON-LD | all section hubs, `/products`, `/work`, `/contact` |
 | Services | `/services` | **Content hub** | The build/deploy/advance offering | `/contact`, `/work` |
 | Web Systems | `/web-systems` | **Content hub** | Web-systems practice | `/work`, `/contact` |
 | Content | `/content` | **Content hub** | Content-production practice | `/work`, `/contact` |
+| Products | `/products` | **Content hub (index)** | LaMill Products — work entries with a `category`, grouped; links out to each product site + its case study; published extensions | product sites, work leaves, extension leaves |
 | Work | `/work` | **Content hub (index)** | Portfolio listing of published entries | 29 published work leaves |
 | Notes | `/notes` | **Content hub (index)** | LaMill's own technical writing (NOT `/content`, which is a service) | note leaves |
 | AI Tools | `/aitools` | **Content hub (index)** | Sub-app landing | 2 tool leaves |
@@ -42,10 +43,10 @@ Two kinds of page:
 | Extension privacy | `/extensions/privacy` | Leaf | One shared policy rendered from `src/content/privacy.json` (Tabmill-generated; shows "Policy version N"); every store listing links here. `/extensions/$slug/privacy` → 301 here | extension pages |
 | Extension support | `/extensions/support` | Leaf | Single support page, email only | extension leaves |
 
-**Counts:** 1 root hub · 7 content hubs (`/services`, `/web-systems`, `/content`,
-`/work`, `/notes`, `/aitools`, `/extensions`) · 36 public leaves (29 published work
+**Counts:** 1 root hub · 8 content hubs (`/services`, `/web-systems`, `/content`,
+`/products`, `/work`, `/notes`, `/aitools`, `/extensions`) · 36 public leaves (29 published work
 case studies + 1 note article + contact + 2 AI tools + 1 extension + extension privacy +
-extension support) — **44 public pages** total, matching the 44
+extension support) — **45 public pages** total, matching the 45
 `<loc>` entries in `public/sitemap.xml`.
 
 Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (33

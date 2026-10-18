@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "MarginReady — see true profit per SKU on TikTok Shop: settled revenue, fees, refunds, and COGS in one dashboard.",
   date: "2026-05-28",
   tags: ["E-commerce","SaaS"],
+  category: "Business & compliance",
   stack: ["Astro"],
   status: "published",
   body: [

@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "BPPV Coach — real-time head-positioning feedback to guide a previously prescribed Epley maneuver for vertigo.",
   date: "2026-06-25",
   tags: ["Health","Tool"],
+  category: "Everyday & family",
   stack: ["Astro"],
   status: "published",
   body: [

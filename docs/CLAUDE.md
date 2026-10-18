@@ -47,7 +47,9 @@ git push            # Vercel auto-builds on push to main → lamill.io
   - SEO assets: every route's `head()` goes through `pageSeo()` in
     `src/lib/seo.ts` (OG set, canonical, optional `jsonLd` → `{ "script:ld+json": … }`,
     auto-scoped to that route); `public/og-image.png` is regenerated with
-    `pnpm run og` (`scripts/og.mjs`, deterministic — satori + resvg).
+    `pnpm run og` (`scripts/og.mjs`, deterministic — satori + resvg); logos, favicons
+    and app icons with `pnpm run brand` (`scripts/brand.mjs`).
+  - Brand: "LaMill" everywhere; use `<Brand />` inside `uppercase` labels.
 
 ## Heading hygiene
 

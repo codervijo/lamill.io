@@ -49,6 +49,7 @@ File-based — every `.tsx` in `src/routes/` is a route; `__root.tsx` is the she
 | `/web-systems` | `src/routes/web-systems.tsx` |
 | `/content` | `src/routes/content.tsx` |
 | `/contact` | `src/routes/contact.tsx` |
+| `/products` | `src/routes/products/index.tsx` |
 | `/work` | `src/routes/work/index.tsx` |
 | `/work/:slug` | `src/routes/work/$slug.tsx` (entries in `src/content/work/*.ts`) |
 | `/notes` | `src/routes/notes/index.tsx` |

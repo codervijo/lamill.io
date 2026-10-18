@@ -7,6 +7,7 @@ const entry: WorkEntry = {
   description: "MeetWhen — find a meeting time that works across timezones, fast.",
   date: "2026-06-03",
   tags: ["Tool"],
+  category: "Everyday & family",
   stack: ["Astro"],
   status: "published",
   body: [

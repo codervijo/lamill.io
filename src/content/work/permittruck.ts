@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "PermitTruck — manage food-truck permits: track, edit, and renew the paperwork that keeps trucks operating.",
   date: "2026-05-24",
   tags: ["Civic","SaaS"],
+  category: "Business & compliance",
   stack: ["Astro"],
   status: "published",
   body: [

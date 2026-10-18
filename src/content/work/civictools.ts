@@ -8,6 +8,8 @@ const entry: WorkEntry = {
   description: "CivicTools — a growing platform of simple civic tools that estimate permit fees, steps, and timelines for your project in seconds.",
   date: "2026-06-01",
   tags: ["Civic","Tool"],
+  category: "Civic & reference",
+  featured: true,
   stack: ["React","Vite"],
   status: "published",
   body: [

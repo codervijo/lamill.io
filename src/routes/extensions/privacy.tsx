@@ -1,5 +1,5 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { SiteShell } from "@/components/site-shell";
+import { Brand, SiteShell } from "@/components/site-shell";
 import { getPrivacyPolicy } from "@/lib/privacy";
 import { pageSeo } from "@/lib/seo";
 
@@ -125,7 +125,7 @@ function ExtensionsPrivacy() {
           </div>
 
           <div className="mt-14 border-t border-border pt-8 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            Built by LaMill
+            Built by <Brand />
           </div>
         </div>
       </section>

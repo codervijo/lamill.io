@@ -8,6 +8,8 @@ const entry: WorkEntry = {
   description: "MarkPDF — write in plain markdown and export polished, design-agency-quality PDF documents.",
   date: "2026-06-08",
   tags: ["Tool"],
+  category: "Writing & documents",
+  featured: true,
   stack: ["Astro"],
   status: "published",
   body: [

@@ -1,5 +1,5 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { SiteShell } from "@/components/site-shell";
+import { Brand, SiteShell } from "@/components/site-shell";
 import { getExtensionBySlug } from "@/lib/extensions";
 import { pageSeo } from "@/lib/seo";
 
@@ -109,7 +109,9 @@ function ExtensionDetail() {
             <Link to="/extensions/support" className="transition hover:text-primary">
               Support
             </Link>
-            <span>Built by LaMill</span>
+            <span>
+              Built by <Brand />
+            </span>
           </div>
         </div>
       </section>

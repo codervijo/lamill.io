@@ -10,6 +10,7 @@ const entry: WorkEntry = {
     "Hybrid Auto Part — a Toyota Prius and hybrid-vehicle technical blog built on WordPress with custom React/Vite plugins and an SEO-first editorial structure.",
   date: "2026-05-01",
   tags: ["Content site", "SEO"],
+  category: "Websites",
   stack: ["WordPress", "React", "Vite", "Yoast SEO"],
   outcome: "Publishing a steady stream of hybrid-vehicle technical articles, SEO under way.",
   status: "published",

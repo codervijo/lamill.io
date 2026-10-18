@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteShell, PageHeader } from "@/components/site-shell";
+import { Brand, SiteShell, PageHeader } from "@/components/site-shell";
 import { getAllExtensions } from "@/lib/extensions";
 import { pageSeo } from "@/lib/seo";
 
@@ -69,7 +69,7 @@ function ExtensionSupport() {
           ) : null}
 
           <div className="border-t border-border pt-8 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            Built by LaMill
+            Built by <Brand />
           </div>
         </div>
       </section>

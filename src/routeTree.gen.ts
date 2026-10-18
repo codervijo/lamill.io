@@ -22,6 +22,7 @@ import { Route as ExtensionsPrivacyRouteImport } from './routes/extensions/priva
 import { Route as ExtensionsSupportRouteImport } from './routes/extensions/support'
 import { Route as NotesIndexRouteImport } from './routes/notes/index'
 import { Route as NotesYoctoVsBuildrootRouteImport } from './routes/notes/yocto-vs-buildroot'
+import { Route as ProductsIndexRouteImport } from './routes/products/index'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as WorkSlugRouteImport } from './routes/work/$slug'
 import { Route as ExtensionsSlugIndexRouteImport } from './routes/extensions/$slug/index'
@@ -92,6 +93,11 @@ const NotesYoctoVsBuildrootRoute = NotesYoctoVsBuildrootRouteImport.update({
   path: '/notes/yocto-vs-buildroot',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/work/',
   path: '/work/',
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/aitools/': typeof AitoolsIndexRoute
   '/extensions/': typeof ExtensionsIndexRoute
   '/notes/': typeof NotesIndexRoute
+  '/products/': typeof ProductsIndexRoute
   '/work/': typeof WorkIndexRoute
   '/extensions/$slug/privacy': typeof ExtensionsSlugPrivacyRoute
   '/extensions/$slug/': typeof ExtensionsSlugIndexRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/aitools': typeof AitoolsIndexRoute
   '/extensions': typeof ExtensionsIndexRoute
   '/notes': typeof NotesIndexRoute
+  '/products': typeof ProductsIndexRoute
   '/work': typeof WorkIndexRoute
   '/extensions/$slug/privacy': typeof ExtensionsSlugPrivacyRoute
   '/extensions/$slug': typeof ExtensionsSlugIndexRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/aitools/': typeof AitoolsIndexRoute
   '/extensions/': typeof ExtensionsIndexRoute
   '/notes/': typeof NotesIndexRoute
+  '/products/': typeof ProductsIndexRoute
   '/work/': typeof WorkIndexRoute
   '/extensions/$slug/privacy': typeof ExtensionsSlugPrivacyRoute
   '/extensions/$slug/': typeof ExtensionsSlugIndexRoute
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/aitools/'
     | '/extensions/'
     | '/notes/'
+    | '/products/'
     | '/work/'
     | '/extensions/$slug/privacy'
     | '/extensions/$slug/'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/aitools'
     | '/extensions'
     | '/notes'
+    | '/products'
     | '/work'
     | '/extensions/$slug/privacy'
     | '/extensions/$slug'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/aitools/'
     | '/extensions/'
     | '/notes/'
+    | '/products/'
     | '/work/'
     | '/extensions/$slug/privacy'
     | '/extensions/$slug/'
@@ -246,6 +258,7 @@ export interface RootRouteChildren {
   AitoolsIndexRoute: typeof AitoolsIndexRoute
   ExtensionsIndexRoute: typeof ExtensionsIndexRoute
   NotesIndexRoute: typeof NotesIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
   WorkIndexRoute: typeof WorkIndexRoute
   ExtensionsSlugPrivacyRoute: typeof ExtensionsSlugPrivacyRoute
   ExtensionsSlugIndexRoute: typeof ExtensionsSlugIndexRoute
@@ -344,6 +357,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotesYoctoVsBuildrootRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/': {
       id: '/work/'
       path: '/work'
@@ -390,6 +410,7 @@ const rootRouteChildren: RootRouteChildren = {
   AitoolsIndexRoute: AitoolsIndexRoute,
   ExtensionsIndexRoute: ExtensionsIndexRoute,
   NotesIndexRoute: NotesIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
   WorkIndexRoute: WorkIndexRoute,
   ExtensionsSlugPrivacyRoute: ExtensionsSlugPrivacyRoute,
   ExtensionsSlugIndexRoute: ExtensionsSlugIndexRoute,

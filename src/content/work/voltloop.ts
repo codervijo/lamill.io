@@ -8,6 +8,8 @@ const entry: WorkEntry = {
   description: "VoltLoop — calculate exactly what it costs to charge your EV at home, at Tesla Superchargers, or at public DC fast chargers.",
   date: "2026-04-24",
   tags: ["Calculator","Tool"],
+  category: "Calculators",
+  featured: true,
   stack: ["React","Vite"],
   status: "published",
   body: [

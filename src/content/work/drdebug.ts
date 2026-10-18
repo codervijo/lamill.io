@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "DrDebug — when your AI agent breaks, get a plain-English fix. Built for marketers, operators, consultants, and lean teams.",
   date: "2026-05-28",
   tags: ["AI","Tool"],
+  category: "Developer & AI",
   stack: ["Astro"],
   status: "published",
   body: [

@@ -9,13 +9,15 @@
 //
 // Brand values are NOT guessed — they are the site's actual tokens:
 //   - Colors: converted from the oklch :root values in src/styles.css.
-//   - Fonts:  JetBrains Mono (the header wordmark) + Inter (the hero tagline).
+//   - Fonts:  Inter (the "LaMill" wordmark + tagline) + JetBrains Mono (sub-line).
+//   - Symbol: the L mark from scripts/brand.mjs (dark-background variant).
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
+import { symbolSvg } from "./brand.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "public", "og-image.png");
@@ -76,6 +78,9 @@ const tagline = (text, color) =>
     text,
   );
 
+// The L symbol (dark-background variant) from scripts/brand.mjs, as an image.
+const symbolUri = `data:image/svg+xml;base64,${Buffer.from(symbolSvg("dark")).toString("base64")}`;
+
 const tree = h(
   "div",
   {
@@ -88,32 +93,30 @@ const tree = h(
     padding: "64px 80px",
     fontFamily: "Inter",
   },
-  // Wordmark lockup — mirrors the site header: green dot + LAMILL + green ".io"
+  // Brand lockup — mirrors the site header: L symbol + "LaMill" wordmark.
   h(
     "div",
-    { display: "flex", alignItems: "center", gap: 16 },
-    h("div", { width: 14, height: 14, borderRadius: 9999, background: C.green }),
+    { display: "flex", alignItems: "center", gap: 18 },
+    { type: "img", props: { src: symbolUri, width: 56, height: 56 } },
     h(
       "div",
       {
         display: "flex",
-        fontFamily: "JetBrains Mono",
+        fontFamily: "Inter",
         fontWeight: 700,
-        fontSize: 40,
-        letterSpacing: "-0.02em",
+        fontSize: 48,
+        letterSpacing: "-0.04em",
         color: C.fg,
       },
-      "LAMILL",
-      h("span", { color: C.green }, ".io"),
+      "LaMill",
     ),
   ),
-  // Statement block — stacked tagline (as the hero stacks it) + sub-line
+  // Statement block — the products tagline, then the studio line.
   h(
     "div",
     { display: "flex", flexDirection: "column" },
-    tagline("Build.", C.fg),
-    tagline("Deploy.", C.fg),
-    tagline("Advance.", C.green),
+    tagline("Useful tools", C.fg),
+    tagline("for real work.", C.green),
     h("div", {
       width: 96,
       height: 2,
@@ -131,7 +134,7 @@ const tree = h(
         letterSpacing: "-0.01em",
         color: C.muted,
       },
-      "Engineering studio — full stack, Linux, hardware, IoT, web systems.",
+      "Engineering studio — Build. Deploy. Advance.",
     ),
   ),
 );

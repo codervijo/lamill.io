@@ -8,6 +8,8 @@ const entry: WorkEntry = {
   description: "CalcEngine — a suite of free engineering calculators for API costs, token pricing, backend performance, and everyday developer workflows.",
   date: "2026-06-01",
   tags: ["Calculators","SEO"],
+  category: "Calculators",
+  featured: true,
   stack: ["Astro"],
   status: "published",
   body: [

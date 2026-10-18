@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "DearReels — weekly prompts on WhatsApp with voice and video replies, collected into a beautiful private archive every year.",
   date: "2026-06-02",
   tags: ["Product"],
+  category: "Everyday & family",
   stack: ["Astro"],
   status: "published",
   body: [

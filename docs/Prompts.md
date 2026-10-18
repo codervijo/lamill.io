@@ -95,7 +95,7 @@ work draft. Deployed `4dad234`; IndexNow pinged via portfolio `_deploy_step10_in
 contact form waits on the operator's fleet-wide solution; markpdf.dev "coming soon" notice
 to clear (markpdf.dev repo).
 
-## 2026-10-17 — v5 Extension landing pages (planned)
+## 2026-10-17 — v6 Extension landing pages (planned; numbered v5 until the rebrand took that slot)
 > where were we? → do you have https://lamill.io/extensions/support → if not add that as an
 > urgent item
 >
@@ -113,3 +113,19 @@ broken `/contact` form), so no urgent item was added. Placed as v5 (v5.A decisio
 after the contact-form backlog item. Decisions: lamill.io targets Markdown searches, PDF depth
 stays on markpdf.dev; page copy in a lamill-owned per-extension file (Tabmill keeps
 `extensions.json`); "LaMill" spelling unchanged sitewide.
+
+## 2026-10-17 — v5 LaMill rebrand & products
+> "Update lamill.io branding and product presentation." (brief: new logo, tagline "Useful
+> Tools for Real Work", YouTube @Lamillhq; homepage Studio vs Products; products audit +
+> categories; Organization JSON-LD + sameAs; preserve URLs/metadata; build/lint/tests;
+> before/after screenshots; no deploy without approval) — use downloaded zip file with
+> lamill logo in it
+>
+> LaMill but keep it consistent everywhere, keep 20+, recolor it, 4a, 5a
+
+Placed as v5 (extension landing pages renumbered v5 → v6). Built v5.B–v5.E: `scripts/brand.mjs`
+generates the L symbol (dark-bg foot recolored), outlined "LaMill" lockups, favicons, app
+icons; OG regenerated; header/footer logo; `<Brand />` for uppercase labels; homepage
+"LaMill Studio" + "LaMill Products" section (6 featured); `/products` by category;
+`Organization` JSON-LD with YouTube `sameAs`. Build + tsc clean; screenshots captured. Not
+committed, not deployed — awaiting operator review.

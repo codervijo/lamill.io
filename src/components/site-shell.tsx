@@ -4,6 +4,7 @@ import { type ReactNode } from "react";
 const navLinks = [
   { to: "/services", label: "Services" },
   { to: "/web-systems", label: "Web Systems" },
+  { to: "/products", label: "Products" },
   { to: "/work", label: "Work" },
   { to: "/content", label: "Content" },
   { to: "/contact", label: "Contact" },
@@ -23,12 +24,8 @@ function SiteNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link
-          to="/"
-          className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight"
-        >
-          <span className="inline-block h-2 w-2 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
-          LAMILL<span className="text-primary">.io</span>
+        <Link to="/" className="flex items-center" aria-label="LaMill — home">
+          <BrandLogo className="h-7 w-auto" />
         </Link>
         <nav className="hidden items-center gap-8 font-mono text-xs uppercase tracking-widest text-muted-foreground md:flex">
           {navLinks.map((l) => (
@@ -58,13 +55,10 @@ function SiteFooter() {
     <footer className="border-t border-border bg-background">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[2fr_1fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2 font-mono text-sm font-semibold">
-            <span className="inline-block h-2 w-2 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
-            LAMILL<span className="text-primary">.io</span>
-          </div>
+          <BrandLogo className="h-8 w-auto" />
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             Engineering studio for teams that start from excellence. Full stack, Linux, hardware,
-            IoT, and web systems.
+            IoT, and web systems — and a growing set of useful tools for real work.
           </p>
         </div>
         <FooterCol
@@ -72,6 +66,7 @@ function SiteFooter() {
           items={[
             { to: "/services", label: "Services" },
             { to: "/web-systems", label: "Web Systems" },
+            { to: "/products", label: "Products" },
             { to: "/work", label: "Work" },
             { to: "/content", label: "Content" },
             { to: "/notes", label: "Notes" },
@@ -95,15 +90,40 @@ function SiteFooter() {
           >
             hello@lamill.io
           </a>
+          <a
+            href="https://www.youtube.com/@Lamillhq"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block font-mono text-sm text-foreground transition hover:text-primary"
+          >
+            YouTube ↗
+          </a>
         </div>
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 font-mono text-[11px] uppercase tracking-widest text-muted-foreground md:flex-row md:items-center">
-          <div>LAMILL.IO — © {new Date().getFullYear()}</div>
-          <div>Build · Deploy · Advance</div>
+          <div>
+            © {new Date().getFullYear()} <Brand />
+          </div>
+          <div>Build · Deploy · Advance — Useful tools for real work</div>
         </div>
       </div>
     </footer>
+  );
+}
+
+/**
+ * The brand name, always cased "LaMill" — survives `uppercase` labels, which
+ * would otherwise render it "LAMILL".
+ */
+export function Brand() {
+  return <span className="normal-case">LaMill</span>;
+}
+
+/** The LaMill lockup for the site's dark background (public/brand/logo-dark.svg). */
+function BrandLogo({ className }: { className?: string }) {
+  return (
+    <img src="/brand/logo-dark.svg" alt="LaMill" width={111} height={28} className={className} />
   );
 }
 
@@ -117,6 +137,7 @@ function FooterCol({
       | "/"
       | "/services"
       | "/web-systems"
+      | "/products"
       | "/work"
       | "/content"
       | "/notes"
@@ -148,7 +169,7 @@ export function PageHeader({
   title,
   intro,
 }: {
-  kicker: string;
+  kicker: ReactNode;
   title: ReactNode;
   intro?: ReactNode;
 }) {

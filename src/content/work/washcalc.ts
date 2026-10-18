@@ -8,6 +8,7 @@ const entry: WorkEntry = {
   description: "WashCalc — a pressure-washing pricing calculator that helps operators produce faster, more profitable quotes.",
   date: "2026-06-01",
   tags: ["Calculator","Tool"],
+  category: "Calculators",
   stack: ["React","Vite"],
   status: "published",
   body: [
