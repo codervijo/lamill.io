@@ -144,7 +144,7 @@ superseded by v6 — extension pages get scoped keyword copy.)
       301s to the shared page, already listed)
 - [x] Deployed 2026-10-14 (`4dad234`); IndexNow pinged for `/extensions/save-page-pdf-md`
 
-## v5 — LaMill rebrand & products (built 2026-10-17; v5.F operator review + deploy open)
+## v5 — LaMill rebrand & products (deployed 2026-10-17)
 
 Goal: new LaMill brand identity (geometric blue/navy L symbol, tagline "Useful
 Tools for Real Work", YouTube channel) and a clear split between **LaMill
@@ -209,7 +209,9 @@ solution; v5 does not wait on it.
       `/`, `/work`, `/extensions` (+ `/products` after); no horizontal overflow at 390px
 - [ ] Operator review: logo/OG look, category + featured picks, the five `.xyz`
       product sites that failed TLS from the dev box (see backlog)
-- [ ] Deploy only on operator approval; IndexNow ping (`/`, `/products`, + changed pages)
+- [x] Deployed `7daae88` on operator approval (2026-10-17); live smoke 200 on `/`,
+      `/products`, assets; `Organization` JSON-LD live; IndexNow pinged (1 new URL:
+      `/products` — ledger-gated, already-known URLs not resent)
 
 ## v6 — Extension landing pages (planned 2026-10-17; after v5 and the contact form)
 
