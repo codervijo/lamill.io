@@ -1,0 +1,26 @@
+{
+  "/extensions/save-page-pdf-md/og.png": {
+    "width": 1200,
+    "height": 630
+  },
+  "/extensions/save-page-pdf-md/save-page-silent-16x9.web.mp4": {
+    "width": 1280,
+    "height": 720
+  },
+  "/extensions/save-page-pdf-md/save-page-silent-16x9.web.poster.jpg": {
+    "width": 1280,
+    "height": 720
+  },
+  "/extensions/save-page-pdf-md/shot-before-after.png": {
+    "width": 1200,
+    "height": 900
+  },
+  "/extensions/save-page-pdf-md/shot-pdf.png": {
+    "width": 1200,
+    "height": 900
+  },
+  "/extensions/save-page-pdf-md/shot-popup.png": {
+    "width": 1200,
+    "height": 900
+  }
+}

@@ -48,6 +48,8 @@ export interface PageSeoInput {
   type?: "website" | "article";
   /** Per-page og:image. Falls back to the sitewide card when omitted. */
   image?: string;
+  /** Pixel size of a per-page `image`, when known (e.g. from a generated manifest). */
+  imageSize?: { width: number; height: number };
   /** JSON-LD object to render as <script type="application/ld+json">. */
   jsonLd?: unknown;
   /** Serve the page but keep it out of search results (e.g. unlisted extensions). */
@@ -76,14 +78,21 @@ export function pageSeo(input: PageSeoInput): {
     { name: "twitter:card", content: "summary_large_image" },
   ];
 
-  // Dimensions describe the sitewide card only — a per-page image would have
-  // its own, and asserting 1200x630 for it would be a guess.
-  if (image === OG_IMAGE) {
+  // Dimensions: the sitewide card's, or a per-page image's measured size —
+  // never assumed.
+  const size =
+    image === OG_IMAGE
+      ? { width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT }
+      : input.imageSize && {
+          width: String(input.imageSize.width),
+          height: String(input.imageSize.height),
+        };
+  if (size) {
     meta.splice(
       meta.length - 1,
       0,
-      { property: "og:image:width", content: OG_IMAGE_WIDTH },
-      { property: "og:image:height", content: OG_IMAGE_HEIGHT },
+      { property: "og:image:width", content: size.width },
+      { property: "og:image:height", content: size.height },
     );
   }
 

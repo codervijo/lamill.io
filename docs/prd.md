@@ -213,13 +213,14 @@ solution; v5 does not wait on it.
       `/products`, assets; `Organization` JSON-LD live; IndexNow pinged (1 new URL:
       `/products` — ledger-gated, already-known URLs not resent)
 
-## v6 — Extension landing pages (planned 2026-10-17; after v5 and the contact form)
+## v6 — Extension landing pages (planned 2026-10-17; pulled ahead of the contact form 2026-10-23)
 
 Goal: turn `/extensions/$slug` from a thin stub into a landing page that ranks,
 earns directory/blog links, and converts to installs — built as a reusable
 template driven by per-extension data, so the next extension is one data entry.
-First consumer: `save-page-pdf-md`. Sequenced **after** the 🔴 contact-form item
-in the backlog.
+First consumer: `save-page-pdf-md`. Originally sequenced after the 🔴 contact-form
+item; **pulled ahead of it 2026-10-23** (operator) — the contact form stays blocked on
+the fleet-wide solution either way.
 
 Partially supersedes the v4 rule "hub pages must not compete with the
 portfolio-site tool pages": extension pages now carry keyword-targeted copy,
@@ -236,36 +237,71 @@ scoped so they don't cannibalize the portfolio site (see v6.A).
 - [x] Brand spelling — **"LaMill"** sitewide (no change to the existing spelling).
 - [x] Facts source — only the operator-supplied facts list (2026-10-17 prompt in
       `docs/Prompts.md`); nothing beyond it.
+- [x] Media spec (2026-10-23) — hero autoplays a silent MP4 (muted, loop, playsinline,
+      poster = first frame; poster only under `prefers-reduced-motion`) + "Watch with
+      sound" → YouTube `h2GWC_BamQQ` (uploaded 2026-10-23); assets in
+      `public/extensions/save-page-pdf-md/`
+- [x] FAQ (2026-10-23) — operator's 5 Qs merged with the 2026-10-17 six: Is it free?
+      Does it upload anything? Why doesn't it work on some pages? Why did it save the
+      whole page instead of the article? How do I get pages into Obsidian? Markdown or PDF?
+- [x] No ad claims (2026-10-23) — copy never says it blocks/removes ads; the facts
+      list's "without menus, ads and sidebars" becomes "without menus and sidebars"
 
-**v6.B — Template + data contract**
-- [ ] Lamill-owned page-copy schema (zod) + loader, joined to `extensions.json` by
+**v6.B — Template + data contract — BUILT 2026-10-23**
+- [x] Lamill-owned page-copy schema (zod) + loader, joined to `extensions.json` by
       slug: value prop, demo media `{src, alt, kind}`, `og_image`, body sections,
       "great for" list, how-to steps, `faq[]`, version, size, price
-- [ ] Generic `/extensions/$slug` template rendering it (falls back to today's thin
+- [x] Generic `/extensions/$slug` template rendering it (falls back to today's thin
       page when an extension has no copy file); visible breadcrumbs
-- [ ] JSON-LD builder: `SoftwareApplication` (price 0 USD, OS Chrome, install/download
+- [x] JSON-LD builder: `SoftwareApplication` (price 0 USD, OS Chrome, install/download
       → store link, publisher LaMill), `FAQPage` generated from the same `faq[]` as the
-      visible FAQ, `BreadcrumbList` (Home → Extensions → page). No ratings/reviews
+      visible FAQ, `BreadcrumbList` (Home → Extensions → page), `VideoObject` for the
+      YouTube demo when the copy file has one. No ratings/reviews
       (none exist — no star rich result expected)
-- [ ] One UTM helper for every store link (`utm_source=lamill.io&utm_medium=landing&utm_campaign=<slug>`),
+- [x] Media components: hero video (silent MP4 + poster, reduced-motion → poster,
+      "Watch with sound" link) and a "How it works" screenshot gallery (captions,
+      lazy, explicit width/height, AVIF/WebP + PNG fallback via `<picture>`)
+- [x] One UTM helper for every store link (`utm_source=lamill.io&utm_medium=landing&utm_campaign=<slug>`),
       used on the detail page and the `/extensions` hub
-- [ ] README: "add the next extension" — one data entry + one copy file
+- [x] README: "add the next extension" — one data entry + one copy file
 
-**v6.C — save-page-pdf-md content**
-- [ ] Title "Save Webpage as Markdown or PDF – Free Chrome Extension | LaMill"; H1
+**v6.C — save-page-pdf-md content — BUILT 2026-10-23** (media renders once v6.D assets land)
+- [x] Title "Save Webpage as Markdown or PDF – Free Chrome Extension | LaMill"; H1
       close to it; meta description ≤ ~155 chars, "runs locally" angle
-- [ ] Hero value prop, Add to Chrome button, demo media slot (placeholder path)
-- [ ] Body 300–500 words: what you get, great for, how to use (3 steps), privacy &
+- [x] Hero value prop, Add to Chrome button, silent demo video + "Watch with sound"
+- [x] "How it works" gallery: "Before → After", "One click: Markdown or PDF",
+      "Save as PDF from Chrome's print dialog" (`shot-before-after/popup/pdf.png`)
+- [x] Body 300–500 words: what you get, great for, how to use (3 steps), privacy &
       permissions (existing block kept)
-- [ ] FAQ (6 Qs per the 2026-10-17 spec)
-- [ ] Replace "Full tool page ↗" with "Guide: how to save a webpage as a clean PDF"
+- [x] FAQ (the merged 6 Qs, see v6.A)
+- [x] Replace "Full tool page ↗" with "Guide: how to save a webpage as a clean PDF"
       → markpdf.dev guide and "Need branded PDFs from Markdown? Try MarkPDF" →
       markpdf.dev (`utm_source=lamill.io`)
-- [ ] `/extensions` card description refreshed (already listed + in sitemap)
+- [x] `/extensions` card: store link now carries the UTM; card description is Tabmill's
+      `pitch`, already accurate — unchanged
 
 **v6.D — Assets, verification, deploy**
-- [ ] Operator supplies demo media (GIF/video or before/after screenshot) and a
-      1200×630 OG image — the page is **not ready to push** until both are filled
+- [x] Media in `public/extensions/save-page-pdf-md/` (2026-10-23): shots from tabmill's
+      `extensions/save-page-pdf-md/assets/screenshot{1,3,2}.png` → `shot-before-after`,
+      `shot-popup`, `shot-pdf`; silent MP4 from `~/Downloads`. The with-sound MP4 and the
+      GIF aren't used on the page (sound is on YouTube)
+- [x] Derived assets (`scripts/ext-media.sh`): 720p web MP4 (5.4 MB → 2.1 MB, no audio
+      track), poster (first frame), AVIF/WebP per screenshot (11–16 KB AVIF), OG image =
+      `shot-before-after.png` fitted to 1200×630 on its own background
+- [x] Poster = the 2s title card ("as Markdown or PDF in one click."), not the blank
+      frame 0 — `POSTER_AT=2 bash scripts/ext-media.sh save-page-pdf-md` (operator, 2026-10-23)
+- [x] Source MP4 dropped from `public/`; only the `.web.mp4` ships. Backup copy in tabmill's
+      `extensions/save-page-pdf-md/assets/` (untracked there, same disk as `~/Downloads`)
+- [ ] Operator: off-machine backup of `save-page-silent-16x9.mp4` (cloud storage)
+- [ ] Checks: page weight, no layout shift (CLS), mobile 390px
+      — verified 2026-10-23 against **synthetic** test media (since removed): media adds
+      0 CLS (only the pre-existing sitewide header shift, 0.0004), no x-overflow at 390px,
+      reduced-motion never fetches the MP4; MP4 `preload="none"`. Re-run with the real
+      files for real weights
+- [x] Screenshot `alt` text rewritten against the real images (2026-10-23)
+- [x] Re-checked with the real media (2026-10-23): 0 CLS from media, no x-overflow at
+      390px, first-load media = poster 11 KB + AVIFs 38 KB; MP4 streams only after play
+      starts (plays + loops in WebKit; Playwright's Chromium has no H.264)
 - [ ] Build clean; rendered JSON-LD shown and validated; every link checked (store
       links carry UTM); mobile screenshot via the playwright image
 - [ ] Deploy; IndexNow ping (portfolio `_deploy_step10_indexnow`)

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteShell, PageHeader } from "@/components/site-shell";
-import { getAllExtensions } from "@/lib/extensions";
+import { getAllExtensions, storeLink } from "@/lib/extensions";
 import { pageSeo } from "@/lib/seo";
 
 // Hub pages stay short and link out: the SEO copy lives on each extension's
@@ -59,7 +59,7 @@ function ExtensionsIndex() {
                     </a>
                     {x.store_url ? (
                       <a
-                        href={x.store_url}
+                        href={storeLink(x) ?? undefined}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="rounded-sm border border-border px-4 py-2 text-foreground transition hover:border-primary hover:text-primary"

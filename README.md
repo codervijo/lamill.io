@@ -123,6 +123,44 @@ there. The zod schema is in `src/lib/privacy.ts`:
 The page states nothing is collected, no analytics, no remote code. Tabmill's
 release lint fails any extension that would make one of those untrue.
 
+## Extension landing pages
+
+`/extensions/<slug>` renders the Tabmill facts above plus an optional,
+**lamill-owned** copy file — Tabmill exports never touch it. Without a copy file
+the page stays short (install, permissions, changelog, tool-page link).
+
+To give the next extension a full landing page:
+
+1. **Copy file** — `src/content/extension-pages/<slug>.ts`, default-exporting an
+   `ExtensionPageInput` (schema: `src/lib/extension-pages.ts`). Copy
+   `save-page-pdf-md.ts`: title/H1/meta description, value prop, facts row,
+   optional hero `video` (silent MP4 + YouTube id/title/description/uploadDate),
+   `steps`, `gallery` screenshots, body `sections`, `faq`, outbound `links`,
+   `ogImage`. Only facts the operator supplied — nothing invented.
+2. **Media** — drop the source files into `public/extensions/<slug>/`
+   (`*silent*.mp4`, `shot-*.png`), then on the **host** (needs ffmpeg +
+   ImageMagick, not in the dev container):
+
+   ```sh
+   bash scripts/ext-media.sh <slug> [og-source.png]   # default og source: shot-before-after.png
+   POSTER_AT=2 bash scripts/ext-media.sh save-page-pdf-md   # poster frame in seconds (default 0)
+   ```
+
+   Once the `.web.mp4` exists, delete the source MP4 from `public/` (it would deploy
+   unused) — keep the original backed up outside the repo. Re-runs without it still
+   refresh the poster, AVIF/WebP, OG and manifest.
+
+   It writes a 720p `<name>.web.mp4` (point the copy file's `video.src` at it)
+   with its poster (first frame), AVIF/WebP per screenshot, a 1200×630
+   `og.png`, and every file's pixel size into `src/content/extension-media.json`.
+   A media item missing from that manifest is hidden (build warning), never
+   rendered without width/height.
+
+Generated from the same data: `SoftwareApplication`, `BreadcrumbList`,
+`FAQPage` (the visible FAQ text, verbatim) and `VideoObject` JSON-LD in one
+`@graph`. Every store link goes through `storeLink()` in `src/lib/extensions.ts`,
+which adds `utm_source=lamill.io&utm_medium=landing&utm_campaign=<slug>`.
+
 ## Deploy
 
 **Vercel**, auto-deploying from `main` → **[lamill.io](https://lamill.io)**. The

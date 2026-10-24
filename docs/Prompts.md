@@ -133,3 +133,38 @@ Committed `7daae88`, pushed = deploy approval; live smoke 200 on `/`, `/products
 assets; IndexNow pinged (1 new URL, `/products` — ledger-gated). Deploy recorded in PRD
 `8b5a23d`. Still open in v5.F: operator review of logo/OG, category + featured picks, and the
 five `.xyz` product sites that failed TLS from the dev box.
+
+## 2026-10-23 — v6.B–v6.C Extension landing page (save-page-pdf-md)
+> "Update /extensions/save-page-pdf-md with the new media." (spec: silent MP4 hero + "Watch
+> with sound" → YouTube, reduced-motion → poster; "How it works" 3-shot gallery with
+> AVIF/WebP + PNG fallback; accurate copy, no ad claims; UTM on every Add to Chrome link;
+> 5-Q FAQ + FAQPage; SoftwareApplication + VideoObject JSON-LD; og:image from
+> shot-before-after.png at 1200×630; check weight/CLS/mobile/JSON-LD)
+>
+> YouTube https://www.youtube.com/watch?v=h2GWC_BamQQ → upload date 2026-10-23; merge the
+> FAQ rather than replace → fold into v6 ahead of contact form, drop ads, path ok
+
+Folded into v6 and pulled ahead of the contact form. FAQ merged: the operator's 5 plus
+"Why did it save the whole page instead of the article?" from the 2026-10-17 six. Built
+v6.B–v6.C: lamill-owned copy file `src/content/extension-pages/<slug>.ts` (zod schema +
+`@graph` JSON-LD builder in `src/lib/extension-pages.ts`), hero video + gallery components,
+`storeLink()` UTM helper (detail + hub), `pageSeo` per-page OG size, host-side
+`scripts/ext-media.sh` (poster, AVIF/WebP, og.png, size manifest). Verified with synthetic
+media (removed after): 0 CLS from media, no overflow at 390px, reduced-motion skips the
+MP4, FAQ JSON-LD = visible text. Real media not yet in the repo — v6.D open; not ready to push.
+
+> check latest screenshot to find where to get assets to load in this page
+
+Screenshot pointed at tabmill's `extensions/save-page-pdf-md/assets/` (screenshot1–3.png);
+the silent MP4 was in `~/Downloads`. Copied in as `shot-before-after` / `shot-popup` /
+`shot-pdf` + `save-page-silent-16x9.mp4`. `ext-media.sh` now also encodes a 720p web MP4
+(2.1 MB) and pads the OG with the source's own background. Alt text rewritten from the real
+images. Open: poster frame choice (frame 0 is blank) and whether the 5.4 MB source MP4 stays
+in `public/`.
+
+> 2s poster … dropping the source MP4: fine, as long as the original is backed up somewhere
+> besides ~/Downloads
+
+Poster regenerated at 2s (`POSTER_AT` option added to `ext-media.sh`). Source MP4 copied
+(byte-identical) to tabmill's `extensions/save-page-pdf-md/assets/`, then removed from
+`public/`. That copy is untracked and on the same disk — an off-machine backup is still open.

@@ -92,3 +92,13 @@ export function getAllExtensions(): Extension[] {
 export function getExtensionBySlug(slug: string): Extension | undefined {
   return ALL.find((e) => e.slug === slug && e.status !== "draft");
 }
+
+/** Store URL with the landing-page UTM — use this for every install link. */
+export function storeLink(ext: Extension): string | null {
+  if (!ext.store_url) return null;
+  const u = new URL(ext.store_url);
+  u.searchParams.set("utm_source", "lamill.io");
+  u.searchParams.set("utm_medium", "landing");
+  u.searchParams.set("utm_campaign", ext.slug);
+  return u.toString();
+}

@@ -39,7 +39,7 @@ Two kinds of page:
 | Text Generator | `/aitools/text-generator` | Leaf (mock) | Placeholder tool — not wired to an LLM | `/aitools` |
 | Image Analyzer | `/aitools/image-analyzer` | Leaf (mock) | Placeholder tool — not wired to vision | `/aitools` |
 | Extensions | `/extensions` | **Content hub (index)** | Chrome extensions directory; short, links out to each portfolio-site tool page (must not compete with it) | extension leaves, tool pages |
-| Extension | `/extensions/$slug` | Leaf ×1 (`save-page-pdf-md`) | Install, permissions + why, changelog; rendered from `src/content/extensions.json` (Tabmill-generated) | `/extensions`, tool page |
+| Extension | `/extensions/$slug` | Leaf ×1 (`save-page-pdf-md`) | Landing page: hero demo video, how-it-works gallery, body, permissions, FAQ; facts from `src/content/extensions.json` (Tabmill), copy from `src/content/extension-pages/<slug>.ts` (lamill-owned); `SoftwareApplication` + `FAQPage` + `BreadcrumbList` + `VideoObject` JSON-LD | `/extensions`, markpdf.dev guide + MarkPDF |
 | Extension privacy | `/extensions/privacy` | Leaf | One shared policy rendered from `src/content/privacy.json` (Tabmill-generated; shows "Policy version N"); every store listing links here. `/extensions/$slug/privacy` → 301 here | extension pages |
 | Extension support | `/extensions/support` | Leaf | Single support page, email only | extension leaves |
 
