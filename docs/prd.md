@@ -213,7 +213,7 @@ solution; v5 does not wait on it.
       `/products`, assets; `Organization` JSON-LD live; IndexNow pinged (1 new URL:
       `/products` — ledger-gated, already-known URLs not resent)
 
-## v6 — Extension landing pages (planned 2026-10-17; pulled ahead of the contact form 2026-10-23)
+## v6 — Extension landing pages (deployed 2026-10-23; off-machine media backup open)
 
 Goal: turn `/extensions/$slug` from a thin stub into a landing page that ranks,
 earns directory/blog links, and converts to installs — built as a reusable
@@ -304,7 +304,10 @@ scoped so they don't cannibalize the portfolio site (see v6.A).
       starts (plays + loops in WebKit; Playwright's Chromium has no H.264)
 - [ ] Build clean; rendered JSON-LD shown and validated; every link checked (store
       links carry UTM); mobile screenshot via the playwright image
-- [ ] Deploy; IndexNow ping (portfolio `_deploy_step10_indexnow`)
+- [x] Deployed `8e3b014` (2026-10-23); live: new title, `og:image` = page OG, 2 UTM store
+      links, video + 3 `<picture>`s in SSR HTML, all 4 JSON-LD types, every asset 200
+- [x] IndexNow ran — ledger current, nothing sent (the URL was pinged 2026-10-14; the
+      ledger only sends new URLs, not updated ones)
 
 ## Backlog / follow-ups (open)
 - [ ] Five published product sites failed the TLS handshake from the dev box on

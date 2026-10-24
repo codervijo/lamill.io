@@ -168,3 +168,9 @@ in `public/`.
 Poster regenerated at 2s (`POSTER_AT` option added to `ext-media.sh`). Source MP4 copied
 (byte-identical) to tabmill's `extensions/save-page-pdf-md/assets/`, then removed from
 `public/`. That copy is untracked and on the same disk — an off-machine backup is still open.
+
+> commit it → push it
+
+Committed `8e3b014`, pushed = deploy. Live smoke: page, assets, JSON-LD all present.
+IndexNow: ledger current, nothing sent (URL already known — the ledger doesn't resend
+updated URLs). Still open: off-machine backup of the source MP4.
