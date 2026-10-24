@@ -88,8 +88,10 @@ when scheduled, don't treat as done:
   standalone prose described above; today they lean list-first.
 - **Cross-hub linking.** Practice hubs → `/work` proof links and practice ↔
   practice cross-links are not systematically in place.
-- **Per-hub structured data.** Only `/` (`ProfessionalService`) and the
-  `/notes/yocto-vs-buildroot` leaf (`TechArticle`) carry JSON-LD. Content hubs should
+- **Per-hub structured data.** Only `/` (`Organization`), the
+  `/notes/yocto-vs-buildroot` leaf (`TechArticle`) and `/extensions/$slug` leaves with a
+  copy file (`SoftwareApplication` + `BreadcrumbList` + `FAQPage` + `VideoObject`) carry
+  JSON-LD. Content hubs should
   get their own appropriate `@type` (e.g. `Service`/`CollectionPage`) via
   `pageSeo({ jsonLd })` — tracked, not built. (Every route *does* now get the full
   OG set + self-canonical from `src/lib/seo.ts`, since 2026-08-02.)

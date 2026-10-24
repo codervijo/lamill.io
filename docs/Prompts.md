@@ -134,7 +134,7 @@ assets; IndexNow pinged (1 new URL, `/products` — ledger-gated). Deploy record
 `8b5a23d`. Still open in v5.F: operator review of logo/OG, category + featured picks, and the
 five `.xyz` product sites that failed TLS from the dev box.
 
-## 2026-10-23 — v6.B–v6.C Extension landing page (save-page-pdf-md)
+## 2026-10-23 — v6.B–v6.D Extension landing page (save-page-pdf-md), deployed
 > "Update /extensions/save-page-pdf-md with the new media." (spec: silent MP4 hero + "Watch
 > with sound" → YouTube, reduced-motion → poster; "How it works" 3-shot gallery with
 > AVIF/WebP + PNG fallback; accurate copy, no ad claims; UTM on every Add to Chrome link;
@@ -174,3 +174,8 @@ Poster regenerated at 2s (`POSTER_AT` option added to `ext-media.sh`). Source MP
 Committed `8e3b014`, pushed = deploy. Live smoke: page, assets, JSON-LD all present.
 IndexNow: ledger current, nothing sent (URL already known — the ledger doesn't resend
 updated URLs). Still open: off-machine backup of the source MP4.
+
+> commit and push the prd update → update the docs and prompts.md with this session
+
+Deploy record committed + pushed `a67033a`. Docs pass: `architecture.md` structured-data gap
+note corrected (the extension leaf now carries JSON-LD; the homepage type is `Organization`).
