@@ -309,6 +309,32 @@ scoped so they don't cannibalize the portfolio site (see v6.A).
 - [x] IndexNow ran — ledger current, nothing sent (the URL was pinged 2026-10-14; the
       ledger only sends new URLs, not updated ones)
 
+## v7 — Image license page (built 2026-11-03; deploy pending operator)
+
+Goal: a permanent license page for the AI-generated images on LaMill's portfolio sites
+(cottagefoodmap.com first). Every image file's embedded metadata and every page's
+schema.org `ImageObject` already point at two URLs: license →
+`https://lamill.io/image-license` (404 until this ships) and licensing contact →
+`https://lamill.io/contact` (exists, unchanged).
+
+**v7.A — Kickoff / decisions lock (no code) — DONE 2026-11-03**
+- [x] Path `/image-license` is **permanent** — baked into image files; never rename,
+      move or redirect it
+- [x] Copy = the operator's three statements only, no further legal terms (ask the
+      operator before adding any): AI-generated and © lamill.io; "No reuse,
+      redistribution or modification without permission"; license via `/contact`
+- [x] Footer link (Company column); plain `pageSeo()` head, no JSON-LD
+
+**v7.B — Page — BUILT 2026-11-03**
+- [x] `src/routes/image-license.tsx` (same shape as `contact.tsx`: `SiteShell` +
+      `PageHeader` + `pageSeo`); internal `<Link>` to `/contact`
+- [x] `public/sitemap.xml` entry (46 URLs); footer link; page inventory + counts in
+      `docs/architecture.md` and `AI_AGENTS.md`
+
+**v7.C — Deploy (operator)**
+- [ ] Operator push; then IndexNow ping (new URL) and
+      `curl -sI https://lamill.io/image-license` → 200
+
 ## Backlog / follow-ups (open)
 - [ ] Five published product sites failed the TLS handshake from the dev box on
       2026-10-17 (`SSL routines::wrong version number`): dailyring.xyz, donready.xyz,

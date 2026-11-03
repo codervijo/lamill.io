@@ -34,7 +34,8 @@ Two kinds of page:
 | Notes | `/notes` | **Content hub (index)** | LaMill's own technical writing (NOT `/content`, which is a service) | note leaves |
 | AI Tools | `/aitools` | **Content hub (index)** | Sub-app landing | 2 tool leaves |
 | Contact | `/contact` | Leaf (conversion) | Local-state inquiry form (no backend yet) | — |
-| Work case study | `/work/$slug` | Leaf ×29 | One typed case-study per file in `src/content/work/*.ts` (32 files: 29 `published`, 3 `draft`) | `/work` |
+| Image license | `/image-license` | Leaf | License terms for the AI-generated images on LaMill portfolio sites; **permanent URL** (embedded in image metadata + `ImageObject` schema) | `/contact` |
+| Work case study | `/work/$slug` | Leaf ×29 | One typed case-study per file in `src/content/work/*.ts` (33 files: 29 `published`, 4 `draft`) | `/work` |
 | Yocto vs Buildroot | `/notes/yocto-vs-buildroot` | Leaf (article) | Flagship `TechArticle` — company-voice, no byline | `/notes`, `/services` |
 | Text Generator | `/aitools/text-generator` | Leaf (mock) | Placeholder tool — not wired to an LLM | `/aitools` |
 | Image Analyzer | `/aitools/image-analyzer` | Leaf (mock) | Placeholder tool — not wired to vision | `/aitools` |
@@ -44,9 +45,9 @@ Two kinds of page:
 | Extension support | `/extensions/support` | Leaf | Single support page, email only | extension leaves |
 
 **Counts:** 1 root hub · 8 content hubs (`/services`, `/web-systems`, `/content`,
-`/products`, `/work`, `/notes`, `/aitools`, `/extensions`) · 36 public leaves (29 published work
-case studies + 1 note article + contact + 2 AI tools + 1 extension + extension privacy +
-extension support) — **45 public pages** total, matching the 45
+`/products`, `/work`, `/notes`, `/aitools`, `/extensions`) · 37 public leaves (29 published work
+case studies + 1 note article + contact + image license + 2 AI tools + 1 extension +
+extension privacy + extension support) — **46 public pages** total, matching the 46
 `<loc>` entries in `public/sitemap.xml`.
 
 Work-leaf count = `src/content/work/*.ts` entries with `status: "published"` (33

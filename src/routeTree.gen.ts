@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContentRouteImport } from './routes/content'
+import { Route as ImageLicenseRouteImport } from './routes/image-license'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WebSystemsRouteImport } from './routes/web-systems'
 import { Route as AitoolsIndexRouteImport } from './routes/aitools/index'
@@ -41,6 +42,11 @@ const ContactRoute = ContactRouteImport.update({
 const ContentRoute = ContentRouteImport.update({
   id: '/content',
   path: '/content',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImageLicenseRoute = ImageLicenseRouteImport.update({
+  id: '/image-license',
+  path: '/image-license',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/content': typeof ContentRoute
+  '/image-license': typeof ImageLicenseRoute
   '/services': typeof ServicesRoute
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/content': typeof ContentRoute
+  '/image-license': typeof ImageLicenseRoute
   '/services': typeof ServicesRoute
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
   '/content': typeof ContentRoute
+  '/image-license': typeof ImageLicenseRoute
   '/services': typeof ServicesRoute
   '/web-systems': typeof WebSystemsRoute
   '/aitools/image-analyzer': typeof AitoolsImageAnalyzerRoute
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/content'
+    | '/image-license'
     | '/services'
     | '/web-systems'
     | '/aitools/image-analyzer'
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/content'
+    | '/image-license'
     | '/services'
     | '/web-systems'
     | '/aitools/image-analyzer'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/contact'
     | '/content'
+    | '/image-license'
     | '/services'
     | '/web-systems'
     | '/aitools/image-analyzer'
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
   ContentRoute: typeof ContentRoute
+  ImageLicenseRoute: typeof ImageLicenseRoute
   ServicesRoute: typeof ServicesRoute
   WebSystemsRoute: typeof WebSystemsRoute
   AitoolsImageAnalyzerRoute: typeof AitoolsImageAnalyzerRoute
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/content'
       fullPath: '/content'
       preLoaderRoute: typeof ContentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/image-license': {
+      id: '/image-license'
+      path: '/image-license'
+      fullPath: '/image-license'
+      preLoaderRoute: typeof ImageLicenseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -399,6 +419,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
   ContentRoute: ContentRoute,
+  ImageLicenseRoute: ImageLicenseRoute,
   ServicesRoute: ServicesRoute,
   WebSystemsRoute: WebSystemsRoute,
   AitoolsImageAnalyzerRoute: AitoolsImageAnalyzerRoute,

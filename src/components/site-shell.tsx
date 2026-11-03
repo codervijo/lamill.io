@@ -77,6 +77,7 @@ function SiteFooter() {
           title="Company"
           items={[
             { to: "/contact", label: "Contact" },
+            { to: "/image-license", label: "Image license" },
             { to: "/", label: "Home" },
           ]}
         />
@@ -142,7 +143,8 @@ function FooterCol({
       | "/content"
       | "/notes"
       | "/extensions"
-      | "/contact";
+      | "/contact"
+      | "/image-license";
     label: string;
   }>;
 }) {
