@@ -15,6 +15,9 @@ custom_domains = [
 indexnow_key = "f19d828bf2a8b489116525b507fd17f0"
 indexnow_enabled = true
 
+[analytics]
+ga4_id = "G-YZZJ7TFQM8"
+
 [stack]
 framework = "tanstack"  # TanStack Start, SSR (React 19 + Vite + nitro); deploys to Vercel via Build Output API
 
